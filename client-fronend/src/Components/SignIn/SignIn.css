@@ -1,0 +1,83 @@
+/*
+ * SignIn css File
+*/
+.SignIn {
+    text-align: left;
+}
+
+.sign-in-form {
+	margin:5% auto 0 auto;
+	padding:30px;
+	width:400px;
+	height:auto;
+	overflow:hidden;
+	background:white;
+	border-radius:10px;
+	box-shadow:5px 5px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sign-in-form input {
+	float:left;
+	clear:both;
+}
+
+.sign-in-form input {
+	margin:15px 0;
+	padding:15px 10px;
+	width:100%;
+	outline:none;
+	border:1px solid #bbb;
+	border-radius:20px;
+	display:inline-block;
+	-webkit-box-sizing:border-box;
+	   -moz-box-sizing:border-box;
+	        box-sizing:border-box;
+    -webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}
+
+.sign-in-form input[type=text]:focus,
+.sign-in-form input[type="password"]:focus {
+	border-color:cornflowerblue;
+}
+
+input[type=submit] {
+	padding:15px 50px;
+	width:auto;
+	background:brown;
+	border:none;
+	color:white;
+	cursor:pointer;
+	display:inline-block;
+	float:right;
+	clear:right;
+	-webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}
+
+input[type=submit]:hover {
+	opacity:0.8;
+}
+
+input[type="submit"]:active {
+	opacity:0.4;
+}
+
+input[type="submit"]:disabled {
+	opacity:0.4;
+}
+
+.button-form {
+	display: inline-flex;
+}
+
+.invalid-message {
+	color: red;
+	font-size: 12px;
+}

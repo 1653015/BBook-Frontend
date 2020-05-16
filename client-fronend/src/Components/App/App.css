@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Lily+Script+One);
+
+.App {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../../img/background.jpg);
+    background-position: center;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
