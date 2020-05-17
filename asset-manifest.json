@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/BBook-Frontend/static/css/main.a6cd1894.chunk.css",
+    "main.js": "/BBook-Frontend/static/js/main.3ac9beee.chunk.js",
+    "main.js.map": "/BBook-Frontend/static/js/main.3ac9beee.chunk.js.map",
+    "runtime-main.js": "/BBook-Frontend/static/js/runtime-main.4897ac02.js",
+    "runtime-main.js.map": "/BBook-Frontend/static/js/runtime-main.4897ac02.js.map",
+    "static/js/2.0c908e73.chunk.js": "/BBook-Frontend/static/js/2.0c908e73.chunk.js",
+    "static/js/2.0c908e73.chunk.js.map": "/BBook-Frontend/static/js/2.0c908e73.chunk.js.map",
+    "index.html": "/BBook-Frontend/index.html",
+    "precache-manifest.406239285879e5781a0791fc95dde7d1.js": "/BBook-Frontend/precache-manifest.406239285879e5781a0791fc95dde7d1.js",
+    "service-worker.js": "/BBook-Frontend/service-worker.js",
+    "static/css/main.a6cd1894.chunk.css.map": "/BBook-Frontend/static/css/main.a6cd1894.chunk.css.map",
+    "static/js/2.0c908e73.chunk.js.LICENSE.txt": "/BBook-Frontend/static/js/2.0c908e73.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/BBook-Frontend/static/media/background.6e3a5e0e.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4897ac02.js",
+    "static/js/2.0c908e73.chunk.js",
+    "static/css/main.a6cd1894.chunk.css",
+    "static/js/main.3ac9beee.chunk.js"
+  ]
+}
