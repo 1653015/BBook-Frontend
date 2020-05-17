@@ -8,6 +8,7 @@ import {
     Route
   } from "react-router-dom";
 import SignUp from '../SignUp/SignUp';
+import Home from '../Home/Home';
 
 function App() {
     return (
@@ -22,6 +23,9 @@ function App() {
                         </Route>
                         <Route path="/signup">
                             <SignUp/>
+                        </Route>
+                        <Route path="/">
+                            <Home/>
                         </Route>
                     </Switch>
                 </Router>
