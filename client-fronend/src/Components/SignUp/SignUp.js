@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Formik} from 'formik'
 import * as Yup from 'yup'
-import './SignIn.css';
+import './SignUp.css';
 
-class SignIn extends Component {
+class SignUp extends Component {
     // constructor(props){
         // super(props);
         // this.state = {};
@@ -20,13 +20,15 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div className="SignIn">
+            <div className="SignUp">
                 <Formik
-                    initialValues={{email: '', password: ''}}
+                    initialValues={{fullname: '', email: '', password: ''}}
                     onSubmit={(values, actions) => {
                         actions.setSubmitting(false);
                     }}
                     validationSchema={Yup.object({
+                        fullname: Yup.string()
+                            .required('Your name is empty'),
                         email: Yup.string()
                             .email('Invalid email address')
                             .required('Email is empty'),
@@ -39,8 +41,21 @@ class SignIn extends Component {
                         {
                             props => (
                                 <form onSubmit={props.handleSubmit} className="sign-in-up-form">
-                                    <h1 style={{textAlign: "center"}} className="font-white">Đăng Nhập</h1>
-
+                                    <h1 style={{textAlign: "center"}} className="font-white">Đăng Kí</h1>
+                                    <div className="form-item">
+                                        <div className="form-item-header">
+                                            <div className="font-white">Full-name</div>
+                                            {props.touched.email && props.errors.email? (
+                                                <div className="invalid-message">{props.errors.fullname}</div>
+                                            ) : null}
+                                        </div>
+                                        <input className="form-input"
+                                            type="text"
+                                            onChange={props.handleChange}
+                                            value={props.values.fullname}
+                                            name="fullname"
+                                        />
+                                    </div>
                                     <div className="form-item">
                                         <div className="form-item-header">
                                             <div className="font-white">Email</div>
@@ -69,7 +84,7 @@ class SignIn extends Component {
                                             name="password"
                                         />
                                     </div>
-                                    <input type="submit" disabled={props.isSubmitting} value="Đăng Nhập"/>
+                                    <input type="submit" disabled={props.isSubmitting} value="Đăng Kí"/>
                                 </form>
                             )
                         }
@@ -79,4 +94,4 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+export default SignUp;

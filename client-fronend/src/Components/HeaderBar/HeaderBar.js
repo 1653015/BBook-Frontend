@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import './HeaderBar.css'
+import './HeaderBar.css';
+import {
+    Link
+  } from "react-router-dom";
 
 
 class HeaderBar extends Component {
@@ -22,8 +25,8 @@ class HeaderBar extends Component {
             <div className="header-bbook">
                 <div className="bbook-logo">BBOOK</div>
                 <div className="signin-signup-layout">
-                    <div className="header-item">Đăng nhập</div>
-                    <div className="header-item">Đăng kí</div>
+                    <Link to="/signin"><div className="header-item">Đăng nhập</div></Link>
+                    <Link to="/signup"><div className="header-item">Đăng kí</div></Link>
                 </div>
             </div>
         );

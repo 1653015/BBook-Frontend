@@ -27,10 +27,13 @@
 }
 .header-item:hover {
     color: rgb(212, 212, 212);
-    cursor: pointer;
 }
 .signin-signup-layout {
     display: flex;
     position: absolute;
     right: 60px;
+}
+
+a {
+    text-decoration: none;
 }
