@@ -23,10 +23,10 @@ class HeaderBar extends Component {
     render() {
         return (
             <div className="header-bbook">
-                <Link to="/" className="bbook-logo">BBOOK</Link>
+                <Link to={process.env.PUBLIC_URL + '/'} className="bbook-logo">BBOOK</Link>
                 <div className="signin-signup-layout">
-                    <Link to="/signin"><div className="header-item">Đăng nhập</div></Link>
-                    <Link to="/signup"><div className="header-item">Đăng kí</div></Link>
+                    <Link to={process.env.PUBLIC_URL + '/signin'}><div className="header-item">Đăng nhập</div></Link>
+                    <Link to={process.env.PUBLIC_URL + '/signup'}><div className="header-item">Đăng kí</div></Link>
                 </div>
             </div>
         );

@@ -18,13 +18,13 @@ function App() {
                 <Router>
                     <HeaderBar/>
                     <Switch>
-                        <Route path="/signin" component={App}>
+                        <Route path={process.env.PUBLIC_URL + '/signin'} >
                             <SignIn/>
                         </Route>
-                        <Route path="/signup" component={App}>
+                        <Route path={process.env.PUBLIC_URL + '/signup'}>
                             <SignUp/>
                         </Route>
-                        <Route path="/" component={App}>
+                        <Route path={process.env.PUBLIC_URL + '/'}>
                             <Home/>
                         </Route>
                     </Switch>
