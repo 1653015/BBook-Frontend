@@ -1,7 +1,7 @@
 .header-bbook {
     display: flex;
     position: fixed;
-    background-color: brown;
+    background: rgba(165, 42, 42, 0.84);
     width: 100%;
 }
 
@@ -21,7 +21,7 @@
     text-align: center;
     margin: 10px;
     padding: 10px 0;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
 }
 .header-item:hover {

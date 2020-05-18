@@ -3,14 +3,36 @@
 .App {
     height: 100%;
 }
+@keyframes slideleft {
+    from {
+        background-position: 0%;
+    }
+    to {
+        background-position: 90000%;
+    }
+}
 
+@-webkit-keyframes slideleft {
+from {
+    background-position: 0%;
+}
+to {
+    background-position: 90000%;
+}
+}
 .background-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../../img/background.jpg);
-    background-position: center;
-    height: 100%;
-    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-image:  url(../../img/background.jpg);
+    background-repeat: repeat-x;
+    animation: slideleft 20000s infinite linear;
+    -webkit-animation: slideleft 20000s infinite linear;
+    
+    position: relative;
     background-size: cover;
-    filter: blur(6px);
+    -webkit-background-size:cover;
+    -moz-background-size:cover; 
+    background-attachment: fixed;
+	min-height: 100vh;
 }
 
 .background-content {

@@ -54,6 +54,7 @@ class SignUp extends Component {
                                             onChange={props.handleChange}
                                             value={props.values.fullname}
                                             name="fullname"
+                                            placeholder="Hãy nhập họ và tên"
                                         />
                                     </div>
                                     <div className="form-item">
@@ -68,6 +69,7 @@ class SignUp extends Component {
                                             onChange={props.handleChange}
                                             value={props.values.email}
                                             name="email"
+                                            placeholder="Hãy nhập email của bạn"
                                         />
                                     </div>
                                     <div className="form-item">
@@ -82,6 +84,7 @@ class SignUp extends Component {
                                             onChange={props.handleChange}
                                             value={props.values.password}
                                             name="password"
+                                            placeholder="Hãy nhập mật khẩu của bạn"
                                         />
                                     </div>
                                     <input type="submit" disabled={props.isSubmitting} value="Đăng Kí"/>
