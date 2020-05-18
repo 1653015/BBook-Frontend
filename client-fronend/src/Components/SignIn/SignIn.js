@@ -36,13 +36,15 @@ class SignIn extends Component {
                         .then(res => {
                             if(res.status === 400) {
                                 res.text().then(text => this.setState({errorMessage: text}));
+                                actions.setSubmitting(false);
                             } else if (res.status === 200) {
                                 this.setState({errorMessage: 'Đăng nhập thành công!!!'});
+                                actions.setSubmitting(false);
                             } else {
-                                this.setState({errorMessage: 'Lỗi không xác định!!!'})
+                                this.setState({errorMessage: 'Lỗi không xác định!!!'});
+                                actions.setSubmitting(false);
                             }
                         })
-                        actions.setSubmitting(false);
                     }}
                     validationSchema={Yup.object({
                         email: Yup.string()

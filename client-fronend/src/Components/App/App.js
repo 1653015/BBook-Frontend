@@ -18,13 +18,13 @@ function App() {
                 <Router>
                     <HeaderBar/>
                     <Switch>
-                        <Route path="/signin">
+                        <Route path="/BBook-Frontend/signin">
                             <SignIn/>
                         </Route>
-                        <Route path="/signup">
+                        <Route path="/BBook-Frontend/signup">
                             <SignUp/>
                         </Route>
-                        <Route path="/">
+                        <Route path="/BBook-Frontend">
                             <Home/>
                         </Route>
                     </Switch>
