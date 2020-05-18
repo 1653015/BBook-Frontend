@@ -1,6 +1,6 @@
 .header-bbook {
     display: flex;
-    position: relative;
+    position: fixed;
     background-color: brown;
     width: 100%;
 }

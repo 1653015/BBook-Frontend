@@ -6,7 +6,7 @@
 }
 
 .sign-in-up-form {
-	margin: 5% auto 0 auto;
+	margin: 10% auto 0 auto;
 	padding: 30px;
 	width: 400px;
 	height: auto;
@@ -93,3 +93,6 @@ input[type="submit"]:disabled {
 	color: white;
 }
 
+.error-message {
+	color: rgb(253, 90, 90);
+}

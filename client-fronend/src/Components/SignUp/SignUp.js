@@ -44,7 +44,7 @@ class SignUp extends Component {
                                     <h1 style={{textAlign: "center"}} className="font-white">Đăng Kí</h1>
                                     <div className="form-item">
                                         <div className="form-item-header">
-                                            <div className="font-white">Full-name</div>
+                                            <div className="font-white">Tên Đăng Nhập</div>
                                             {props.touched.email && props.errors.email? (
                                                 <div className="invalid-message">{props.errors.fullname}</div>
                                             ) : null}
@@ -72,7 +72,7 @@ class SignUp extends Component {
                                     </div>
                                     <div className="form-item">
                                         <div className="form-item-header">
-                                            <div className="font-white">Password</div>
+                                            <div className="font-white">Mật Khẩu</div>
                                             {props.touched.password && props.errors.password? (
                                                 <div className="invalid-message">{props.errors.password}</div>
                                             ) : null}
