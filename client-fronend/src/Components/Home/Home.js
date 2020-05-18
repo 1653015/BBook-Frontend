@@ -18,7 +18,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div style={{color: "white", textAlign: "center"}}>
+            <div style={{color: "white", textAlign: "center", position: "absolute", top: "68px", width: "100%"}}>
                 THIS IS MADNESS
             </div>
         );

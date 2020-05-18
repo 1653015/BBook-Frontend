@@ -18,13 +18,13 @@ function App() {
                 <Router>
                     <HeaderBar/>
                     <Switch>
-                        <Route path="/BBook-Frontend/signin">
+                        <Route path="/signin" component={App}>
                             <SignIn/>
                         </Route>
-                        <Route path="/BBook-Frontend/signup">
+                        <Route path="/signup" component={App}>
                             <SignUp/>
                         </Route>
-                        <Route path="/BBook-Frontend">
+                        <Route path="/" component={App}>
                             <Home/>
                         </Route>
                     </Switch>
