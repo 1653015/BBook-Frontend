@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/BBook-Frontend/static/css/main.56503381.chunk.css",
-    "main.js": "/BBook-Frontend/static/js/main.78b24e32.chunk.js",
-    "main.js.map": "/BBook-Frontend/static/js/main.78b24e32.chunk.js.map",
+    "main.css": "/BBook-Frontend/static/css/main.e0a11c5e.chunk.css",
+    "main.js": "/BBook-Frontend/static/js/main.ef26dfa6.chunk.js",
+    "main.js.map": "/BBook-Frontend/static/js/main.ef26dfa6.chunk.js.map",
     "runtime-main.js": "/BBook-Frontend/static/js/runtime-main.4897ac02.js",
     "runtime-main.js.map": "/BBook-Frontend/static/js/runtime-main.4897ac02.js.map",
     "static/js/2.0c908e73.chunk.js": "/BBook-Frontend/static/js/2.0c908e73.chunk.js",
     "static/js/2.0c908e73.chunk.js.map": "/BBook-Frontend/static/js/2.0c908e73.chunk.js.map",
     "index.html": "/BBook-Frontend/index.html",
-    "precache-manifest.c0930a1685f603aeade7028b25b151e1.js": "/BBook-Frontend/precache-manifest.c0930a1685f603aeade7028b25b151e1.js",
+    "precache-manifest.f8b49a49ee8df78ed4cd071f1f46515b.js": "/BBook-Frontend/precache-manifest.f8b49a49ee8df78ed4cd071f1f46515b.js",
     "service-worker.js": "/BBook-Frontend/service-worker.js",
-    "static/css/main.56503381.chunk.css.map": "/BBook-Frontend/static/css/main.56503381.chunk.css.map",
+    "static/css/main.e0a11c5e.chunk.css.map": "/BBook-Frontend/static/css/main.e0a11c5e.chunk.css.map",
     "static/js/2.0c908e73.chunk.js.LICENSE.txt": "/BBook-Frontend/static/js/2.0c908e73.chunk.js.LICENSE.txt",
     "static/media/App.css": "/BBook-Frontend/static/media/background.6e3a5e0e.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.4897ac02.js",
     "static/js/2.0c908e73.chunk.js",
-    "static/css/main.56503381.chunk.css",
-    "static/js/main.78b24e32.chunk.js"
+    "static/css/main.e0a11c5e.chunk.css",
+    "static/js/main.ef26dfa6.chunk.js"
   ]
 }
