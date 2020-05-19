@@ -15,7 +15,7 @@ function App() {
         <div className="App">
             <div className="background-image"></div>
             <div className="background-content">
-                <Router basename={process.env.PUBLIC_URL}>
+                <Router basename={process.env.PUBLIC_URL + '/#'}>
                     <HeaderBar/>
                     <Switch>
                         <Route path='/signin' >
