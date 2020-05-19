@@ -15,16 +15,16 @@ function App() {
         <div className="App">
             <div className="background-image"></div>
             <div className="background-content">
-                <Router>
+                <Router basename={process.env.PUBLIC_URL}>
                     <HeaderBar/>
                     <Switch>
-                        <Route path={process.env.PUBLIC_URL + '/signin'} >
+                        <Route path='/signin' >
                             <SignIn/>
                         </Route>
-                        <Route path={process.env.PUBLIC_URL + '/signup'}>
+                        <Route path='/signup'>
                             <SignUp/>
                         </Route>
-                        <Route path={process.env.PUBLIC_URL + '/'}>
+                        <Route path='/'>
                             <Home/>
                         </Route>
                     </Switch>

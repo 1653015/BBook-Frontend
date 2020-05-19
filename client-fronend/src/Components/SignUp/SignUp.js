@@ -4,10 +4,12 @@ import * as Yup from 'yup'
 import './SignUp.css';
 
 class SignUp extends Component {
-    // constructor(props){
-        // super(props);
-        // this.state = {};
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+            errorMessage: ''
+        };
+    }
 
     // componentWillMount(){}
     // componentDidMount(){}
@@ -24,7 +26,31 @@ class SignUp extends Component {
                 <Formik
                     initialValues={{fullname: '', email: '', password: ''}}
                     onSubmit={(values, actions) => {
-                        actions.setSubmitting(false);
+                        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/register',{
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(
+                                {
+                                    login_id: values.fullname, 
+                                    password: values.password,
+                                    email: values.email
+                                }
+                            )
+                        })
+                        .then(res => {
+                            if(res.status === 400) {
+                                res.text().then(text => this.setState({errorMessage: text}));
+                                actions.setSubmitting(false);
+                            } else if (res.status === 200) {
+                                this.setState({errorMessage: 'Đăng nhập thành công!!!'});
+                                actions.setSubmitting(false);
+                            } else {
+                                this.setState({errorMessage: 'Lỗi không xác định!!!'});
+                                actions.setSubmitting(false);
+                            }
+                        });
                     }}
                     validationSchema={Yup.object({
                         fullname: Yup.string()
@@ -87,6 +113,7 @@ class SignUp extends Component {
                                             placeholder="Hãy nhập mật khẩu của bạn"
                                         />
                                     </div>
+                                    <div className="error-message">{this.state.errorMessage}</div>
                                     <input type="submit" disabled={props.isSubmitting} value="Đăng Kí"/>
                                 </form>
                             )
