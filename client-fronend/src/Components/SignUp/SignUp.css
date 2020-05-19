@@ -5,3 +5,7 @@
 .SignUp {
     text-align: left;
 }
+::placeholder {
+	color: rgb(40,40,40);
+	font-style: italic;
+}

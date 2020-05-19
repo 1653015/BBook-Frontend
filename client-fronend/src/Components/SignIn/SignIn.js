@@ -62,7 +62,7 @@ class SignIn extends Component {
 
                                     <div className="form-item">
                                         <div className="form-item-header">
-                                            <div style={{textAlign: "center"}} className="font-white">Email (Tên Đăng Nhập)</div>
+                                            <div style={{textAlign: "center"}} className="font-white" >Email (Tên Đăng Nhập)</div>
                                             {props.touched.email && props.errors.email? (
                                                 <div className="invalid-message">{props.errors.email}</div>
                                             ) : null}
@@ -72,6 +72,7 @@ class SignIn extends Component {
                                             onChange={props.handleChange}
                                             value={props.values.email}
                                             name="email"
+                                            placeholder="Hãy nhập email của bạn"
                                         />
                                     </div>
                                     <div className="form-item">
@@ -86,6 +87,7 @@ class SignIn extends Component {
                                             onChange={props.handleChange}
                                             value={props.values.password}
                                             name="password"
+                                            placeholder="Hãy nhập mật khẩu của bạn"
                                         />
                                     </div>
                                     <div className="error-message">{this.state.errorMessage}</div>
