@@ -8,6 +8,7 @@ import {
     Route
   } from "react-router-dom";
 import SignUp from '../SignUp/SignUp';
+import LandingPage from '../LandingPage/LandingPage';
 import Home from '../Home/Home';
 
 function App() {
@@ -24,8 +25,11 @@ function App() {
                         <Route path='/signup'>
                             <SignUp/>
                         </Route>
-                        <Route path='/'>
+                        <Route path="/home">
                             <Home/>
+                        </Route>
+                        <Route path='/'>
+                            <LandingPage/>
                         </Route>
                     </Switch>
                 </Router>

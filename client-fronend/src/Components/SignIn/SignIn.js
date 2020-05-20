@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import {Formik} from 'formik'
 import * as Yup from 'yup'
 import './SignIn.css';
+import {Redirect} from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class SignIn extends Component {
     constructor(props){
         super(props);
         this.state = {
-            errorMessage: ''
+            errorMessage: '',
+            redirect: false,
+            cookies: new Cookies()
         };
+        this.login = this.login.bind(this);
     }
 
     // componentWillMount(){}
@@ -20,31 +25,45 @@ class SignIn extends Component {
     // componentWillUpdate(){}
     // componentDidUpdate(){}
 
+    login(values, actions){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/signin',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({login_id: values.email, password: values.password})
+        })
+        .then(res => {
+            if(res.status === 400) {
+                res.text().then(text => this.setState({errorMessage: text}));
+                actions.setSubmitting(false);
+            } else if (res.status === 200) {
+                res.text().then(text => {
+                    this.state.cookies.set('userToken', text);
+                    this.setState({redirect: true});
+                });
+            } else {
+                this.setState({errorMessage: 'Lỗi không xác định!!!'});
+                actions.setSubmitting(false);
+            }
+        })
+    }
+
     render() {
+        if(this.state.redirect) {
+            return (<Redirect to='/home'/>)
+        }
+
+        if(this.state.cookies.get('userToken')){
+            return (<Redirect to='/home'/>)
+        }
+
         return (
             <div className="SignIn">
                 <Formik
                     initialValues={{email: '', password: ''}}
                     onSubmit={(values, actions) => {
-                        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/signin',{
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({login_id: values.email, password: values.password})
-                        })
-                        .then(res => {
-                            if(res.status === 400) {
-                                res.text().then(text => this.setState({errorMessage: text}));
-                                actions.setSubmitting(false);
-                            } else if (res.status === 200) {
-                                this.setState({errorMessage: 'Đăng nhập thành công!!!'});
-                                actions.setSubmitting(false);
-                            } else {
-                                this.setState({errorMessage: 'Lỗi không xác định!!!'});
-                                actions.setSubmitting(false);
-                            }
-                        })
+                        this.login(values, actions);
                     }}
                     validationSchema={Yup.object({
                         email: Yup.string()
