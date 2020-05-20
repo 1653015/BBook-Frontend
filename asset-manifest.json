@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/BBook-Frontend/static/css/main.246f6072.chunk.css",
+    "main.css": "/BBook-Frontend/static/css/main.3da9e3ef.chunk.css",
     "main.js": "/BBook-Frontend/static/js/main.ea6fe16f.chunk.js",
     "main.js.map": "/BBook-Frontend/static/js/main.ea6fe16f.chunk.js.map",
     "runtime-main.js": "/BBook-Frontend/static/js/runtime-main.4897ac02.js",
@@ -8,16 +8,16 @@
     "static/js/2.61d6a35f.chunk.js": "/BBook-Frontend/static/js/2.61d6a35f.chunk.js",
     "static/js/2.61d6a35f.chunk.js.map": "/BBook-Frontend/static/js/2.61d6a35f.chunk.js.map",
     "index.html": "/BBook-Frontend/index.html",
-    "precache-manifest.0e66115129dcc348ac0d05f34b9e61db.js": "/BBook-Frontend/precache-manifest.0e66115129dcc348ac0d05f34b9e61db.js",
+    "precache-manifest.fa346c6f087cb4dc8c2fd3e7cf2a3818.js": "/BBook-Frontend/precache-manifest.fa346c6f087cb4dc8c2fd3e7cf2a3818.js",
     "service-worker.js": "/BBook-Frontend/service-worker.js",
-    "static/css/main.246f6072.chunk.css.map": "/BBook-Frontend/static/css/main.246f6072.chunk.css.map",
+    "static/css/main.3da9e3ef.chunk.css.map": "/BBook-Frontend/static/css/main.3da9e3ef.chunk.css.map",
     "static/js/2.61d6a35f.chunk.js.LICENSE.txt": "/BBook-Frontend/static/js/2.61d6a35f.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/BBook-Frontend/static/media/background.b0e24072.jpg"
+    "static/media/App.css": "/BBook-Frontend/static/media/wibubg.96a66652.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.4897ac02.js",
     "static/js/2.61d6a35f.chunk.js",
-    "static/css/main.246f6072.chunk.css",
+    "static/css/main.3da9e3ef.chunk.css",
     "static/js/main.ea6fe16f.chunk.js"
   ]
 }
