@@ -3,13 +3,15 @@ import './HeaderBar.css';
 import {
     Link
   } from "react-router-dom";
-
+import Cookies from 'universal-cookie';
 
 class HeaderBar extends Component {
-    // constructor(props){
-        // super(props);
-        // this.state = {};
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+            cookies: new Cookies()
+        };
+    }
 
     // componentWillMount(){}
     // componentDidMount(){}
