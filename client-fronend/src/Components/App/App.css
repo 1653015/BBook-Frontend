@@ -2,6 +2,7 @@
 
 .App {
     height: 100%;
+    overflow: hidden;
 }
 @keyframes slideleft {
     from {
@@ -22,7 +23,7 @@ to {
 }
 .background-image {
     min-height: 100vh;
-    background-image:  url(../../img/background.jpg);
+    background-image:  url(../../img/wibubg.jpg);
     background-repeat: repeat-x;
     animation: slideleft 20000s infinite linear;
     -webkit-animation: slideleft 20000s infinite linear;
