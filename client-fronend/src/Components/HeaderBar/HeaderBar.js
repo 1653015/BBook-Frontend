@@ -23,6 +23,18 @@ class HeaderBar extends Component {
     // componentDidUpdate(){}
 
     render() {
+        if(this.props.isLogin){
+            return (
+                <div className="header-bbook">
+                <Link to='/' className="bbook-logo">BBOOK</Link>
+                <div className="signin-signup-layout">
+                    <div className="header-item">
+                        Nguoi Dung
+                    </div>
+                </div>
+            </div>
+            );
+        }
         return (
             <div className="header-bbook">
                 <Link to='/' className="bbook-logo">BBOOK</Link>

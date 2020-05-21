@@ -38,7 +38,7 @@ class Home extends Component {
         }
 
         return (
-            <div style={{color: "white", textAlign: "center", position: "absolute", top: "68px", width: "100%"}}>
+            <div className="container">
                 <button type="button" onClick={this.logout} className="btn-logout">LOG OUT</button>
             </div>
         );

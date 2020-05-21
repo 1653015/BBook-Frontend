@@ -10,6 +10,7 @@ import {
 import SignUp from '../SignUp/SignUp';
 import LandingPage from '../LandingPage/LandingPage';
 import Home from '../Home/Home';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 function App() {
     return (
@@ -17,19 +18,25 @@ function App() {
             <div className="background-image"></div>
             <div className="background-content">
                 <Router basename={process.env.PUBLIC_URL + '/#'}>
-                    <HeaderBar/>
                     <Switch>
-                        <Route path='/signin' >
+                        <Route exact path='/signin' >
+                            <HeaderBar/>
                             <SignIn/>
                         </Route>
-                        <Route path='/signup'>
+                        <Route exact path='/signup'>
+                            <HeaderBar/>
                             <SignUp/>
                         </Route>
-                        <Route path="/home">
+                        <Route exact path='/home'>
+                            <HeaderBar isLogin={true}/>
                             <Home/>
                         </Route>
-                        <Route path='/'>
+                        <Route exact path='/'>
+                            <HeaderBar/>
                             <LandingPage/>
+                        </Route>
+                        <Route>
+                            <ErrorPage/>
                         </Route>
                     </Switch>
                 </Router>
