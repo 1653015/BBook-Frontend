@@ -3,7 +3,7 @@ import './App.css';
 import HeaderBar from '../HeaderBar/HeaderBar';
 import SignIn from '../SignIn/SignIn';
 import {
-    BrowserRouter as Router,
+    HashRouter,
     Switch,
     Route
   } from "react-router-dom";
@@ -17,7 +17,7 @@ function App() {
         <div className="App">
             <div className="background-image"></div>
             <div className="background-content">
-                <Router basename={process.env.PUBLIC_URL + '/#'}>
+                <HashRouter>
                     <Switch>
                         <Route exact path='/signin' >
                             <HeaderBar/>
@@ -39,7 +39,7 @@ function App() {
                             <ErrorPage/>
                         </Route>
                     </Switch>
-                </Router>
+                </HashRouter>
             </div>
         </div>
     )
