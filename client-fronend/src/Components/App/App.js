@@ -15,31 +15,32 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 function App() {
     return (
         <div className="App">
-            <div className="background-image"></div>
-            <div className="background-content">
-                <HashRouter>
-                    <Switch>
-                        <Route exact path='/signin' >
-                            <HeaderBar/>
-                            <SignIn/>
-                        </Route>
-                        <Route exact path='/signup'>
-                            <HeaderBar/>
-                            <SignUp/>
-                        </Route>
-                        <Route exact path='/home'>
-                            <HeaderBar isLogin={true}/>
-                            <Home/>
-                        </Route>
-                        <Route exact path='/'>
-                            <HeaderBar/>
-                            <LandingPage/>
-                        </Route>
-                        <Route>
-                            <ErrorPage/>
-                        </Route>
-                    </Switch>
-                </HashRouter>
+            <div className="background-image">
+                <div className="background-content">
+                    <HashRouter>
+                        <Switch>
+                            <Route exact path='/signin' >
+                                <HeaderBar/>
+                                <SignIn/>
+                            </Route>
+                            <Route exact path='/signup'>
+                                <HeaderBar/>
+                                <SignUp/>
+                            </Route>
+                            <Route exact path='/home'>
+                                <HeaderBar isLogin={true}/>
+                                <Home/>
+                            </Route>
+                            <Route exact path='/'>
+                                <HeaderBar/>
+                                <LandingPage/>
+                            </Route>
+                            <Route>
+                                <ErrorPage/>
+                            </Route>
+                        </Switch>
+                    </HashRouter>
+                </div>
             </div>
         </div>
     )

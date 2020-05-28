@@ -32,7 +32,12 @@ class LandingPage extends Component {
 
         return (
             <div className="container">
-                THIS IS LANDINGPAGE
+                <div className="text_Landing1">
+                    MUA BÁN - TRAO ĐỔI
+                </div>
+                <div className="text_Landing2">
+                    GIAO LƯU
+                </div>
             </div>
         );
     }
