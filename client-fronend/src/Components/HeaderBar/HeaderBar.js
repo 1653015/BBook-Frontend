@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import './HeaderBar.css';
 import {
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 class HeaderBar extends Component {
     constructor(props){
         super(props);
         this.state = {
-            cookies: new Cookies()
+            cookies: new Cookies(),
         };
+        this.logout = this.logout.bind(this);
     }
 
     // componentWillMount(){}
@@ -21,15 +22,23 @@ class HeaderBar extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+    logout() {
+        fetch('/user/logout',{method: 'POST'});
+        this.state.cookies.remove('mUser');
+        this.props.LoginLogout(false);
+    }
 
     render() {
-        if(this.props.isLogin){
+        if(this.props.isLogin || this.state.cookies.get('mUser')){
             return (
                 <div className="header-bbook">
-                <Link to='/' className="bbook-logo">BBOOK</Link>
+                <Link to='/home' className="bbook-logo">BBOOK</Link>
                 <div className="signin-signup-layout">
                     <div className="header-item">
-                        Nguoi Dung
+                        {this.state.cookies.get('mUser')}
+                    </div>
+                    <div className="header-item">
+                        <button type="button" onClick={this.logout} className="btn-logout">Logout</button>
                     </div>
                 </div>
             </div>

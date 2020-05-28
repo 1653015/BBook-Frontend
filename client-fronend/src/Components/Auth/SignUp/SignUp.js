@@ -26,7 +26,8 @@ class SignUp extends Component {
     // componentDidUpdate(){}
 
     signup(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/register',{
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/register',{
+        fetch('/user/register',{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -44,10 +45,9 @@ class SignUp extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                res.text().then(text => {
-                    this.state.cookies.set('userToken', text);
-                    this.setState({redirect: true});
-                });
+                sessionStorage.setItem('isLogin', true);
+                this.props.LoginLogout(true);
+                this.setState({redirect: true});
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
@@ -60,7 +60,7 @@ class SignUp extends Component {
             return (<Redirect to='/home'/>)
         }
 
-        if(this.state.cookies.get('userToken')){
+        if(this.state.cookies.get('mUser')){
             return (<Redirect to='/home'/>)
         }
 

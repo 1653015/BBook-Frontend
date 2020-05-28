@@ -10,12 +10,12 @@ class Home extends Component {
             redirect: false,
             cookies: new Cookies()
         };
-        this.logout = this.logout.bind(this);
     }
 
     // componentWillMount(){}
     componentDidMount(){
-        if(this.state.cookies.get('userToken')){
+        if(this.state.cookies.get('mUser')){
+            this.setState({redirect: false});
         } else {
             this.setState({redirect: true});
         }
@@ -26,20 +26,25 @@ class Home extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
-    logout(){
-        this.state.cookies.set('userToken', '');
-        this.state.cookies.remove('userToken', {path: '/'});
-        this.setState({redirect: true});
-    }
+    // logout() {
+    //     fetch('/user/logout',{method: 'POST'});
+    //     this.state.cookies.remove('mUser');
+    //     this.props.LoginLogout(false);
+    //     this.setState({redirect: true});
+    // }
 
     render() {
-        if(this.state.redirect) {
+        if(!this.state.cookies.get('mUser') || this.state.redirect) {
             return (<Redirect to={'/signin'} />);
         }
 
+        // if(this.props.isLogin) {
+        //     return (<Redirect to={'/signin'} />);
+        // }
+
         return (
             <div className="container">
-                <button type="button" onClick={this.logout} className="btn-logout">LOG OUT</button>
+                
             </div>
         );
     }

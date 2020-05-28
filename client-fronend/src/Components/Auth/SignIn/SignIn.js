@@ -3,7 +3,7 @@ import {Formik} from 'formik'
 import * as Yup from 'yup'
 import './SignIn.css';
 import {Redirect} from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 class SignIn extends Component {
     constructor(props){
@@ -11,7 +11,7 @@ class SignIn extends Component {
         this.state = {
             errorMessage: '',
             redirect: false,
-            cookies: new Cookies()
+            cookies: new Cookies(),
         };
         this.login = this.login.bind(this);
     }
@@ -26,7 +26,8 @@ class SignIn extends Component {
     // componentDidUpdate(){}
 
     login(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/signin',{
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/signin',{
+        fetch('/user/signin',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,10 +39,8 @@ class SignIn extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                res.text().then(text => {
-                    this.state.cookies.set('userToken', text);
-                    this.setState({redirect: true});
-                });
+                this.props.LoginLogout(true);
+                this.setState({redirect: true});
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
@@ -54,7 +53,7 @@ class SignIn extends Component {
             return (<Redirect to='/home'/>)
         }
 
-        if(this.state.cookies.get('userToken')){
+        if(this.state.cookies.get('mUser')) {
             return (<Redirect to='/home'/>)
         }
 
