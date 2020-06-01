@@ -26,7 +26,7 @@ class SignUp extends Component {
     // componentWillUpdate(){}
     // componentDidUpdate(){}
     login(values, actions){
-        fetch('auth/signin',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ class SignUp extends Component {
     }
 
     signup(values, actions){
-        fetch('register/email',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/register/email',{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

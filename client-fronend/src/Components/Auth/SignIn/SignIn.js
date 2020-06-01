@@ -26,7 +26,7 @@ class SignIn extends Component {
     // componentDidUpdate(){}
 
     login(values, actions){
-        fetch('auth/signin',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
