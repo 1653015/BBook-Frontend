@@ -23,7 +23,7 @@ class HeaderBar extends Component {
     // componentWillUpdate(){}
     // componentDidUpdate(){}
     logout() {
-        fetch('/user/logout',{method: 'POST'});
+        fetch('auth/signout',{method: 'POST'});
         this.state.cookies.remove('mUser');
         this.props.LoginLogout(false);
     }
