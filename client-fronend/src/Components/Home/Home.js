@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
-import {Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie';
+import SideBar from './SideBar/SideBar';
 
 class Home extends Component {
     constructor(props){
@@ -34,17 +34,9 @@ class Home extends Component {
     // }
 
     render() {
-        if(!this.state.cookies.get('mUser') || this.state.redirect) {
-            return (<Redirect to={'/signin'} />);
-        }
-
-        // if(this.props.isLogin) {
-        //     return (<Redirect to={'/signin'} />);
-        // }
-
         return (
             <div className="container">
-                
+                <SideBar/>
             </div>
         );
     }

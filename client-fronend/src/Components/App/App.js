@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import SignUp from '../Auth/SignUp/SignUp';
-import LandingPage from '../LandingPage/LandingPage';
 import Home from '../Home/Home';
 import ErrorPage from '../ErrorPage/ErrorPage';
 
@@ -51,11 +50,8 @@ class App extends Component {
                                 <Route exact path='/signup'>
                                     <SignUp LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
                                 </Route>
-                                <Route exact path='/home'>
-                                    <Home/>
-                                </Route>
                                 <Route exact path='/'>
-                                    <LandingPage/>
+                                    <Home/>
                                 </Route>
                                 <Route>
                                     <ErrorPage/>

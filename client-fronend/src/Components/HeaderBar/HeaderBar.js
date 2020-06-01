@@ -32,7 +32,9 @@ class HeaderBar extends Component {
         if(this.props.isLogin || this.state.cookies.get('mUser')){
             return (
                 <div className="header-bbook">
-                <Link to='/home' className="bbook-logo">BBOOK</Link>
+                <Link to='/' className="bbook-logo">BBOOK</Link>
+                <div className="header-item">Mua Sách</div>
+                <div className="header-item">Trao đổi</div>
                 <div className="signin-signup-layout">
                     <div className="header-item">
                         {this.state.cookies.get('mUser')}

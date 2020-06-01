@@ -21,12 +21,10 @@ class ErrorPage extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="sign-in-up-form">
-                    404 PAGE NOT FOUND
-                    <div>
-                        <Link to="/home"><div className="header-item">RETURN</div></Link>
-                    </div>
+            <div className="sign-in-up-form">
+                <div className="message">404 PAGE NOT FOUND</div>
+                <div>
+                    <Link to="/"><div className="header-item">RETURN</div></Link>
                 </div>
             </div>
         );
