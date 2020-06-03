@@ -5,6 +5,7 @@ import SideBar from './SideBar/SideBar';
 import BookSlider from './BookSlider/BookSlider';
 import ShoppingCart from './ShoppingCart/ShoppingCart'
 import { Route } from 'react-router-dom';
+import BookDetail from './BookDetail/BookDetail'
 
 class Home extends Component {
     constructor(props){
@@ -51,7 +52,7 @@ class Home extends Component {
                     </div>
                 </Route>
                 <Route exact path="/product">
-                    
+                    <BookDetail/>
                 </Route>
             </div>
         );

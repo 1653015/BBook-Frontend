@@ -40,6 +40,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="background-image">
+                    {/* <div className="image-background"/> */}
                     <div className="background-content">
                         <HashRouter>
                             <HeaderBar LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>

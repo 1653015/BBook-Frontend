@@ -21,11 +21,17 @@ to {
     background-position: 90000%;
 }
 }
+/* .image-background{
+    height: 100vh;
+    
+} */
+
 .background-image {
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(../../img/wibubg.jpg);
     background-repeat: repeat-x;
     animation: slideleft 10000s infinite linear;
+    /* filter: blur(2px); */
     -webkit-animation: slideleft 10000s infinite linear;
     
     position: relative;

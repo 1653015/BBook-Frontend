@@ -3,5 +3,44 @@
 */
 
 .BookDetail {
-    /* propertys here */
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto 0 auto;
+}
+
+.avatar{
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 30%;
+    height: 90%;
+}
+.book-infor{
+    text-align: left;
+    margin-top: 2%;
+    width: 60%;
+    height: 70%;
+    position: absolute;
+    right: 0;
+}
+
+.book-name{
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+.text-color-white{
+    color: white;
+}
+
+.btn-add-to-cart{
+    cursor: pointer;
+    border-radius: 5px;
+    height: 10%;
+    width: 20%;
+    border: 0;
+    background-color: brown;
+    color: aliceblue;
+    font-size: medium;
 }
