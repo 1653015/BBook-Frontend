@@ -42,7 +42,7 @@ class App extends Component {
                 <div className="background-image">
                     <div className="background-content">
                         <HashRouter>
-                            <HeaderBar isLogin={this.state.isLogin} LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
+                            <HeaderBar LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
                             <Switch>
                                 <Route exact path='/signin' >
                                     <SignIn LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>

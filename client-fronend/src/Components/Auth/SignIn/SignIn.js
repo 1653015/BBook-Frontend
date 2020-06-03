@@ -26,7 +26,7 @@ class SignIn extends Component {
     // componentDidUpdate(){}
 
     login(values, actions){
-        fetch('auth/signin',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,6 +38,7 @@ class SignIn extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
+                this.state.cookies.set('isLogin', 'login');
                 this.props.LoginLogout(true);
                 this.setState({redirect: true});
             } else {
@@ -52,7 +53,7 @@ class SignIn extends Component {
             return (<Redirect to='/'/>)
         }
 
-        if(this.state.cookies.get('mUser')) {
+        if(this.state.cookies.get('isLogin')) {
             return (<Redirect to='/'/>)
         }
 
@@ -76,7 +77,6 @@ class SignIn extends Component {
                             props => (
                                 <form onSubmit={props.handleSubmit} className="signin-form">
                                     <h1 style={{textAlign: "center"}} className="font-white">Đăng Nhập</h1>
-
                                     <div className="form-item">
                                         <div className="form-item-header">
                                             <div style={{textAlign: "center"}} className="font-white" >Email (Tên Đăng Nhập)</div>

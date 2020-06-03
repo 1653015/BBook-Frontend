@@ -4,9 +4,8 @@
 
 .SideBar {
     position: fixed;
-    overflow: auto;
-    height: 90%;
     width: 20%;
+    z-index: 1;
 }
 
 .sidebar-header {
@@ -22,4 +21,5 @@
 .sidebar-body {
     width: 100%;
     background-color: white;
+    width: 100%;
 }

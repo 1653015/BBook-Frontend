@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Home.css';
 import Cookies from 'universal-cookie';
 import SideBar from './SideBar/SideBar';
+import BookSlider from './BookSlider/BookSlider';
 
 class Home extends Component {
     constructor(props){
@@ -37,6 +38,11 @@ class Home extends Component {
         return (
             <div className="container">
                 <SideBar/>
+                <div style={{width: '100%'}}>
+                    <BookSlider/>
+                    <BookSlider/>
+                    <BookSlider/>
+                </div>
             </div>
         );
     }

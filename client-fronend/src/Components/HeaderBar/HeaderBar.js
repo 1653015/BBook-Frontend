@@ -4,12 +4,14 @@ import {
     Link
 } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import ShoppingCart from '../../img/shoppingCart.png'
 
 class HeaderBar extends Component {
     constructor(props){
         super(props);
         this.state = {
             cookies: new Cookies(),
+            isOpen: false
         };
         this.logout = this.logout.bind(this);
     }
@@ -22,28 +24,47 @@ class HeaderBar extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+
+    openDropdown() {
+        this.setState({isOpen: true});
+    }
+
+    closeDropdown() {
+        this.setState({isOpen: false});
+    }
+
     logout() {
-        fetch('auth/signout',{method: 'POST'});
-        this.state.cookies.remove('mUser');
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signout',{method: 'POST'});
+        this.state.cookies.remove('isLogin');
         this.props.LoginLogout(false);
     }
 
     render() {
-        if(this.props.isLogin || this.state.cookies.get('mUser')){
+        if(this.state.cookies.get('isLogin')){
             return (
                 <div className="header-bbook">
-                <Link to='/' className="bbook-logo">BBOOK</Link>
-                <div className="header-item">Mua Sách</div>
-                <div className="header-item">Trao đổi</div>
-                <div className="signin-signup-layout">
-                    <div className="header-item">
-                        {this.state.cookies.get('mUser')}
-                    </div>
-                    <div className="header-item">
-                        <button type="button" onClick={this.logout} className="btn-logout">Logout</button>
+                    <Link to='/' className="bbook-logo">BBOOK</Link>
+                    <div className="header-item">Mua Sách</div>
+                    <div className="header-item">Trao đổi</div>
+                    <div className="signin-signup-layout">
+                        <div>
+                            <input type="text"/>
+                        </div>
+                        <div onMouseLeave={() => this.closeDropdown()}>
+                            <div className="header-item" onMouseEnter={() => this.openDropdown()} >
+                                User Name
+                            </div>
+                            {
+                                this.state.isOpen ? (
+                                    <button type="button" onClick={this.logout} className="btn-logout">Logout</button>
+                                ) : ( null )
+                            }
+                        </div>
+                        <div className="header-item">
+                            <img src={ShoppingCart} width="30" height="30"/>
+                        </div>
                     </div>
                 </div>
-            </div>
             );
         }
         return (
