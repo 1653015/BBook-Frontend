@@ -38,7 +38,7 @@
 .btn-logout {
     background-color:rgba(165, 42, 42);
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     color: white;
     padding: 10px 25px;
     text-align: center;
@@ -46,6 +46,10 @@
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    cursor: pointer;
+}
+
+.cursor-pointer {
     cursor: pointer;
 }
 

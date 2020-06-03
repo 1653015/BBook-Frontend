@@ -61,7 +61,9 @@ class HeaderBar extends Component {
                             }
                         </div>
                         <div className="header-item">
-                            <img src={ShoppingCart} width="30" height="30"/>
+                            <Link to="/shoppingCart">
+                                <img src={ShoppingCart} width="30" height="30" alt={'shoppingCart'}/>
+                            </Link>
                         </div>
                     </div>
                 </div>

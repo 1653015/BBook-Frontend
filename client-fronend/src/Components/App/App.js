@@ -50,7 +50,7 @@ class App extends Component {
                                 <Route exact path='/signup'>
                                     <SignUp LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
                                 </Route>
-                                <Route exact path='/'>
+                                <Route path='/'>
                                     <Home/>
                                 </Route>
                                 <Route>

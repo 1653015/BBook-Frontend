@@ -3,6 +3,8 @@ import './Home.css';
 import Cookies from 'universal-cookie';
 import SideBar from './SideBar/SideBar';
 import BookSlider from './BookSlider/BookSlider';
+import ShoppingCart from './ShoppingCart/ShoppingCart'
+import { Route } from 'react-router-dom';
 
 class Home extends Component {
     constructor(props){
@@ -37,12 +39,20 @@ class Home extends Component {
     render() {
         return (
             <div className="container">
-                <SideBar/>
-                <div style={{width: '100%'}}>
-                    <BookSlider/>
-                    <BookSlider/>
-                    <BookSlider/>
-                </div>
+                <Route exact path='/shoppingCart'>
+                    <ShoppingCart/>
+                </Route>
+                <Route exact path='/'>
+                    <SideBar/>
+                    <div style={{width: '100%'}}>
+                        <BookSlider/>
+                        <BookSlider/>
+                        <BookSlider/>
+                    </div>
+                </Route>
+                <Route exact path="/product">
+                    
+                </Route>
             </div>
         );
     }
