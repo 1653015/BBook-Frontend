@@ -5,7 +5,7 @@
     text-align: left;
 }
 
-.sign-in-up-form {
+.signin-form {
 	margin: 10% auto 0 auto;
 	padding: 30px;
 	width: 400px;
@@ -16,12 +16,12 @@
 	box-shadow:  2px 2px 10px 10px rgba(0, 0, 0, 0.4), 
 				-2px -2px 10px 10px rgba(0, 0, 0, 0.4);
 }
-.sign-in-up-form input {
+.signin-form input {
 	float:left;
 	clear:both;
 }
 
-.sign-in-up-form input {
+.signin-form input {
 	margin:15px 0;
 	padding:15px 10px;
 	width:100%;
@@ -39,8 +39,8 @@
 		transition:0.2s ease all;
 }
 
-.sign-in-up-form input[type=text]:focus,
-.sign-in-up-form input[type="password"]:focus {
+.signin-form input[type=text]:focus,
+.signin-form input[type="password"]:focus {
 	border:1px solid cornflowerblue;
 }
 

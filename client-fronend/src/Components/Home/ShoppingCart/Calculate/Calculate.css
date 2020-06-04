@@ -1,0 +1,44 @@
+/*
+ * Caculate css File
+*/
+
+.Calculate {
+    position: absolute;
+    right: 0;
+    height: 25%;
+    width: 20%;
+}
+
+.calculated-money {
+    border-radius: 5px;
+    height: 70%;
+    background-color: white;
+    color: black;
+}
+
+.order {
+    padding: 2.5% 0 2.5% 0;
+    height: 23%;
+}
+
+.btn-order {
+    cursor: pointer;
+    border-radius: 5px;
+    height:100%;
+    width: 100%;
+    border: 0;
+    background-color: brown;
+    color: aliceblue;
+    font-size: medium;
+}
+
+.prices-items{
+    height: 45%;
+    width: 100%;
+    border-bottom: 1px solid rgb(216, 216, 216);
+}
+
+.prices-total{
+    height: 55%;
+    width: 100%;
+}

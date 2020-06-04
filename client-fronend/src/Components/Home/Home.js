@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './Home.css';
-import {Redirect} from 'react-router-dom'
 import Cookies from 'universal-cookie';
+import SideBar from './SideBar/SideBar';
+import BookSlider from './BookSlider/BookSlider';
+import ShoppingCart from './ShoppingCart/ShoppingCart'
+import { Route } from 'react-router-dom';
+import BookDetail from './BookDetail/BookDetail'
 
 class Home extends Component {
     constructor(props){
@@ -10,12 +14,12 @@ class Home extends Component {
             redirect: false,
             cookies: new Cookies()
         };
-        this.logout = this.logout.bind(this);
     }
 
     // componentWillMount(){}
     componentDidMount(){
-        if(this.state.cookies.get('userToken')){
+        if(this.state.cookies.get('mUser')){
+            this.setState({redirect: false});
         } else {
             this.setState({redirect: true});
         }
@@ -26,20 +30,30 @@ class Home extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
-    logout(){
-        this.state.cookies.set('userToken', '');
-        this.state.cookies.remove('userToken', {path: '/'});
-        this.setState({redirect: true});
-    }
+    // logout() {
+    //     fetch('/user/logout',{method: 'POST'});
+    //     this.state.cookies.remove('mUser');
+    //     this.props.LoginLogout(false);
+    //     this.setState({redirect: true});
+    // }
 
     render() {
-        if(this.state.redirect) {
-            return (<Redirect to={'/signin'} />);
-        }
-
         return (
             <div className="container">
-                <button type="button" onClick={this.logout} className="btn-logout">LOG OUT</button>
+                <Route exact path='/shoppingCart'>
+                    <ShoppingCart/>
+                </Route>
+                <Route exact path='/'>
+                    <SideBar/>
+                    <div style={{width: '100%'}}>
+                        <BookSlider/>
+                        <BookSlider/>
+                        <BookSlider/>
+                    </div>
+                </Route>
+                <Route exact path="/product">
+                    <BookDetail/>
+                </Route>
             </div>
         );
     }

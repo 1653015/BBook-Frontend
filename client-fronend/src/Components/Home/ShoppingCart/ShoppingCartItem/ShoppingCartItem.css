@@ -1,0 +1,17 @@
+/*
+ * ShoppingCartItem css File
+*/
+
+.ShoppingCartItem {
+    margin-bottom: 1%;
+    background-color: aliceblue;
+    width: 100%;
+    height: 170px;
+    border-radius: 5px;
+}
+
+.list-product{
+    position: absolute;
+    width: 79%;
+    left: 0;
+}

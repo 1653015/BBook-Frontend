@@ -14,6 +14,7 @@ class SignUp extends Component {
             cookies: new Cookies()
         };
         this.signup = this.signup.bind(this);
+        this.login = this.login.bind(this);
     }
 
     // componentWillMount(){}
@@ -24,16 +25,38 @@ class SignUp extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+    login(values, actions){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: values.email, password: values.password})
+        })
+        .then(res => {
+            if(res.status === 400) {
+                res.text().then(text => this.setState({errorMessage: text}));
+                actions.setSubmitting(false);
+            } else if (res.status === 200) {
+                this.state.cookies.set('isLogin', 'login');
+                this.props.LoginLogout(true);
+                this.setState({redirect: true});
+            } else {
+                this.setState({errorMessage: 'Lỗi không xác định!!!'});
+                actions.setSubmitting(false);
+            }
+        })
+    }
 
     signup(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/register',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/register/email',{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
                 {
-                    login_id: values.fullname, 
+                    name: values.fullname, 
                     password: values.password,
                     email: values.email
                 }
@@ -44,10 +67,10 @@ class SignUp extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                res.text().then(text => {
-                    this.state.cookies.set('userToken', text);
-                    this.setState({redirect: true});
-                });
+                // this.props.LoginLogout(true);
+                // this.setState({redirect: true});
+                this.login(values, actions);
+                
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
@@ -57,35 +80,37 @@ class SignUp extends Component {
 
     render() {
         if(this.state.redirect) {
-            return (<Redirect to='/home'/>)
+            return (<Redirect to='/'/>)
         }
 
-        if(this.state.cookies.get('userToken')){
-            return (<Redirect to='/home'/>)
+        if(this.state.cookies.get('isLogin')){
+            return (<Redirect to='/'/>)
         }
 
         return (
             <div className="SignUp">
                 <Formik
-                    initialValues={{fullname: '', email: '', password: ''}}
+                    initialValues={{fullname: '', email: '', password: '',phoneNumber: ''}}
                     onSubmit={(values, actions) => {
                         this.signup(values, actions);
                     }}
                     validationSchema={Yup.object({
                         fullname: Yup.string()
-                            .required('Your name is empty'),
+                            .required('Tên người dùng còn trống'),
                         email: Yup.string()
-                            .email('Invalid email address')
-                            .required('Email is empty'),
+                            .email('Email không hợp lệ')
+                            .required('Email không được để trống'),
                         password: Yup.string()
-                            .min(8, 'To short!!!')
-                            .max(50, 'To long!!!')
-                            .required('Password is empty'),
+                            .min(8, 'Quá ngắn!!!')
+                            .required('Mật khẩu không được để trống'),
+                        phoneNumber: Yup.number()
+                            .moreThan(99999999, 'Số điện thoại ít nhất 9 chữ số')
+                            .positive('không được có kí tự trong sđt'),
                     })}
                     >
                         {
                             props => (
-                                <form onSubmit={props.handleSubmit} className="sign-in-up-form">
+                                <form onSubmit={props.handleSubmit} className="signup-form">
                                     <h1 style={{textAlign: "center"}} className="font-white">Đăng Kí</h1>
                                     <div className="form-item">
                                         <div className="form-item-header">
@@ -130,6 +155,21 @@ class SignUp extends Component {
                                             value={props.values.password}
                                             name="password"
                                             placeholder="Hãy nhập mật khẩu của bạn"
+                                        />
+                                    </div>
+                                    <div className="form-item">
+                                        <div className="form-item-header">
+                                            <div className="font-white">Số điện thoại</div>
+                                            {props.touched.phoneNumber && props.errors.phoneNumber? (
+                                                <div className="invalid-message">{props.errors.phoneNumber}</div>
+                                            ) : null}
+                                        </div>
+                                        <input className="form-input"
+                                            type="number"
+                                            onChange={props.handleChange}
+                                            value={props.values.phoneNumber}
+                                            name="phoneNumber"
+                                            placeholder="0xxxxx"
                                         />
                                     </div>
                                     <div className="error-message">{this.state.errorMessage}</div>

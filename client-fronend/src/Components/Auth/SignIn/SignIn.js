@@ -3,7 +3,7 @@ import {Formik} from 'formik'
 import * as Yup from 'yup'
 import './SignIn.css';
 import {Redirect} from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 class SignIn extends Component {
     constructor(props){
@@ -11,7 +11,7 @@ class SignIn extends Component {
         this.state = {
             errorMessage: '',
             redirect: false,
-            cookies: new Cookies()
+            cookies: new Cookies(),
         };
         this.login = this.login.bind(this);
     }
@@ -26,22 +26,21 @@ class SignIn extends Component {
     // componentDidUpdate(){}
 
     login(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/signin',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({login_id: values.email, password: values.password})
+            body: JSON.stringify({email: values.email, password: values.password})
         })
         .then(res => {
             if(res.status === 400) {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                res.text().then(text => {
-                    this.state.cookies.set('userToken', text);
-                    this.setState({redirect: true});
-                });
+                this.state.cookies.set('isLogin', 'login');
+                this.props.LoginLogout(true);
+                this.setState({redirect: true});
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
@@ -51,11 +50,11 @@ class SignIn extends Component {
 
     render() {
         if(this.state.redirect) {
-            return (<Redirect to='/home'/>)
+            return (<Redirect to='/'/>)
         }
 
-        if(this.state.cookies.get('userToken')){
-            return (<Redirect to='/home'/>)
+        if(this.state.cookies.get('isLogin')) {
+            return (<Redirect to='/'/>)
         }
 
         return (
@@ -76,9 +75,8 @@ class SignIn extends Component {
                     >
                         {
                             props => (
-                                <form onSubmit={props.handleSubmit} className="sign-in-up-form">
+                                <form onSubmit={props.handleSubmit} className="signin-form">
                                     <h1 style={{textAlign: "center"}} className="font-white">Đăng Nhập</h1>
-
                                     <div className="form-item">
                                         <div className="form-item-header">
                                             <div style={{textAlign: "center"}} className="font-white" >Email (Tên Đăng Nhập)</div>
