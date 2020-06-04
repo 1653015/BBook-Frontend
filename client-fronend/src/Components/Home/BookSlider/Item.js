@@ -9,4 +9,7 @@ export default styled.div`
     background-color: aliceblue;
     color: black;
     margin: 0 5px;
+    background: #f2709c;
+    background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
+    background: linear-gradient(to right, #ff9472, #f2709c);
 `;

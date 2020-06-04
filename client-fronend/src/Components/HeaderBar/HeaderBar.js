@@ -47,8 +47,12 @@ class HeaderBar extends Component {
                     <div className="header-item">Mua Sách</div>
                     <div className="header-item">Trao đổi</div>
                     <div className="signin-signup-layout">
-                        <div>
-                            <input type="text"/>
+                    <div class="flexbox">
+                        <div class="search">
+                            <div>
+                            <input type="text" placeholder="       Search . . ." required/>
+                            </div>
+                        </div>
                         </div>
                         <div onMouseLeave={() => this.closeDropdown()}>
                             <div className="header-item" onMouseEnter={() => this.openDropdown()} >
