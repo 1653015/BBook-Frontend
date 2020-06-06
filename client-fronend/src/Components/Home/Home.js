@@ -5,24 +5,25 @@ import SideBar from './SideBar/SideBar';
 import BookSlider from './BookSlider/BookSlider';
 import ShoppingCart from './ShoppingCart/ShoppingCart'
 import { Route } from 'react-router-dom';
-import BookDetail from './BookDetail/BookDetail'
+import BookDetail from './BookDetail/BookDetail';
+import Shipping from './Shipping/Shipping';
 
 class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            redirect: false,
+            categories: [],
             cookies: new Cookies()
         };
     }
 
     // componentWillMount(){}
     componentDidMount(){
-        if(this.state.cookies.get('mUser')){
-            this.setState({redirect: false});
-        } else {
-            this.setState({redirect: true});
-        }
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/category')
+        .then(res => res.json())
+        .then(json => {
+            this.setState({categories: json.categories});
+        })
     }
     // componentWillUnmount(){}
 
@@ -41,18 +42,23 @@ class Home extends Component {
         return (
             <div className="container">
                 <Route exact path='/shoppingCart'>
-                    <ShoppingCart/>
+                    <ShoppingCart cookies={this.state.cookies}/>
                 </Route>
                 <Route exact path='/'>
-                    <SideBar/>
+                    <SideBar categories={this.state.categories}/>
                     <div style={{width: '100%'}}>
-                        <BookSlider/>
-                        <BookSlider/>
-                        <BookSlider/>
+                        {
+                            this.state.categories.map(item => (
+                                <BookSlider key={item._id} categories={item.name}/>
+                            ))
+                        }
                     </div>
                 </Route>
                 <Route exact path="/product">
                     <BookDetail/>
+                </Route>
+                <Route exact path="/shipping">
+                    <Shipping cookies={this.state.cookies}/>
                 </Route>
             </div>
         );

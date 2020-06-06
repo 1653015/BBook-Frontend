@@ -4,6 +4,8 @@ import * as Yup from 'yup'
 import './SignIn.css';
 import {Redirect} from 'react-router-dom';
 import Cookies from 'universal-cookie'
+import GoogleLogin from 'react-google-login';
+import PopupForgotPassword from './PopupForgotPassword/PopupForgotPassword'
 
 class SignIn extends Component {
     constructor(props){
@@ -12,8 +14,10 @@ class SignIn extends Component {
             errorMessage: '',
             redirect: false,
             cookies: new Cookies(),
+            seen: false
         };
         this.login = this.login.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
     }
 
     // componentWillMount(){}
@@ -25,8 +29,12 @@ class SignIn extends Component {
     // componentWillUpdate(){}
     // componentDidUpdate(){}
 
+    togglePopup() {
+        this.setState({seen: !this.state.seen});
+    }
+
     login(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/email',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -107,12 +115,27 @@ class SignIn extends Component {
                                             placeholder="Hãy nhập mật khẩu của bạn"
                                         />
                                     </div>
+                                    <div className="text-white" style={{cursor: 'pointer'}} onClick={this.togglePopup}>Quên mật khẩu</div>
                                     <div className="error-message">{this.state.errorMessage}</div>
                                     <input type="submit" disabled={props.isSubmitting} value="Đăng Nhập"/>
+                                    <GoogleLogin
+                                        clientId="639654572878-40oqbl8t2cj3dvjv8vj9othe1he9oepv.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                                        buttonText="LOGIN WITH GOOGLE"
+                                        onSuccess={() => {
+                                            this.state.cookies.set('isLogin', 'login');
+                                            this.props.LoginLogout(true);
+                                            this.setState({redirect: true});
+                                            }
+                                        }
+                                        onFailure={(res) => {console.log(res)}}
+                                    />
                                 </form>
                             )
                         }
                 </Formik>
+                {
+                    this.state.seen ? <PopupForgotPassword toggle={this.togglePopup} /> : null
+                }
             </div>
         );
     }

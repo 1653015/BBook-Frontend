@@ -10,9 +10,7 @@ class SideBar extends Component {
     }
 
     // componentWillMount(){}
-    componentDidMount(){
-        //load data
-    }
+    // componentDidMount(){}
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
@@ -37,11 +35,11 @@ class SideBar extends Component {
                 {
                     this.state.isOpen ? (
                         <div className="sidebar-body">
-                            wont display body when header is not hover
-                            display something when header is hoverhákhd
-                            fkjashfkjasdfhkashdf
-                            jkhasdkjfhkasdhfkjasdhfkjasdhdfkjashdfkjashdf
-                            jkhsaddkjfhkasjdhfksadhfkjsdhf
+                            {
+                                this.props.categories.map(item => (
+                                    <div key={item._id}>{item.name.toUpperCase()}</div>
+                                ))
+                            }
                         </div>  
                     ) : (
                         <div/>

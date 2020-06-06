@@ -9,17 +9,19 @@ class BookDetail extends Component {
         this.state = {
             element: 1,
         };
+        this.expel = this.expel.bind(this);
+        this.add = this.add.bind(this);
     }
-    minus(){
-        let temp = this.state.element-1;
-        this.setState({
-            element: temp
-        });
+    expel(){
+        if(this.state.element-1 > 0){
+            this.setState({
+                element: this.state.element-1
+            });
+        }
     }
-    plus(){
-        let temp = this.state.element+1;
+    add(){
         this.setState({
-            element:temp
+            element: this.state.element+1
         });
     }
     // componentWillMount(){}
@@ -42,9 +44,9 @@ class BookDetail extends Component {
                     <div className="text-color-white">Tác giả: PITTACUS LORE</div>
                     <div className="text-color-white">Giá: 100.000đ</div>
                     <div className='groupInput'>
-                        <button onClick={this.minus}>-</button>
-                        <input type= {Number} value={this.state.element}/>
-                        <button onClick={this.plus}>+</button>
+                        <button className="btn-expel" onClick={this.expel}>-</button>
+                        <input value={this.state.element} onChange={() => {}}/>
+                        <button className="btn-add" onClick={this.add}>+</button>
                     </div>
                     <button className="btn-add-to-cart"><FontAwesomeIcon icon={faShoppingCart}/>      Chọn mua</button>
                 </div>
