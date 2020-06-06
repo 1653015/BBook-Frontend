@@ -11,6 +11,7 @@ import Cookies from 'universal-cookie';
 import SignUp from '../Auth/SignUp/SignUp';
 import Home from '../Home/Home';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import ResetPassword from '../ResetPassword/ResetPassword'
 
 class App extends Component {
     constructor(props){
@@ -50,6 +51,9 @@ class App extends Component {
                                 </Route>
                                 <Route exact path='/signup'>
                                     <SignUp LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
+                                </Route>
+                                <Route path='/reset/:tokenId'>
+                                    <ResetPassword/>
                                 </Route>
                                 <Route path='/'>
                                     <Home/>

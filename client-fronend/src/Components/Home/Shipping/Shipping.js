@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Shipping.css';
+import { Redirect } from 'react-router-dom';
 
 class Shipping extends Component {
     // constructor(props){
@@ -17,6 +18,10 @@ class Shipping extends Component {
     // componentDidUpdate(){}
 
     render() {
+        if(!this.props.cookies.get('isLogin')){
+            return(<Redirect to="/"/>)
+        }
+
         return (
             <div className="Shipping">
                 <h3 className="shipping-title">ĐỊA CHỈ GIAO HÀNG</h3>

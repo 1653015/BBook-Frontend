@@ -34,7 +34,7 @@ class BookSlider extends Component {
     render() {
         return (
             <div className="BookSlider">
-                <div className="book-slider-title">THỂ LOẠI</div>
+                <div className="book-slider-title">{this.props.categories.toUpperCase()}</div>
                 <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                     <div className="item">
                         <div className="avatar-item">
