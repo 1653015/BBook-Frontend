@@ -61,26 +61,13 @@ class HeaderBar extends Component {
                             </div>
                         </div>
                         </div>
-                        <div onMouseLeave={() => this.closeDropdown()}>
-                            <div className="header-item" onMouseEnter={() => this.openDropdown()} >
-                                User Name
-                            </div>
-                            {
-                                this.state.isOpen ? (
-                                    <ul class='sub_menu'>
-                                        <li class='submenu-arrow-wrap'>
-                                        </li>      
-                                        <li class="menu-item ">Trang cá nhân
-                                        </li>
-                                        <li class='submenu-arrow-wrap'>
-                                        </li>      
-                                        <li class="menu-item "><button type="button" onClick={this.logout} className="btn-logout">Logout</button>
-                                        </li>
-                                    
-                                    </ul>
-                                ) : ( null )
-                            }
-                        </div>
+                            <div className="header-item dropdown">
+                                <span className="dropbtn">User Name</span>
+                                <div class="dropdown-content">
+                                    <Link to="/profile" className="link">Trang Cá Nhân</Link>
+                                    <button type="button" onClick={this.logout} className="btn-logout">Logout</button>
+                                </div>
+                            </div>        
                         <div className="header-item">
                             <Link to="/shoppingCart">
                                 <img src={ShoppingCart} width="30" height="30" alt={'shoppingCart'}/>
