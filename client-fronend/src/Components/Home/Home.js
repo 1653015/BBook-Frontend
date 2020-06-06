@@ -5,7 +5,8 @@ import SideBar from './SideBar/SideBar';
 import BookSlider from './BookSlider/BookSlider';
 import ShoppingCart from './ShoppingCart/ShoppingCart'
 import { Route } from 'react-router-dom';
-import BookDetail from './BookDetail/BookDetail'
+import BookDetail from './BookDetail/BookDetail';
+import Shipping from './Shipping/Shipping';
 
 class Home extends Component {
     constructor(props){
@@ -41,7 +42,7 @@ class Home extends Component {
         return (
             <div className="container">
                 <Route exact path='/shoppingCart'>
-                    <ShoppingCart/>
+                    <ShoppingCart cookies={this.state.cookies}/>
                 </Route>
                 <Route exact path='/'>
                     <SideBar/>
@@ -53,6 +54,9 @@ class Home extends Component {
                 </Route>
                 <Route exact path="/product">
                     <BookDetail/>
+                </Route>
+                <Route exact path="/shipping">
+                    <Shipping/>
                 </Route>
             </div>
         );

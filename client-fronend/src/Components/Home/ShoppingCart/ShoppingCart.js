@@ -4,10 +4,10 @@ import Calculate from './Calculate/Calculate';
 import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem';
 
 class ShoppingCart extends Component {
-    // constructor(props){
-        // super(props);
-        // this.state = {};
-    // }
+    constructor(props){
+        super(props);
+        this.state = {};
+    }
 
     // componentWillMount(){}
     // componentDidMount(){}
@@ -16,12 +16,12 @@ class ShoppingCart extends Component {
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
-    // componentDidUpdate(){}
+    componentDidUpdate(){}
 
     render() {
         return (
             <div className="ShoppingCart">
-                <div className="shopping-cart-title">GIỎ HÀNG</div>
+                <h3 className="shopping-cart-title">GIỎ HÀNG</h3>
                 <div className="list-product">
                     <ShoppingCartItem/>
                     <ShoppingCartItem/>
@@ -32,7 +32,7 @@ class ShoppingCart extends Component {
                     <ShoppingCartItem/>
                     <ShoppingCartItem/>
                 </div>
-                <Calculate/>
+                <Calculate cookies={this.props.cookies}/>
             </div>
         );
     }

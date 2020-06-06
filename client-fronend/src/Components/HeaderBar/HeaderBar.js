@@ -35,6 +35,14 @@ class HeaderBar extends Component {
 
     logout() {
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signout',{method: 'POST'});
+        const auth2 = window.gapi.auth2.getAuthInstance();
+        if (auth2 != null) {
+            auth2.signOut().then(() => {
+                    auth2.disconnect().then(this.props.onLogoutSuccess);
+                    console.log('logout');
+                }
+            )
+        }
         this.state.cookies.remove('isLogin');
         this.props.LoginLogout(false);
     }
@@ -44,11 +52,10 @@ class HeaderBar extends Component {
             return (
                 <div className="header-bbook">
                     <Link to='/' className="bbook-logo">BBOOK</Link>
-                    <div className="header-item">Mua Sách</div>
                     <div className="header-item">Trao đổi</div>
                     <div className="signin-signup-layout">
-                    <div class="flexbox">
-                        <div class="search">
+                    <div className="flexbox">
+                        <div className="search">
                             <div>
                             <input type="text" placeholder="       Search . . ." required/>
                             </div>
@@ -79,6 +86,11 @@ class HeaderBar extends Component {
                 <div className="signin-signup-layout">
                     <Link to='/signin'><div className="header-item">Đăng nhập</div></Link>
                     <Link to='/signup'><div className="header-item">Đăng kí</div></Link>
+                    <div className="header-item">
+                        <Link to="/shoppingCart">
+                            <img src={ShoppingCart} width="30" height="30" alt={'shoppingCart'}/>
+                        </Link>
+                    </div>
                 </div>
             </div>
         );
