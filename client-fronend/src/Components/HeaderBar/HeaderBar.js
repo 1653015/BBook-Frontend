@@ -66,7 +66,17 @@ class HeaderBar extends Component {
                             </div>
                             {
                                 this.state.isOpen ? (
-                                    <button type="button" onClick={this.logout} className="btn-logout">Logout</button>
+                                    <ul class='sub_menu'>
+                                        <li class='submenu-arrow-wrap'>
+                                        </li>      
+                                        <li class="menu-item ">Trang cá nhân
+                                        </li>
+                                        <li class='submenu-arrow-wrap'>
+                                        </li>      
+                                        <li class="menu-item "><button type="button" onClick={this.logout} className="btn-logout">Logout</button>
+                                        </li>
+                                    
+                                    </ul>
                                 ) : ( null )
                             }
                         </div>
