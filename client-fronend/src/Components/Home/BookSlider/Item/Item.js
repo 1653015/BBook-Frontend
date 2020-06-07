@@ -28,7 +28,7 @@ class Item extends Component {
                 <div className="infor-item">
                     <Link to={`/book-detail/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
                         <div>
-                            [{this.props.name}]
+                            {this.props.name}
                         </div>
                     </Link>
                     <div className="author" >
