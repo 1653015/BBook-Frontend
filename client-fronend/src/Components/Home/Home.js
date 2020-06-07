@@ -7,6 +7,7 @@ import ShoppingCart from './ShoppingCart/ShoppingCart'
 import { Route } from 'react-router-dom';
 import BookDetail from './BookDetail/BookDetail';
 import Shipping from './Shipping/Shipping';
+import SearchBook from './SearchBook/SearchBook';
 
 class Home extends Component {
     constructor(props){
@@ -49,6 +50,10 @@ class Home extends Component {
                 </Route>
                 <Route exact path="/shipping">
                     <Shipping cookies={this.state.cookies}/>
+                </Route>
+                <Route exact path='/:category/books'>
+                    <SideBar categories={this.state.categories}/>
+                    <SearchBook/>
                 </Route>
                 <Route exact path='/'>
                     <SideBar categories={this.state.categories}/>
