@@ -28,7 +28,6 @@
     font-weight: 500;
     min-width: 100px;
     max-width: 150px;
-    height: 60px;
 }
 .header-item:hover {
     color: rgb(212, 212, 212);
