@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { withRouter } from 'react-router-dom';
 import BookSlider  from '../BookSlider/BookSlider'
+import {
+    Link
+} from "react-router-dom";
 class BookDetail extends Component {
     constructor(props){
         super(props);
@@ -105,7 +108,10 @@ class BookDetail extends Component {
                     </button>
                     {
                         this.state.isSuccess ? (
-                            <Alert variant="filled" onClose={()=>{this.setState({isSuccess: !this.state.isSuccess})}} severity="success">Đã thêm sách vào giỏ hàng</Alert>
+                            <Alert variant="filled" className="alert" onClose={()=>{this.setState({isSuccess: !this.state.isSuccess})}} severity="success">Đã thêm sách vào giỏ hàng.
+                            <Link to="/shoppingCart" className="link"> Chuyển đến giỏ hàng!
+                            </Link>
+                            </Alert>
                         ) : (null)
                     }
                 </div>

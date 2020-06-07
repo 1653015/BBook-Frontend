@@ -153,3 +153,19 @@
     outline: none;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
+
+.link{
+    font-style: italic;
+    color:rgb(32, 241, 248);
+    font-weight: bold;
+}   
+.link::before{
+    content: " \00a0";
+}
+.link:hover{
+    font-style: unset;
+    color:red;
+}
+.alert{
+    width: 60%;
+}
