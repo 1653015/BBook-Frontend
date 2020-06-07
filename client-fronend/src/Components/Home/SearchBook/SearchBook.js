@@ -28,7 +28,7 @@ class SearchBook extends Component {
 
     render() {
         return (
-            <div>
+            <div className="SearchBook">
                 {
                     this.state.books.map(book => (
                         <Item key={book._id} key_data={book._id} image={book.image} name={book.name} author={book.author} price={book.price}/>

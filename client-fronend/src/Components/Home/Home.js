@@ -51,7 +51,7 @@ class Home extends Component {
                 <Route exact path="/shipping">
                     <Shipping cookies={this.state.cookies}/>
                 </Route>
-                <Route exact path='/:category/books'>
+                <Route exact path='/search/:category/books'>
                     <SideBar categories={this.state.categories}/>
                     <SearchBook/>
                 </Route>

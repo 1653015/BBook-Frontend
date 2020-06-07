@@ -11,7 +11,7 @@ class Category extends Component {
 
     render(){
         return(
-            <Link to={`/${this.props.key_data}/books`}>
+            <Link to={`/search/${this.props.key_data}/books`}>
                 <div className="category-item">
                     {this.props.category.toUpperCase()}
                 </div>
