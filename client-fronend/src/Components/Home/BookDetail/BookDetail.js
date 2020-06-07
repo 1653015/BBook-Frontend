@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './BookDetail.css';
-import BookTitle from '../../../img/booktitle.jpg'
 import Alert from '@material-ui/lab/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -85,10 +84,11 @@ class BookDetail extends Component {
     // componentDidUpdate(){}
     
     render() {
+        console.log(this.props.match.params.bookId);
         return (
             <div className="BookDetail">
                 <div className="avatar">
-                    <img src={BookTitle} width="80%" height="80%" alt={'BookTitle'}/>
+                    <img src={`https://bbook-backend.herokuapp.com/${this.state.book.image}`} width="80%" height="80%" alt={'BookTitle'}/>
                 </div>
                 <div className="book-infor">
                     <div className="book-name text-color-white">{this.state.book.name}</div>
