@@ -14,7 +14,15 @@
     margin-top: 2%;
     margin-left: 5%;
     width: 30%;
-    height: 90%;
+    height: 80%;
+    transition: transform .2s;
+}
+.author{
+    font-style: italic;
+
+}
+.avata:hover{
+    transform: scale(1.02);
 }
 .book-infor{
 
@@ -68,10 +76,13 @@
     font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
-    margin: 0px;
-    
+    margin-top: 10px;    
+}
+.listBook{
+    width: 100%;
+    position: absolute;
+    bottom: -300px;
 
-    
 }
 .groupInput .btn-expel{
     border-right: none;

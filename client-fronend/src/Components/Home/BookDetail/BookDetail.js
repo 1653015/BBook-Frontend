@@ -4,7 +4,7 @@ import Alert from '@material-ui/lab/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { withRouter } from 'react-router-dom';
-
+import BookSlider  from '../BookSlider/BookSlider'
 class BookDetail extends Component {
     constructor(props){
         super(props);
@@ -92,13 +92,14 @@ class BookDetail extends Component {
                 </div>
                 <div className="book-infor">
                     <div className="book-name text-color-white">{this.state.book.name}</div>
-                    <div className="text-color-white">Tác giả: {this.state.book.author}</div>
+                    <div className="text-color-white author">Tác giả: {this.state.book.author}</div>
                     <div className="text-color-white">Giá: {this.state.book.price}đ</div>
+                    <div className="text-color-white"> Số lượng
                     <div className='groupInput'>
                         <button className="btn-expel" onClick={this.expel}>-</button>
                         <input value={this.state.element} onChange={() => {}}/>
                         <button className="btn-add" onClick={this.add}>+</button>
-                    </div>
+                    </div></div>
                     <button className="btn-add-to-cart" onClick={this.addToShoppingCart}>
                         <FontAwesomeIcon icon={faShoppingCart}/>
                         Chọn mua
@@ -109,7 +110,11 @@ class BookDetail extends Component {
                         ) : (null)
                     }
                 </div>
+                <div className="listBook">
+                <BookSlider data_key={this.props.match.params.categorieID} categories={"Sách cùng thể loại"}/>
+                </div>
             </div>
+            
         );
     }
 }

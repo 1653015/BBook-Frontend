@@ -44,7 +44,7 @@ class Home extends Component {
                 <Route exact path='/shoppingCart'>
                     <ShoppingCart cookies={this.state.cookies}/>
                 </Route>
-                <Route exact path="/book-detail/:bookId">
+                <Route exact path="/:categorieID/:bookId">
                     <BookDetail cookies={this.state.cookies}/>
                 </Route>
                 <Route exact path="/shipping">
