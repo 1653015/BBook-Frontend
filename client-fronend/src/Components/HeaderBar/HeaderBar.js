@@ -64,7 +64,9 @@ class HeaderBar extends Component {
                                 <span className="dropbtn">User Name</span>
                                 <div class="dropdown-content">
                                     <Link to="/profile" className="link">Trang Cá Nhân</Link>
-                                    <button type="button" onClick={this.logout} className="btn-logout">Logout</button>
+                                    <div className="link">
+                                    <button type="button" onClick={this.logout} className="btn-logout">Đăng xuất</button>
+                                    </div>
                                 </div>
                             </div>        
                         <div className="header-item">
