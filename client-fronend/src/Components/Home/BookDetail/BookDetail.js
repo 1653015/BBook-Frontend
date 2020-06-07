@@ -29,7 +29,6 @@ class BookDetail extends Component {
             element: this.state.element+1
         });
     }
-
     addToShoppingCart() {
         const {name, price}= this.state.book;
         if(!this.props.cookies.get('shoppingCart')){
