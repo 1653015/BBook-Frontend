@@ -22,21 +22,21 @@ class Item extends Component {
         return (
             <div className="item">
                 <div className="avatar-item">
-                    <Link to="/product" style={{width: '70%', color: 'yellow'}}>
+                    <Link to={`/book-detail/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
                         <img src={BookTitle} width="100%" height="100%" alt={'BookTitle'}/>
                     </Link>
                 </div>
                 <div className="infor-item">
-                    <Link to="/product" style={{width: '70%', color: 'yellow'}}>
+                    <Link to={`/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
                         <div>
-                            [Tên Sách] 1
+                            [{this.props.name}]
                         </div>
                     </Link>
                     <div>
-                        Tên tác giả
+                        Tên tác giả: {this.props.author}
                     </div>
                     <div>
-                        Giá
+                        Giá: {this.props.price}
                     </div>
                 </div>
             </div>

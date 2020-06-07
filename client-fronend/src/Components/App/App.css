@@ -61,3 +61,7 @@ to {
 .text-white {
     color: white;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}

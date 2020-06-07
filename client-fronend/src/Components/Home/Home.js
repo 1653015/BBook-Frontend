@@ -44,6 +44,12 @@ class Home extends Component {
                 <Route exact path='/shoppingCart'>
                     <ShoppingCart cookies={this.state.cookies}/>
                 </Route>
+                <Route exact path="/book-detail/:bookId">
+                    <BookDetail cookies={this.state.cookies}/>
+                </Route>
+                <Route exact path="/shipping">
+                    <Shipping cookies={this.state.cookies}/>
+                </Route>
                 <Route exact path='/'>
                     <SideBar categories={this.state.categories}/>
                     <div style={{width: '100%'}}>
@@ -53,12 +59,6 @@ class Home extends Component {
                             ))
                         }
                     </div>
-                </Route>
-                <Route exact path="/product">
-                    <BookDetail/>
-                </Route>
-                <Route exact path="/shipping">
-                    <Shipping cookies={this.state.cookies}/>
                 </Route>
             </div>
         );

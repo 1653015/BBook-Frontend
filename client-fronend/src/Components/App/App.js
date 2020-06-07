@@ -7,18 +7,17 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import Cookies from 'universal-cookie';
 import SignUp from '../Auth/SignUp/SignUp';
 import Home from '../Home/Home';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import ResetPassword from '../ResetPassword/ResetPassword'
+import Exchange from '../Exchange/Exchange';
 
 class App extends Component {
     constructor(props){
         super(props);
         this.state = {
             isLogin: false,
-            cookies: new Cookies(),
         };
         this.LoginLogout = this.LoginLogout.bind(this);
     }
@@ -45,8 +44,11 @@ class App extends Component {
                                 <Route exact path='/signup'>
                                     <SignUp LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
                                 </Route>
-                                <Route path='/reset/:tokenId'>
+                                <Route exact path='/reset/:tokenId'>
                                     <ResetPassword/>
+                                </Route>
+                                <Route exact path='/exchange'>
+                                    <Exchange/>
                                 </Route>
                                 <Route path='/'>
                                     <Home/>

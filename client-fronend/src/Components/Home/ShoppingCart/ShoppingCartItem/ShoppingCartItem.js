@@ -19,7 +19,9 @@ class ShoppingCartItem extends Component {
     render() {
         return (
             <div className="ShoppingCartItem">
-                Ảnh, Title, ....
+                <div>{this.props.name}</div>
+                <div>{this.props.quant}</div>
+                <div>{this.props.price}</div>
             </div>
         );
     }

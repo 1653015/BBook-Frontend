@@ -6,7 +6,9 @@ import ShoppingCartItem from './ShoppingCartItem/ShoppingCartItem';
 class ShoppingCart extends Component {
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            cart: this.props.cookies.get('shoppingCart'),
+        };
     }
 
     // componentWillMount(){}
@@ -16,21 +18,18 @@ class ShoppingCart extends Component {
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
-    componentDidUpdate(){}
+    // componentDidUpdate(){}
 
     render() {
         return (
             <div className="ShoppingCart">
                 <h3 className="shopping-cart-title">GIỎ HÀNG</h3>
                 <div className="list-product">
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
-                    <ShoppingCartItem/>
+                    {
+                        this.state.cart && this.state.cart.map(item => (
+                            <ShoppingCartItem name={item.name} quant={item.quant} price={item.price}/>
+                        ))
+                    }
                 </div>
                 <Calculate cookies={this.props.cookies}/>
             </div>

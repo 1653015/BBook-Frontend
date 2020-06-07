@@ -39,7 +39,6 @@ class HeaderBar extends Component {
         // if (auth2 != undefined|| auth2 != null) {
         //     auth2.signOut().then(() => {
         //             auth2.disconnect().then(this.props.onLogoutSuccess);
-        //             console.log('logout');
         //         }
         //     )
         // }
@@ -52,7 +51,7 @@ class HeaderBar extends Component {
             return (
                 <div className="header-bbook">
                     <Link to='/' className="bbook-logo">BBOOK</Link>
-                    <div className="header-item">Trao đổi</div>
+                    <Link to='/exchange' className="header-item cursor-pointer">Trao đổi</Link>
                     <div className="signin-signup-layout">
                     <div className="flexbox">
                         <div className="search">
@@ -62,7 +61,7 @@ class HeaderBar extends Component {
                         </div>
                         </div>
                         <div onMouseLeave={() => this.closeDropdown()}>
-                            <div className="header-item" onMouseEnter={() => this.openDropdown()} >
+                            <div className="header-item cursor-pointer" onMouseEnter={() => this.openDropdown()} >
                                 User Name
                             </div>
                             {
