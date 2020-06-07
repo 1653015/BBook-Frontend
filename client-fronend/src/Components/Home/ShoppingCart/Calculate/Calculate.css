@@ -7,13 +7,19 @@
     right: 0;
     height: 25%;
     width: 20%;
+    margin-top: 25px;
+    background-color: #f0eeef;
+    height: 220px;
+    border-radius: 0.5rem;
+
 }
 
 .calculated-money {
     border-radius: 5px;
     height: 70%;
-    background-color: white;
+    background-color: #f0eeef;
     color: black;
+    margin-right:4px;
 }
 
 .order {
@@ -22,23 +28,36 @@
 }
 
 .btn-order {
-    cursor: pointer;
-    border-radius: 5px;
     height:100%;
-    width: 100%;
+    width: 80%;
     border: 0;
+    margin-left:19%;
     background-color: brown;
     color: aliceblue;
     font-size: medium;
 }
+.btn-order:hover{
+    background-color:red;
+}
 
 .prices-items{
-    height: 45%;
+    height: 30%;
     width: 100%;
-    border-bottom: 1px solid rgb(216, 216, 216);
+    text-align: right;
+
+}
+.qua{
+    padding-top:10px;
+    height: 30%;
+    width: 100%;
+    text-align:right;
+
 }
 
 .prices-total{
-    height: 55%;
+    height: 30%;
     width: 100%;
+    font-weight: bold;
+    text-align: right;
+    text-transform: uppercase;
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Calculate.css';
 import { Redirect } from 'react-router-dom';
-
 class Calculate extends Component {
     constructor(props){
         super(props);
@@ -79,12 +78,16 @@ class Calculate extends Component {
         return (
             <div className="Calculate">
                 <div className="calculated-money">
+                    <div className="qua">
+                        Tổng số sản phẩm: 13
+                    </div>
                     <div className="prices-items">
                         Tạm tính: {this.state.totalPrice}
                     </div>
                     <div className="prices-total">
                         Thành tiền: {this.state.totalPrice}
                     </div>
+                    
                 </div>
                 <div className="order">
                     <button className="btn-order" onClick={this.order}>Tiến hành đặt hàng</button>
