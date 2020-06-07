@@ -13,6 +13,7 @@
     color: aliceblue;
     font-weight: 700;
     font-size: large;
+    margin: 1%;
 }
 
 .button-slider {
@@ -33,28 +34,4 @@
     align-self: center;
     cursor: pointer;
     outline: none;
-}
-
-.item{
-    display: blog;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    color: white;
-    margin: 0 5px;
-}
-
-.avatar-item {
-    height: 70%;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.infor-item{
-    height: 30%;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
 }

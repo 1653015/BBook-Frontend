@@ -20,18 +20,12 @@ class App extends Component {
             isLogin: false,
             cookies: new Cookies(),
         };
+        this.LoginLogout = this.LoginLogout.bind(this);
     }
 
     
 
-    componentDidMount(){
-        if(this.state.cookies.get('userToken')){
-            this.setState({isLogin: true});
-        }
-        else {
-            this.setState({isLogin: false});
-        }
-    }
+    componentDidMount(){}
 
     LoginLogout(isLogin) {
         this.setState({isLogin});
@@ -41,7 +35,6 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="background-image">
-                    {/* <div className="image-background"/> */}
                     <div className="background-content">
                         <HashRouter>
                             <HeaderBar LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
@@ -58,9 +51,7 @@ class App extends Component {
                                 <Route path='/'>
                                     <Home/>
                                 </Route>
-                                <Route>
-                                    <ErrorPage/>
-                                </Route>
+                                <Route component={ErrorPage}/>
                             </Switch>
                         </HashRouter>
                     </div>

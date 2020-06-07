@@ -1,0 +1,8 @@
+.category-item{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.category-item:hover{
+    background-color: aqua;
+}

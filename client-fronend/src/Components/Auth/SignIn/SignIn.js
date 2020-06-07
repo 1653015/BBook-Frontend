@@ -46,7 +46,7 @@ class SignIn extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                this.state.cookies.set('isLogin', 'login');
+                this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
                 this.props.LoginLogout(true);
                 this.setState({redirect: true});
             } else {

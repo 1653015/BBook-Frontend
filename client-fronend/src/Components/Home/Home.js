@@ -49,7 +49,7 @@ class Home extends Component {
                     <div style={{width: '100%'}}>
                         {
                             this.state.categories.map(item => (
-                                <BookSlider key={item._id} categories={item.name}/>
+                                <BookSlider key={item._id} data_key={item._id} categories={item.name}/>
                             ))
                         }
                     </div>

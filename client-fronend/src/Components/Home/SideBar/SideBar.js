@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SideBar.css';
+import Category from './Category/Category';
 
 class SideBar extends Component {
     constructor(props){
@@ -37,7 +38,7 @@ class SideBar extends Component {
                         <div className="sidebar-body">
                             {
                                 this.props.categories.map(item => (
-                                    <div key={item._id}>{item.name.toUpperCase()}</div>
+                                    <Category key={item._id} key_data={item._id} category={item.name}/>
                                 ))
                             }
                         </div>  
