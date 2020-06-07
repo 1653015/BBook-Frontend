@@ -21,17 +21,18 @@ class ShoppingCart extends Component {
     // componentDidUpdate(){}
 
     render() {
+        console.log(this.state.cart);
         return (
             <div className="ShoppingCart">
                 <h3 className="shopping-cart-title">GIỎ HÀNG</h3>
                 <div className="list-product">
                     {
                         this.state.cart && this.state.cart.map(item => (
-                            <ShoppingCartItem name={item.name} quant={item.quant} price={item.price}/>
+                            <ShoppingCartItem key={item.id} name={item.name} quant={item.quant} price={item.price}/>
                         ))
                     }
                 </div>
-                <Calculate cookies={this.props.cookies}/>
+                <Calculate cookies={this.props.cookies} cart={this.state.cart}/>
             </div>
         );
     }

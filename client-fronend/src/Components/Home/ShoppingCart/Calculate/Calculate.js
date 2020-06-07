@@ -9,6 +9,7 @@ class Calculate extends Component {
             success: false,
             redirect: false,
             shipping: false,
+            totalPrice: 0
         };
         this.order = this.order.bind(this);
         this.cancelCheckout = this.cancelCheckout.bind(this);
@@ -17,7 +18,17 @@ class Calculate extends Component {
     
     order() {
         if(this.props.cookies.get('isLogin')){
-            this.setState({success: true});
+            fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/validate',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({cart: this.props.cart})
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json);
+            })
         } else {
             this.setState({redirect: true});
         }
@@ -33,7 +44,11 @@ class Calculate extends Component {
     }
     
     // componentWillMount(){}
-    // componentDidMount(){}
+    componentDidMount(){
+        let total = 0;
+        this.props.cart.map(item => total += item.quant*item.price);
+        this.setState({totalPrice: total});
+    }
     // componentWillUnmount(){}
     // componentWillReceiveProps(){}
 
@@ -65,10 +80,10 @@ class Calculate extends Component {
             <div className="Calculate">
                 <div className="calculated-money">
                     <div className="prices-items">
-                        Tạm tính
+                        Tạm tính: {this.state.totalPrice}
                     </div>
                     <div className="prices-total">
-                        Thành tiền
+                        Thành tiền: {this.state.totalPrice}
                     </div>
                 </div>
                 <div className="order">

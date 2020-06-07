@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Item.css';
-import BookTitle from '../../../../img/booktitle.jpg'
 import { Link } from 'react-router-dom';
 
 class Item extends Component {
@@ -23,11 +22,11 @@ class Item extends Component {
             <div className="item">
                 <div className="avatar-item">
                     <Link to={`/book-detail/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                        <img src={BookTitle} width="100%" height="100%" alt={'BookTitle'}/>
+                        <img src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
                     </Link>
                 </div>
                 <div className="infor-item">
-                    <Link to={`/${this.props.key_data}`} className="bookName">
+                    <Link to={`/book-detail/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
                         <div>
                             [{this.props.name}]
                         </div>
