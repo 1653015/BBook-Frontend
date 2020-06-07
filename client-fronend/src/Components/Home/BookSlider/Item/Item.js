@@ -27,13 +27,13 @@ class Item extends Component {
                     </Link>
                 </div>
                 <div className="infor-item">
-                    <Link to={`/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
+                    <Link to={`/${this.props.key_data}`} className="bookName">
                         <div>
                             [{this.props.name}]
                         </div>
                     </Link>
-                    <div>
-                        Tên tác giả: {this.props.author}
+                    <div className="author" >
+                        {this.props.author}
                     </div>
                     <div>
                         Giá: {this.props.price}

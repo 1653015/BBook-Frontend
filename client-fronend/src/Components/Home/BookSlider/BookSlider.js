@@ -53,7 +53,7 @@ class BookSlider extends Component {
                 <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                     {
                         this.state.books.map(book => (
-                            <Item key={book._id} key_data={book._id} name={book.name} author={book.author} price={book.price}/>
+                            <Item  key={book._id} key_data={book._id} name={book.name} author={book.author} price={book.price}/>
                         ))
                     }
                 </Carousel>
