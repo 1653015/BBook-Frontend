@@ -1,8 +1,12 @@
 .category-item{
-    border: 1px solid black;
+    border: 1px solid sienna;
     cursor: pointer;
+    padding:10px;
+    font-size: medium;
+    color:white;
 }
 
 .category-item:hover{
-    background-color: aqua;
+    background-color: #eee;
+    color:black;
 }
