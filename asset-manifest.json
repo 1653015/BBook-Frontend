@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/BBook-Frontend/static/css/main.9ba4d316.chunk.css",
-    "main.js": "/BBook-Frontend/static/js/main.9cc2a94c.chunk.js",
-    "main.js.map": "/BBook-Frontend/static/js/main.9cc2a94c.chunk.js.map",
+    "main.css": "/BBook-Frontend/static/css/main.be742158.chunk.css",
+    "main.js": "/BBook-Frontend/static/js/main.db581dd1.chunk.js",
+    "main.js.map": "/BBook-Frontend/static/js/main.db581dd1.chunk.js.map",
     "runtime-main.js": "/BBook-Frontend/static/js/runtime-main.4897ac02.js",
     "runtime-main.js.map": "/BBook-Frontend/static/js/runtime-main.4897ac02.js.map",
-    "static/js/2.d5460fff.chunk.js": "/BBook-Frontend/static/js/2.d5460fff.chunk.js",
-    "static/js/2.d5460fff.chunk.js.map": "/BBook-Frontend/static/js/2.d5460fff.chunk.js.map",
+    "static/js/2.be6e6a39.chunk.js": "/BBook-Frontend/static/js/2.be6e6a39.chunk.js",
+    "static/js/2.be6e6a39.chunk.js.map": "/BBook-Frontend/static/js/2.be6e6a39.chunk.js.map",
     "index.html": "/BBook-Frontend/index.html",
-    "precache-manifest.1eda4b52f74a4b92e0fc99f6e1f89aa2.js": "/BBook-Frontend/precache-manifest.1eda4b52f74a4b92e0fc99f6e1f89aa2.js",
+    "precache-manifest.272a5c3078b9b43c0669870f23380b2f.js": "/BBook-Frontend/precache-manifest.272a5c3078b9b43c0669870f23380b2f.js",
     "service-worker.js": "/BBook-Frontend/service-worker.js",
-    "static/css/main.9ba4d316.chunk.css.map": "/BBook-Frontend/static/css/main.9ba4d316.chunk.css.map",
-    "static/js/2.d5460fff.chunk.js.LICENSE.txt": "/BBook-Frontend/static/js/2.d5460fff.chunk.js.LICENSE.txt",
+    "static/css/main.be742158.chunk.css.map": "/BBook-Frontend/static/css/main.be742158.chunk.css.map",
+    "static/js/2.be6e6a39.chunk.js.LICENSE.txt": "/BBook-Frontend/static/js/2.be6e6a39.chunk.js.LICENSE.txt",
     "static/media/booktitle.jpg": "/BBook-Frontend/static/media/booktitle.8d80fc1c.jpg",
     "static/media/shoppingCart.png": "/BBook-Frontend/static/media/shoppingCart.891cbcab.png",
     "static/media/App.css": "/BBook-Frontend/static/media/wibubg.96a66652.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.4897ac02.js",
-    "static/js/2.d5460fff.chunk.js",
-    "static/css/main.9ba4d316.chunk.css",
-    "static/js/main.9cc2a94c.chunk.js"
+    "static/js/2.be6e6a39.chunk.js",
+    "static/css/main.be742158.chunk.css",
+    "static/js/main.db581dd1.chunk.js"
   ]
 }
