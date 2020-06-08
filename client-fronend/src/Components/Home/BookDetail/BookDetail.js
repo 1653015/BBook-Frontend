@@ -89,38 +89,39 @@ class BookDetail extends Component {
     
     render() {
         return (
-            <div className="BookDetail">
-                <div className="avatar">
-                    <img src={`https://bbook-backend.herokuapp.com/${this.state.book.image}`} width="80%" height="80%" alt={'BookTitle'}/>
-                </div>
-                <div className="book-infor">
-                    <div className="book-name text-color-white">{this.state.book.name}</div>
-                    <div className="text-color-white author">Tác giả: {this.state.book.author}</div>
-                    <div className="text-color-white">Giá: {this.state.book.price}đ</div>
-                    <div className="text-color-white"> Số lượng
-                    <div className='groupInput'>
-                        <button className="btn-expel" onClick={this.expel}>-</button>
-                        <input value={this.state.element} onChange={()=>{}}/>
-                        <button className="btn-add" onClick={this.add}>+</button>
-                    </div></div>
-                    <button className="btn-add-to-cart" onClick={this.addToShoppingCart}>
-                        <FontAwesomeIcon icon={faShoppingCart}/>
-                        Chọn mua
-                    </button>
-                    {
-                        this.state.isSuccess ? (
-                            <Alert variant="filled" className="alert" onClose={()=>{this.setState({isSuccess: !this.state.isSuccess})}} severity="success">Đã thêm sách vào giỏ hàng.
-                            <Link to="/shoppingCart" className="link"> Chuyển đến giỏ hàng!
-                            </Link>
-                            </Alert>
-                        ) : (null)
-                    }
-                </div>
-                <div className="listBook">
-                <BookSlider data_key={this.props.match.params.categorieID} categories={"Sách cùng thể loại"}/>
+            <div className='container'>
+                <div className="BookDetail">
+                    <div className="avatar">
+                        <img src={`https://bbook-backend.herokuapp.com/${this.state.book.image}`} width="80%" height="80%" alt={'BookTitle'}/>
+                    </div>
+                    <div className="book-infor">
+                        <div className="book-name text-color-white">{this.state.book.name}</div>
+                        <div className="text-color-white author">Tác giả: {this.state.book.author}</div>
+                        <div className="text-color-white">Giá: {this.state.book.price}đ</div>
+                        <div className="text-color-white"> Số lượng
+                        <div className='groupInput'>
+                            <button className="btn-expel" onClick={this.expel}>-</button>
+                            <input value={this.state.element} onChange={()=>{}}/>
+                            <button className="btn-add" onClick={this.add}>+</button>
+                        </div></div>
+                        <button className="btn-add-to-cart" onClick={this.addToShoppingCart}>
+                            <FontAwesomeIcon icon={faShoppingCart}/>
+                            Chọn mua
+                        </button>
+                        {
+                            this.state.isSuccess ? (
+                                <Alert variant="filled" className="alert" onClose={()=>{this.setState({isSuccess: !this.state.isSuccess})}} severity="success">Đã thêm sách vào giỏ hàng.
+                                <Link to="/shoppingCart" className="link"> Chuyển đến giỏ hàng!
+                                </Link>
+                                </Alert>
+                            ) : (null)
+                        }
+                    </div>
+                    <div className="listBook">
+                    <BookSlider data_key={this.props.match.params.categorieID} categories={"Sách cùng thể loại"}/>
+                    </div>
                 </div>
             </div>
-            
         );
     }
 }

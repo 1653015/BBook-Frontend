@@ -3,28 +3,25 @@ import './Shipping.css';
 import { Redirect } from 'react-router-dom';
 
 class Shipping extends Component {
-    // constructor(props){
-        // super(props);
-        // this.state = {};
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+            isOpen: false,
+        };
+        this.openUpdateInf = this.openUpdateInf.bind(this);
+    }
 
     // componentWillMount(){}
     // componentDidMount(){}
-    componentWillUnmount(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/return',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            },
-            body: JSON.stringify({cart: this.props.cookies.get('shoppingCart')})
-        })
-    }
+    // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+    openUpdateInf(){
+        this.setState({isOpen: !this.state.isOpen});
+    }
 
     render() {
         if(!this.props.cookies.get('isLogin')){
@@ -32,20 +29,25 @@ class Shipping extends Component {
         }
 
         return (
-            <div className="Shipping">
-                <h3 className="shipping-title">ĐỊA CHỈ GIAO HÀNG</h3>
-                <div className="shipping-infor">
-                    <h4 className="text-white">User Name</h4>
-                    <div className="text-white">
-                        Địa chỉ:
+            <div classname='container'>
+                <div className="Shipping">
+                    <h3 className="shipping-title">ĐỊA CHỈ GIAO HÀNG</h3>
+                    <div className="shipping-infor">
+                        <h4 className="text-white">{this.props.cookies.get('m_inf_u').name}</h4>
+                        <div className="text-white">
+                            Địa chỉ: {this.props.cookies.get('m_inf_u').address}
+                        </div>
+                        <div className="text-white">
+                            Số điện thoại: {this.props.cookies.get('m_inf_u').phone}
+                        </div>
                     </div>
-                    <div className="text-white">
-                        Số điện thoại: 
+                    <div className="btn-shipping-layout">
+                        <button className="btn-shipping">Giao tới địa chỉ này</button>
+                        <button onClick={this.openUpdateInf} className="btn-change-address">Sửa</button>
                     </div>
-                </div>
-                <div className="btn-shipping-layout">
-                    <button className="btn-shipping">Giao tới địa chỉ này</button>
-                    <button className="btn-change-address">Sửa</button>
+                    {
+                        this.state.isOpen ? (<div>asdfasdfsdf</div>) : (null)
+                    }
                 </div>
             </div>
         );

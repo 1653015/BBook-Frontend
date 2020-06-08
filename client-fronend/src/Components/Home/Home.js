@@ -3,11 +3,6 @@ import './Home.css';
 import Cookies from 'universal-cookie';
 import SideBar from './SideBar/SideBar';
 import BookSlider from './BookSlider/BookSlider';
-import ShoppingCart from './ShoppingCart/ShoppingCart'
-import { Route } from 'react-router-dom';
-import BookDetail from './BookDetail/BookDetail';
-import Shipping from './Shipping/Shipping';
-import SearchBook from './SearchBook/SearchBook';
 
 class Home extends Component {
     constructor(props){
@@ -42,29 +37,14 @@ class Home extends Component {
     render() {
         return (
             <div className="container">
-                <Route exact path='/shoppingCart'>
-                    <ShoppingCart cookies={this.state.cookies}/>
-                </Route>
-                <Route exact path="/:categorieID/:bookId">
-                    <BookDetail cookies={this.state.cookies}/>
-                </Route>
-                <Route exact path="/shipping">
-                    <Shipping cookies={this.state.cookies}/>
-                </Route>
-                <Route exact path='/search/:category/books'>
-                    <SideBar categories={this.state.categories}/>
-                    <SearchBook/>
-                </Route>
-                <Route exact path='/'>
-                    <SideBar categories={this.state.categories}/>
-                    <div style={{width: '100%'}}>
-                        {
-                            this.state.categories.map(item => (
-                                <BookSlider key={item._id} data_key={item._id} categories={item.name}/>
-                            ))
-                        }
-                    </div>
-                </Route>
+                <SideBar categories={this.state.categories}/>
+                <div style={{width: '100%'}}>
+                    {
+                        this.state.categories.map(item => (
+                            <BookSlider key={item._id} data_key={item._id} categories={item.name}/>
+                        ))
+                    }
+                </div>
             </div>
         );
     }

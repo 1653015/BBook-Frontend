@@ -22,16 +22,18 @@ class ShoppingCart extends Component {
 
     render() {
         return (
-            <div className="ShoppingCart">
-                <h3 className="shopping-cart-title">GIỎ HÀNG</h3>
-                <div className="list-product">
-                    {
-                        this.state.cart && this.state.cart.map(item => (
-                            <ShoppingCartItem key={item.id} book={item}/>
-                        ))
-                    }
+            <div className="container">
+                <div className="ShoppingCart">
+                    <h3 className="shopping-cart-title">GIỎ HÀNG</h3>
+                    <div className="list-product">
+                        {
+                            this.state.cart && this.state.cart.map(item => (
+                                <ShoppingCartItem key={item.id} book={item}/>
+                            ))
+                        }
+                    </div>
+                    <Calculate cookies={this.props.cookies} cart={this.state.cart}/>
                 </div>
-                <Calculate cookies={this.props.cookies} cart={this.state.cart}/>
             </div>
         );
     }
