@@ -64,7 +64,7 @@ class PopupForgotPassword extends Component {
                                     <h2>Quên mật khẩu?</h2>
                                     <div>Vui lòng nhập email đăng nhập để lấy lại mật khẩu</div>
                                     <form onSubmit={props.handleSubmit}>
-                                        <input className="input-email"
+                                        <input className="input-email-forgotpass"
                                             type="text"
                                             onChange={props.handleChange}
                                             value={props.values.email}

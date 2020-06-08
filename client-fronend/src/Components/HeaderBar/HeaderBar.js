@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import ShoppingCart from '../../img/shoppingCart.png'
-
+import PopupChangePassword from './PopupChangePassword/PopupChangePassword'
 class HeaderBar extends Component {
     constructor(props){
         super(props);
@@ -14,6 +14,7 @@ class HeaderBar extends Component {
             isOpen: false
         };
         this.logout = this.logout.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
     }
 
     // componentWillMount(){}
@@ -24,7 +25,9 @@ class HeaderBar extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
-
+    togglePopup() {
+        this.setState({seen: !this.state.seen});
+    }
     openDropdown() {
         this.setState({isOpen: true});
     }
@@ -65,6 +68,9 @@ class HeaderBar extends Component {
                                 <div className="dropdown-content">
                                     <Link to="/profile" className="link">Trang Cá Nhân</Link>
                                     <div className="link">
+                                    <button type="button" onClick={this.togglePopup} className="btn-logout">Đổi mật khẩu</button>
+                                    </div>
+                                    <div className="link">
                                     <button type="button" onClick={this.logout} className="btn-logout">Đăng xuất</button>
                                     </div>
                                 </div>
@@ -75,6 +81,9 @@ class HeaderBar extends Component {
                             </Link>
                         </div>
                     </div>
+                    {
+                        this.state.seen ? <PopupChangePassword toggle={this.togglePopup} /> : null
+                    }
                 </div>
             );
         }
