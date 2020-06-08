@@ -33,9 +33,10 @@ class BookDetail extends Component {
         });
     }
     addToShoppingCart() {
-        const {name, price}= this.state.book;
+        const {image, name, price}= this.state.book;
         if(!this.props.cookies.get('shoppingCart')){
             let shoppingCart = [{id: this.props.match.params.bookId, 
+                image: image,
                 name: name,
                 price: price, 
                 quant: this.state.element}];
@@ -55,7 +56,8 @@ class BookDetail extends Component {
             if(included){
                 shoppingCart[indexOf].quant += this.state.element;
             } else {
-                shoppingCart.push({id: this.props.match.params.bookId, 
+                shoppingCart.push({id: this.props.match.params.bookId,
+                    image: image,
                     name: name, 
                     price: price, 
                     quant: this.state.element});
@@ -86,7 +88,6 @@ class BookDetail extends Component {
     // componentDidUpdate(){}
     
     render() {
-        console.log(this.props.match.params.bookId);
         return (
             <div className="BookDetail">
                 <div className="avatar">
@@ -99,7 +100,7 @@ class BookDetail extends Component {
                     <div className="text-color-white"> Số lượng
                     <div className='groupInput'>
                         <button className="btn-expel" onClick={this.expel}>-</button>
-                        <input value={this.state.element} onChange={() => {}}/>
+                        <input value={this.state.element} onChange={()=>{}}/>
                         <button className="btn-add" onClick={this.add}>+</button>
                     </div></div>
                     <button className="btn-add-to-cart" onClick={this.addToShoppingCart}>

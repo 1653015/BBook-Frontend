@@ -27,6 +27,9 @@ class Calculate extends Component {
             .then(res => res.json())
             .then(json => {
                 console.log(json);
+                if(json.success){
+                    this.setState({shipping: !this.state.shipping})
+                }
             })
         } else {
             this.setState({redirect: true});
@@ -45,7 +48,7 @@ class Calculate extends Component {
     // componentWillMount(){}
     componentDidMount(){
         let total = 0;
-        this.props.cart.map(item => total += item.quant*item.price);
+        this.props.cart&&this.props.cart.map(item => total += item.quant*item.price);
         this.setState({totalPrice: total});
     }
     // componentWillUnmount(){}
