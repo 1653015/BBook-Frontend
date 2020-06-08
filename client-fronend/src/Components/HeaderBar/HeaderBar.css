@@ -148,6 +148,7 @@ width: 250px;
     position: relative;
     display: inline-block;
     text-align: center;
+    height: 68px;
 }
 
 .dropdown-content {

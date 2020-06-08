@@ -68,13 +68,10 @@ class HeaderBar extends Component {
                             <div className="header-item dropdown">
                                 <span className="dropbtn">{this.state.cookies.get('m_inf_u').name}</span>
                                 <div className="dropdown-content">
-                                    <Link to="/profile" className="link">Trang Cá Nhân</Link>
-                                    <div className="link">
-                                    <button type="button" onClick={this.togglePopup} className="btn-logout">Đổi mật khẩu</button>
+                                    <div className="link cursor-pointer"onClick={this.togglePopup}>
+                                        Đổi mật khẩu
                                     </div>
-                                    <div className="link">
-                                    <button type="button" onClick={this.logout} className="btn-logout">Đăng xuất</button>
-                                    </div>
+                                    <div className="link"onClick={this.logout}>Đăng xuất</div>
                                 </div>
                             </div>        
                         <div className="header-item">
