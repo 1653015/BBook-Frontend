@@ -46,9 +46,13 @@ class SignIn extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
-                this.props.LoginLogout(true);
-                this.setState({redirect: true});
+                res.json().then(json => {
+                    this.state.cookies.set('u_t', json.token, {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
+                    this.props.LoginLogout(true);
+                    this.setState({redirect: true});
+                })
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);

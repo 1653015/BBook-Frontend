@@ -31,8 +31,8 @@ class SearchBook extends Component {
             <div className="SearchBook">
                 {
                     this.state.books.map(book => (
-                        <div className="item-box">
-                            <Item  key={book._id} key_data={book._id} image={book.image} name={book.name} author={book.author} price={book.price}/>
+                        <div key={book._id} className="item-box">
+                            <Item key_data={book._id} image={book.image} name={book.name} author={book.author} price={book.price}/>
                         </div>
                     ))
                 }

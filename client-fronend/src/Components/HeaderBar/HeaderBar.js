@@ -46,6 +46,8 @@ class HeaderBar extends Component {
         //     )
         // }
         this.state.cookies.remove('isLogin');
+        this.state.cookies.remove('u_t');
+        this.state.cookies.remove('m_inf_u');
         this.props.LoginLogout(false);
     }
 
@@ -64,7 +66,7 @@ class HeaderBar extends Component {
                         </div>
                         </div>
                             <div className="header-item dropdown">
-                                <span className="dropbtn">User Name</span>
+                                <span className="dropbtn">{this.state.cookies.get('m_inf_u').name}</span>
                                 <div className="dropdown-content">
                                     <Link to="/profile" className="link">Trang Cá Nhân</Link>
                                     <div className="link">
