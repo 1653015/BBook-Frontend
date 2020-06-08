@@ -36,9 +36,9 @@ class Calculate extends Component {
                     price: item.book.price, 
                     quant: item.quant
                 }));
-                this.setState({total: json.cart.total});
                 this.setState({success: !this.state.success});
                 this.props.cookies.set('shoppingCart', cart);
+                this.props.cookies.set('total', json.cart.total);
                 
             })
         } else {
