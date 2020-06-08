@@ -8,7 +8,8 @@ class Calculate extends Component {
             success: false,
             redirect: false,
             shipping: false,
-            totalPrice: 0
+            totalPrice: 0,
+            totalItem: 0,
         };
         this.order = this.order.bind(this);
         this.cancelCheckout = this.cancelCheckout.bind(this);
@@ -20,16 +21,25 @@ class Calculate extends Component {
             fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/validate',{
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': this.props.cookies.get('u_t')
                 },
                 body: JSON.stringify({cart: this.props.cart})
             })
             .then(res => res.json())
             .then(json => {
-                console.log(json);
-                if(json.success){
-                    this.setState({shipping: !this.state.shipping})
-                }
+                let cart=[];
+                json.cart.items.map(item => cart.push({
+                    id: item.book._id, 
+                    image: item.book.image, 
+                    name: item.book.name, 
+                    price: item.book.price, 
+                    quant: item.quant
+                }));
+                this.setState({total: json.cart.total});
+                this.setState({success: !this.state.success});
+                this.props.cookies.set('shoppingCart', cart);
+                
             })
         } else {
             this.setState({redirect: true});
@@ -38,6 +48,14 @@ class Calculate extends Component {
 
     
     cancelCheckout() {
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/return',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            },
+            body: JSON.stringify({cart: this.props.cart})
+        })
         this.setState({success: false});
     }
 
@@ -47,11 +65,25 @@ class Calculate extends Component {
     
     // componentWillMount(){}
     componentDidMount(){
-        let total = 0;
-        this.props.cart&&this.props.cart.map(item => total += item.quant*item.price);
-        this.setState({totalPrice: total});
+        let totalPrice = 0;
+        let totalItem = 0;
+        this.props.cart&&this.props.cart.map(item => totalPrice += item.quant*item.price);
+        this.props.cart&&this.props.cart.map(item => totalItem += item.quant*1);
+        this.setState({totalPrice});
+        this.setState({totalItem});
     }
-    // componentWillUnmount(){}
+    componentWillUnmount(){
+        if(!this.state.shipping){
+            fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/return',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': this.props.cookies.get('u_t')
+                },
+                body: JSON.stringify({cart: this.props.cart})
+            })
+        }
+    }
     // componentWillReceiveProps(){}
 
     // shouldComponentUpdate(){}
@@ -82,7 +114,7 @@ class Calculate extends Component {
             <div className="Calculate">
                 <div className="calculated-money">
                     <div className="qua">
-                        Tổng số sản phẩm: 13
+                        Tổng số sản phẩm: {this.state.totalItem}
                     </div>
                     <div className="prices-items">
                         Tạm tính: {this.state.totalPrice}
