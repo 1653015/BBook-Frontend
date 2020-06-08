@@ -10,7 +10,16 @@ class Shipping extends Component {
 
     // componentWillMount(){}
     // componentDidMount(){}
-    // componentWillUnmount(){}
+    componentWillUnmount(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/return',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            },
+            body: JSON.stringify({cart: this.props.cookies.get('shoppingCart')})
+        })
+    }
 
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
