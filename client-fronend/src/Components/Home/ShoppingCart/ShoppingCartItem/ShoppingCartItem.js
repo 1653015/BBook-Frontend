@@ -50,11 +50,12 @@ class ShoppingCartItem extends Component {
     render() {
         return (
             <div className="ShoppingCartItem">
-                <div>{this.state.cookies.get('m_inf_u')&&this.state.cookies.get('m_inf_u').name}</div>
-                <div style={{height: '100%', width:'20%'}}><img width='100%' height='100%' src={`https://bbook-backend.herokuapp.com/`+this.props.book.image} alt={'booktitle'}/></div>
-                <div>{this.props.book.name}</div>
-                <div><input onChange={this.updateItemQuant} min="1" type="number" className="input" defaultValue={this.props.book.quant}/></div>
-                <div>{this.props.book.price}</div>
+                <div className="img"><img width='100%' height='100%' src={`https://bbook-backend.herokuapp.com/`+this.props.book.image} alt={'booktitle'}/></div>
+                <div className="nameBook">{this.props.book.name}</div>
+                <div className="comboPriceQual">
+                <div className="bold">Số lượng: <input onChange={this.updateItemQuant} min="1" type="number" className="input" defaultValue={this.props.book.quant}/></div>
+                <div className="bold">Đơn giá: <span className="red">{this.props.book.price} đ</span> </div>
+                </div>
                 <div>
                     <button onClick={this.deleteBookfromCart} className="btn-del"><FontAwesomeIcon icon={faTimes}/></button>
                 </div>
