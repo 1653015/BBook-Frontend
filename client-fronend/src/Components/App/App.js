@@ -24,15 +24,19 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {
+            categories: [],
             isLogin: false,
             cookies: new Cookies()
         };
         this.LoginLogout = this.LoginLogout.bind(this);
     }
-
-    
-
-    componentDidMount(){}
+    componentDidMount(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/category')
+        .then(res => res.json())
+        .then(json => {
+            this.setState({categories: json.categories});
+        })
+    }
 
     LoginLogout(isLogin) {
         this.setState({isLogin});

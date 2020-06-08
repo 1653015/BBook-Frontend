@@ -22,18 +22,18 @@ class Item extends Component {
 
     render() {
         return (
-            <div className="item" onClick={this.reloadPage}>
-                <div className="avatar-item">
+            <div className="item">
+                <div className="avatar-item" onClick={this.reloadPage}>
                     <Link to={`/${this.props.categorieID}/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
                         <img src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
                     </Link>
                 </div>
                 <div className="infor-item">
-                    <Link to={`/${this.props.categorieID}/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                        <div>
+                    <div onClick={this.reloadPage}>
+                        <Link to={`/${this.props.categorieID}/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
                             {this.props.name}
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                     <div className="author" >
                         {this.props.author}
                     </div>
