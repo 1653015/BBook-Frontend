@@ -41,7 +41,6 @@ class BookDetail extends Component {
                 price: price, 
                 quant: this.state.element}];
             this.props.cookies.set('shoppingCart', shoppingCart);
-            console.log(shoppingCart)
         } else {
             let shoppingCart = this.props.cookies.get('shoppingCart');
             let included = false;
@@ -63,7 +62,6 @@ class BookDetail extends Component {
                     quant: this.state.element});
             }
             this.props.cookies.set('shoppingCart', shoppingCart);
-            console.log(shoppingCart)
         }
         this.setState({isSuccess: !this.state.isSuccess});
         

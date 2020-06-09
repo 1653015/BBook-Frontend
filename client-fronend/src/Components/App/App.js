@@ -18,6 +18,7 @@ import SideBar from '../Home/SideBar/SideBar';
 import Shipping from '../Home/Shipping/Shipping';
 import BookDetail from '../Home/BookDetail/BookDetail';
 import ShoppingCart from '../Home/ShoppingCart/ShoppingCart';
+import CreateExchangeBook from '../CreateExchangeBook/CreateExchangeBook';
 
 
 class App extends Component {
@@ -76,6 +77,12 @@ class App extends Component {
                                         <SideBar categories={this.state.categories}/>
                                         <SearchBook/>
                                     </div>
+                                </Route>
+                                <Route exact path='/exchange/create/yourbook'>
+                                    <CreateExchangeBook cookies={this.state.cookies}/>
+                                </Route>
+                                <Route exact path='/kho'>
+
                                 </Route>
                                 <Route exact path='/'>
                                     <Home/>

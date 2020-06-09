@@ -37,14 +37,16 @@ class HeaderBar extends Component {
     }
 
     logout() {
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signout',{method: 'POST'});
-        // const auth2 = window.gapi.auth2.getAuthInstance();
-        // if (auth2 != undefined|| auth2 != null) {
-        //     auth2.signOut().then(() => {
-        //             auth2.disconnect().then(this.props.onLogoutSuccess);
-        //         }
-        //     )
-        // }
+        
+        if(this.state.cookies.get('m_inf_u').provider === 'googel'){
+            const auth2 = window.gapi.auth2.getAuthInstance();
+            if (auth2 !== undefined|| auth2 !== null) {
+                auth2.signOut().then(() => {
+                        auth2.disconnect().then(this.props.onLogoutSuccess);
+                    }
+                )
+            }
+        }
         this.state.cookies.remove('isLogin');
         this.state.cookies.remove('u_t');
         this.state.cookies.remove('m_inf_u');

@@ -13,7 +13,6 @@ class UpdateShippingInfor extends Component {
         this.updatePhone = this.updatePhone.bind(this);
     }
     updateAddress(values, actions){
-        console.log(values.address)
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/address',{
             method: 'PUT',
             headers: {

@@ -70,8 +70,7 @@ class SignIn extends Component {
             body: JSON.stringify({
                 provider: "google",
                 uid: res.googleId, 
-                name: res.Tt.Bd, 
-                email: res.Tt.Du})
+                name: res.Tt.Bd})
         })
         .then(res => {
             if(res.status === 400) {
@@ -120,7 +119,7 @@ class SignIn extends Component {
                                     <h1 style={{textAlign: "center"}} className="font-white">Đăng Nhập</h1>
                                     <div className="form-item">
                                         <div className="form-item-header">
-                                            <div style={{textAlign: "center"}} className="font-white" >Email (Tên Đăng Nhập)</div>
+                                            <div style={{textAlign: "center"}} className="font-white" >Email</div>
                                             {props.touched.email && props.errors.email? (
                                                 <div className="invalid-message">{props.errors.email}</div>
                                             ) : null}

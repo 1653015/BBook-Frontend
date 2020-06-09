@@ -170,7 +170,7 @@ class SignUp extends Component {
                                             ) : null}
                                         </div>
                                         <input className="form-input"
-                                            type="number"
+                                            type="tel"
                                             onChange={props.handleChange}
                                             value={props.values.phoneNumber}
                                             name="phoneNumber"
