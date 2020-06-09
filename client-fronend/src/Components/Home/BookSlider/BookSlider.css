@@ -3,7 +3,7 @@
 */
 
 .BookSlider {
-    margin: 5% auto 0 auto;
+    margin: 7% auto 10% auto;
     width: 90%;
     height: 320px;
     text-align: left;
@@ -13,6 +13,7 @@
     color: aliceblue;
     font-weight: 700;
     font-size: large;
+    margin: 1%;
 }
 
 .button-slider {

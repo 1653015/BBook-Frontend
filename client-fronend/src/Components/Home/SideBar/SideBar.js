@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SideBar.css';
+import Category from './Category/Category';
 
 class SideBar extends Component {
     constructor(props){
@@ -10,9 +11,7 @@ class SideBar extends Component {
     }
 
     // componentWillMount(){}
-    componentDidMount(){
-        //load data
-    }
+    // componentDidMount(){}
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
@@ -37,11 +36,11 @@ class SideBar extends Component {
                 {
                     this.state.isOpen ? (
                         <div className="sidebar-body">
-                            wont display body when header is not hover
-                            display something when header is hoverhákhd
-                            fkjashfkjasdfhkashdf
-                            jkhasdkjfhkasdhfkjasdhfkjasdhdfkjashdfkjashdf
-                            jkhsaddkjfhkasjdhfksadhfkjsdhf
+                            {
+                                this.props.categories.map(item => (
+                                    <Category key={item._id} key_data={item._id} category={item.name}/>
+                                ))
+                            }
                         </div>  
                     ) : (
                         <div/>

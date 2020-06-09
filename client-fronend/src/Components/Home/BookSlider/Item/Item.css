@@ -1,0 +1,45 @@
+/*
+ * Item css File
+*/
+
+.Item {
+    /* propertys here */
+}
+
+.item{
+    display: blog;
+    justify-content: center;
+    align-items: center;    
+    height: 350px;
+    transition: transform .2s;
+    width: 250px;
+    color: white;
+    margin: 0 5px;
+}
+.item:hover{
+    transform: scale(1.02);
+}
+.bookName{
+    width: 70%;
+    color: rgb(255, 242, 126);
+    font-size: large;
+    font-weight: bold;
+}
+.author{
+    color:rgb(202, 200, 200);
+    font-style: italic;
+    font-size:small;
+}
+.avatar-item {
+    height: 70%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.infor-item{
+    height: 30%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}

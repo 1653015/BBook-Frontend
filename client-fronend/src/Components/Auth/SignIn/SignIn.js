@@ -4,6 +4,8 @@ import * as Yup from 'yup'
 import './SignIn.css';
 import {Redirect} from 'react-router-dom';
 import Cookies from 'universal-cookie'
+import GoogleLogin from 'react-google-login';
+import PopupForgotPassword from './PopupForgotPassword/PopupForgotPassword'
 
 class SignIn extends Component {
     constructor(props){
@@ -12,8 +14,11 @@ class SignIn extends Component {
             errorMessage: '',
             redirect: false,
             cookies: new Cookies(),
+            seen: false
         };
+        this.loginProvider = this.loginProvider.bind(this);
         this.login = this.login.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
     }
 
     // componentWillMount(){}
@@ -25,8 +30,12 @@ class SignIn extends Component {
     // componentWillUpdate(){}
     // componentDidUpdate(){}
 
+    togglePopup() {
+        this.setState({seen: !this.state.seen});
+    }
+
     login(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/signin',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/email',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,12 +47,44 @@ class SignIn extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
                 actions.setSubmitting(false);
             } else if (res.status === 200) {
-                this.state.cookies.set('isLogin', 'login');
-                this.props.LoginLogout(true);
-                this.setState({redirect: true});
+                res.json().then(json => {
+                    this.state.cookies.set('u_t', json.token, {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
+                    this.props.LoginLogout(true);
+                    this.setState({redirect: true});
+                })
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
+            }
+        })
+    }
+
+    loginProvider(res){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/auth-provider',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                provider: "google",
+                uid: res.googleId, 
+                name: res.Tt.Bd})
+        })
+        .then(res => {
+            if(res.status === 400) {
+                res.text().then(text => this.setState({errorMessage: text}));
+            } else if (res.status === 200) {
+                res.json().then(json => {
+                    this.state.cookies.set('u_t', json.token, {maxAge: 86400, httpOnly: false});
+                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 86400, httpOnly: false});
+                    this.state.cookies.set('isLogin', 'login', {maxAge: 86400, httpOnly: false});
+                    this.props.LoginLogout(true);
+                    this.setState({redirect: true});
+                })
+            } else {
+                this.setState({errorMessage: 'Lỗi không xác định!!!'});
             }
         })
     }
@@ -69,7 +110,6 @@ class SignIn extends Component {
                             .required('Email is empty'),
                         password: Yup.string()
                             .min(8, 'To short!!!')
-                            .max(50, 'To long!!!')
                             .required('Password is empty'),
                     })}
                     >
@@ -79,7 +119,7 @@ class SignIn extends Component {
                                     <h1 style={{textAlign: "center"}} className="font-white">Đăng Nhập</h1>
                                     <div className="form-item">
                                         <div className="form-item-header">
-                                            <div style={{textAlign: "center"}} className="font-white" >Email (Tên Đăng Nhập)</div>
+                                            <div style={{textAlign: "center"}} className="font-white" >Email</div>
                                             {props.touched.email && props.errors.email? (
                                                 <div className="invalid-message">{props.errors.email}</div>
                                             ) : null}
@@ -107,12 +147,22 @@ class SignIn extends Component {
                                             placeholder="Hãy nhập mật khẩu của bạn"
                                         />
                                     </div>
+                                    <div className="text-white" style={{cursor: 'pointer'}} onClick={this.togglePopup}>Quên mật khẩu</div>
                                     <div className="error-message">{this.state.errorMessage}</div>
                                     <input type="submit" disabled={props.isSubmitting} value="Đăng Nhập"/>
+                                    <GoogleLogin
+                                        clientId="639654572878-40oqbl8t2cj3dvjv8vj9othe1he9oepv.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                                        buttonText="LOGIN WITH GOOGLE"
+                                        onSuccess={(res) => this.loginProvider(res)}
+                                        onFailure={(res) => {console.log(res)}}
+                                    />
                                 </form>
                             )
                         }
                 </Formik>
+                {
+                    this.state.seen ? <PopupForgotPassword toggle={this.togglePopup} /> : null
+                }
             </div>
         );
     }
