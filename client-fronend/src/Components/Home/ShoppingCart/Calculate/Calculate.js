@@ -17,7 +17,7 @@ class Calculate extends Component {
     }
     
     order() {
-        if(this.props.cookies.get('isLogin')){
+        if(this.props.cookies.get('isLogin')&&this.props.cart&&this.props.cart.length !== 0){
             fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/cart/validate',{
                 method: 'POST',
                 headers: {

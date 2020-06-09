@@ -62,7 +62,6 @@ class SignIn extends Component {
     }
 
     loginProvider(res){
-        console.log(res.googleId)
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/auth-provider',{
             method: 'POST',
             headers: {
@@ -79,9 +78,9 @@ class SignIn extends Component {
                 res.text().then(text => this.setState({errorMessage: text}));
             } else if (res.status === 200) {
                 res.json().then(json => {
-                    this.state.cookies.set('u_t', json.token, {maxAge: 36000000, httpOnly: false});
-                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 36000000, httpOnly: false});
-                    this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('u_t', json.token, {maxAge: 86400, httpOnly: false});
+                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 86400, httpOnly: false});
+                    this.state.cookies.set('isLogin', 'login', {maxAge: 86400, httpOnly: false});
                     this.props.LoginLogout(true);
                     this.setState({redirect: true});
                 })
