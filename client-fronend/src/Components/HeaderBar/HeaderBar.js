@@ -68,7 +68,7 @@ class HeaderBar extends Component {
                         </div>
                         </div>
                             <div className="header-item dropdown">
-                                <span className="dropbtn">{this.state.cookies.get('m_inf_u').name}</span>
+                                <span className="dropbtn">{this.state.cookies.get('m_inf_u')&&this.state.cookies.get('m_inf_u').name}</span>
                                 <div className="dropdown-content">
                                     <div className="link cursor-pointer"onClick={this.togglePopup}>
                                         Đổi mật khẩu

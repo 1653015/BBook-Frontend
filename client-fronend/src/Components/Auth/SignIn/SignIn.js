@@ -16,6 +16,7 @@ class SignIn extends Component {
             cookies: new Cookies(),
             seen: false
         };
+        this.loginProvider = this.loginProvider.bind(this);
         this.login = this.login.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
     }
@@ -60,6 +61,36 @@ class SignIn extends Component {
         })
     }
 
+    loginProvider(res){
+        console.log(res.googleId)
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/auth-provider',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                provider: "google",
+                uid: res.googleId, 
+                name: res.Tt.Bd, 
+                email: res.Tt.Du})
+        })
+        .then(res => {
+            if(res.status === 400) {
+                res.text().then(text => this.setState({errorMessage: text}));
+            } else if (res.status === 200) {
+                res.json().then(json => {
+                    this.state.cookies.set('u_t', json.token, {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 36000000, httpOnly: false});
+                    this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
+                    this.props.LoginLogout(true);
+                    this.setState({redirect: true});
+                })
+            } else {
+                this.setState({errorMessage: 'Lỗi không xác định!!!'});
+            }
+        })
+    }
+
     render() {
         if(this.state.redirect) {
             return (<Redirect to='/'/>)
@@ -81,7 +112,6 @@ class SignIn extends Component {
                             .required('Email is empty'),
                         password: Yup.string()
                             .min(8, 'To short!!!')
-                            .max(50, 'To long!!!')
                             .required('Password is empty'),
                     })}
                     >
@@ -125,12 +155,7 @@ class SignIn extends Component {
                                     <GoogleLogin
                                         clientId="639654572878-40oqbl8t2cj3dvjv8vj9othe1he9oepv.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
                                         buttonText="LOGIN WITH GOOGLE"
-                                        onSuccess={() => {
-                                            this.state.cookies.set('isLogin', 'login');
-                                            this.props.LoginLogout(true);
-                                            this.setState({redirect: true});
-                                            }
-                                        }
+                                        onSuccess={(res) => this.loginProvider(res)}
                                         onFailure={(res) => {console.log(res)}}
                                     />
                                 </form>

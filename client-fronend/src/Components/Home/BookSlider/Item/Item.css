@@ -10,9 +10,9 @@
     display: blog;
     justify-content: center;
     align-items: center;    
-    height: 100%;
+    height: 350px;
     transition: transform .2s;
-    width: 100%;
+    width: 250px;
     color: white;
     margin: 0 5px;
 }

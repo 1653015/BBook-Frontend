@@ -32,22 +32,24 @@ class PopupChangePassword extends Component {
 
     
     changePassword(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/forgot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email: values.email})
-        })
-        .then(res => res.json())
-        .then(json => {
-            if(!json.success){
+        if(values.newPassword === values.retypePass){
+            // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/forgot', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({email: values.email})
+            // })
+            // .then(res => res.json())
+            // .then(json => {
+            //     if(!json.success){
 
-            } else {
+            //     } else {
 
-                this.setState({errorMessage: json.message});
-            }
-        })
+            //         this.setState({errorMessage: json.message});
+            //     }
+            // })
+        }
     }
     hideStatePass(){
         const{ hidePass } = this.state;
@@ -94,14 +96,21 @@ class PopupChangePassword extends Component {
                 <div className="PopupChangePassword-content">
                     <span className="close" onClick={this.handleClick}>&times;</span>
                     <Formik
-                    initialValues={{email: ''}}
-                    onSubmit={(values, actions) => {
-                        this.changePassword(values, actions);
-                    }}
-                    validationSchema={Yup.object({
-                        email: Yup.string()
-                            .required('Email is empty')
-                    })}>
+                        initialValues={{oldPassword: '', newPassword: '', retypePass: ''}}
+                        onSubmit={(values, actions) => {
+                            this.changePassword(values, actions);
+                        }}
+                        validationSchema={Yup.object({
+                            oldPassword: Yup.string()
+                                .min(8, 'To short!!!')
+                                .required('Điền mật khẩu cũ'),
+                            newPassword: Yup.string()
+                                .min(8, 'To short!!!')    
+                                .required('Điền mật khẩu mới'),
+                            retypePass: Yup.string()
+                                .min(8, 'To short!!!')
+                                .required('Nhập lại mật khẩu mới')
+                        })}>
                         {
                             props => (
                                 <div>
@@ -111,8 +120,8 @@ class PopupChangePassword extends Component {
                                         <input className="input-email"
                                             type={this.state.hidePass ? "password" : "text"}
                                             onChange={props.handleChange}
-                                            value={props.values.pass}
-                                            name="pass"
+                                            value={props.values.oldPassword}
+                                            name="oldPassword"
                                             placeholder="Mật khẩu cũ"
                                         />
                                         <FontAwesomeIcon icon={eye_Pass} onClick={this.hideStatePass} className="eye"/>
@@ -121,8 +130,8 @@ class PopupChangePassword extends Component {
                                         <input className="input-email"
                                             type={this.state.hidenewPass ? "password" : "text"}
                                             onChange={props.handleChange}
-                                            value={props.values.newPass}
-                                            name="newPass"
+                                            value={props.values.newPassword}
+                                            name="newPassword"
                                             placeholder="Mật khẩu mới"
                                         />
                                         <FontAwesomeIcon icon={eye_newPass} onClick={this.hideStatenewPass} className="eye"/>
