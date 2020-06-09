@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import './UserBookStorage.css';
+import './ViewBookExchange.css';
+import { Redirect, Link} from 'react-router-dom';
 import ItemExchange from '../ItemExchange/ItemExchange';
-import Cookies from 'universal-cookie';
-import { Redirect } from 'react-router-dom';
-
-class UserBookStorage extends Component {
+class ViewBookExchange extends Component {
     constructor(props){
         super(props);
         this.state = {
-            cookies: new Cookies(),
             books: []
         };
     }
 
-    // componentWillMount(){}
-    // componentDidMount(){}
-    // componentWillUnmount(){}
+  // componentWillMount(){}
+  // componentDidMount(){}
+  // componentWillUnmount(){}
 
-    // componentWillReceiveProps(){}
-    // shouldComponentUpdate(){}
-    // componentWillUpdate(){}
-    // componentDidUpdate(){}
+  // componentWillReceiveProps(){}
+  // shouldComponentUpdate(){}
+  // componentWillUpdate(){}
+  // componentDidUpdate(){}
 
     render() {
-        if(!this.state.cookies.get('isLogin')){
+        if(!this.props.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
         }
         return (
-            <div className="UserBookStorage">
+            <div className='container'>
+                <div className="ViewBookExchange">
+                    <Link  className="post-trade-book"to="/exchange/create/book">Đăng ký đổi sách</Link>
                     {
                         this.state.books.map(book => (
                             <div key={book._id} className="item-box">
@@ -35,9 +34,10 @@ class UserBookStorage extends Component {
                             </div>
                         ))
                     }
+                </div>
             </div>
         );
     }
 }
 
-export default UserBookStorage;
+export default ViewBookExchange;

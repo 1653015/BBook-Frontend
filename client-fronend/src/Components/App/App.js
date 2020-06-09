@@ -19,7 +19,8 @@ import Shipping from '../Home/Shipping/Shipping';
 import BookDetail from '../Home/BookDetail/BookDetail';
 import ShoppingCart from '../Home/ShoppingCart/ShoppingCart';
 import CreateExchangeBook from '../CreateExchangeBook/CreateExchangeBook';
-
+import UserBookStorage from '../Exchange/UserBookStorage/UserBookStorage'
+import ViewBookExchange from '../Exchange/ViewBookExchange/ViewBookExchange';
 
 class App extends Component {
     constructor(props){
@@ -78,11 +79,14 @@ class App extends Component {
                                         <SearchBook/>
                                     </div>
                                 </Route>
-                                <Route exact path='/exchange/create/yourbook'>
+                                <Route exact path='/exchange/viewbook/exchange'>
+                                    <ViewBookExchange cookies={this.state.cookies}/>
+                                </Route>
+                                <Route exact path='/exchange/create/book'>
                                     <CreateExchangeBook cookies={this.state.cookies}/>
                                 </Route>
-                                <Route exact path='/kho'>
-
+                                <Route exact path='/viewbookstorage'>
+                                    <UserBookStorage cookies={this.state.cookies}/>
                                 </Route>
                                 <Route exact path='/'>
                                     <Home/>
