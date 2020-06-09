@@ -47,6 +47,7 @@ class Shipping extends Component {
         .then(res => res.json())
         .then(json => {
             if(json.success){
+                this.props.cookies.remove('shoppingCart');
                 alert('Đang vận chuyển')
             }
         })

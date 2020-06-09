@@ -11,7 +11,8 @@ class HeaderBar extends Component {
         super(props);
         this.state = {
             cookies: new Cookies(),
-            isOpen: false
+            isOpen: false,
+            searchBookName: ''
         };
         this.logout = this.logout.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
@@ -53,6 +54,26 @@ class HeaderBar extends Component {
         this.props.LoginLogout(false);
     }
 
+    handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            this.searchBookByName();
+        }
+    }
+
+    searchBookByName = () => {
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/book/title/'+this.state.searchBookName)
+        .then(res => res.json())
+        .then(json => {
+            if(json.success){
+                console.log(json.books)
+            }
+        })
+    }
+
+    updateInputValue = (evt) => {
+        this.setState({searchBookName: evt.target.value})
+    }
+
     render() {
         if(this.state.cookies.get('isLogin')){
             return (
@@ -65,7 +86,7 @@ class HeaderBar extends Component {
                     <div className="flexbox">
                         <div className="search">
                             <div>
-                            <input type="text" placeholder="       Search . . ." required/>
+                                <input value={this.state.searchBookName} onChange={this.updateInputValue} onKeyDown={this.handleKeyDown} type="text" placeholder="       Search . . ." required/>
                             </div>
                         </div>
                         </div>
@@ -85,7 +106,7 @@ class HeaderBar extends Component {
                         </div>
                     </div>
                     {
-                        this.state.seen ? <PopupChangePassword toggle={this.togglePopup} /> : null
+                        this.state.seen ? <PopupChangePassword cookies={this.state.cookies} toggle={this.togglePopup} /> : null
                     }
                 </div>
             );

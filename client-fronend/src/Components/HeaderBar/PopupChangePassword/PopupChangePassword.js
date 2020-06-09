@@ -12,6 +12,7 @@ class PopupChangePassword extends Component {
             hidePass: true,
             hidenewPass:true,
             hideretypePass:true,
+            token: '',
         };
         this.changePassword = this.changePassword.bind(this);
         this.hideStatePass = this.hideStatePass.bind(this);
@@ -33,22 +34,26 @@ class PopupChangePassword extends Component {
     
     changePassword(values, actions){
         if(values.newPassword === values.retypePass){
-            // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/forgot', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({email: values.email})
-            // })
-            // .then(res => res.json())
-            // .then(json => {
-            //     if(!json.success){
-
-            //     } else {
-
-            //         this.setState({errorMessage: json.message});
-            //     }
-            // })
+            fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/password', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': this.props.cookies.get('u_t')
+                },
+                body: JSON.stringify({oldPassword: values.oldPassword, newPassword: values.newPassword})
+            })
+            .then(res => res.json())
+            .then(json => {
+                if(!json.success){
+                    this.setState({errorMessage: json.message});
+                    actions.setSubmitting(false);
+                } else {
+                    this.props.toggle();
+                    this.setState({errorMessage: json.message});
+                }
+            })
+        } else {
+            actions.setSubmitting(false);
         }
     }
     hideStatePass(){
