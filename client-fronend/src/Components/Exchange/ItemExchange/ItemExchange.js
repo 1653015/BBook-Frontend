@@ -35,10 +35,7 @@ class ItemExchange extends Component {
                         </Link>
                     </div>
                     <div className="author" >
-                        {this.props.author}
-                    </div>
-                    <div>
-                        Giá: {this.props.price}
+                        Chủ sách: {this.props.author}
                     </div>
                 </div>
             </div>
