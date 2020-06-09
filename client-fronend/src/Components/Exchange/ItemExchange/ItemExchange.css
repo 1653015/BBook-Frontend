@@ -9,7 +9,7 @@
 .ItemExchange{
     display: blog;
     justify-content: center;
-    align-ItemExchanges: center;    
+    align-items: center;    
     height: 350px;
     transition: transform .2s;
     width: 250px;
@@ -42,4 +42,9 @@
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+}
+.avata-img{
+    width: 95%;
+    height: 95%;
+    border: 5px solid #ffc5067a;
 }

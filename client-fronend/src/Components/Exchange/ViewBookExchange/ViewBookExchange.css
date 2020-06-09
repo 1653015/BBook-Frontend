@@ -23,5 +23,5 @@
 @keyframes color-change {
     0% { color: rgb(1, 225, 255); }
     50% { color: rgb(255, 255, 255); }
-    100% { color: rgb(0, 255, 213); }
+    100% { color: white; }
 }

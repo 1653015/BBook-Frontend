@@ -25,7 +25,7 @@ class Item extends Component {
             <div className="item">
                 <div className="avatar-item" onClick={this.reloadPage}>
                     <Link to={`/${this.props.categorieID}/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                        <img src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
+                        <img className="avata-img" src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
                     </Link>
                 </div>
                 <div className="infor-item">

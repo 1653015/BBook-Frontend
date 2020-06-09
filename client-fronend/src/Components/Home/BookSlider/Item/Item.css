@@ -43,3 +43,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+.avata-img{
+    width: 95%;
+    height: 95%;
+    border: 5px solid #ffc5067a;
+}
