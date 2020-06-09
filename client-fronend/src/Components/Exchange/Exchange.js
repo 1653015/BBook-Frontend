@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import './Exchange.css';
 import { Redirect } from 'react-router-dom';
+import ItemExchange from './ItemExchange/ItemExchange';
 
 class Exchange extends Component {
     constructor(props){
         super(props);
         this.state = {
             cookies: new Cookies(),
+            books: []
         };
     }
 
@@ -25,7 +27,15 @@ class Exchange extends Component {
             return(<Redirect path='/'/>)
         }
         return (
-            <div></div>
+                <div className="Exchange">
+                {
+                    this.state.books.map(book => (
+                        <div key={book._id} className="item-box">
+                            <ItemExchange  key_data={book._id} image={book.image} name={book.name} owner={book.owner} price={book.price}/>
+                        </div>
+                    ))
+                }
+            </div>
         );
     }
 }

@@ -1,0 +1,45 @@
+/*
+ * ItemExchange css File
+*/
+
+.ItemExchange {
+    /* propertys here */
+}
+
+.ItemExchange{
+    display: blog;
+    justify-content: center;
+    align-ItemExchanges: center;    
+    height: 350px;
+    transition: transform .2s;
+    width: 250px;
+    color: white;
+    margin: 0 5px;
+}
+.ItemExchange:hover{
+    transform: scale(1.02);
+}
+.bookName{
+    width: 70%;
+    color: rgb(255, 242, 126);
+    font-size: large;
+    font-weight: bold;
+}
+.author{
+    color:rgb(202, 200, 200);
+    font-style: italic;
+    font-size:small;
+}
+.avatar-ItemExchange {
+    height: 70%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.infor-ItemExchange{
+    height: 30%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
