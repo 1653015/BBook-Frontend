@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './BookExchangeDetail.css';
 import { Redirect, Link} from 'react-router-dom';
 import ItemExchange from '../ItemExchange/ItemExchange';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { withRouter } from 'react-router-dom';
+
 class BookExchangeDetail extends Component {
     constructor(props){
         super(props);
@@ -54,14 +58,7 @@ class BookExchangeDetail extends Component {
                     </div>
                     <div className="book-infor">
                         <div className="book-name text-color-white">{this.state.book.name}</div>
-                        <div className="text-color-white author">Tác giả: {this.state.book.author}</div>
-                        <div className="text-color-white">Giá: {this.state.book.price}đ</div>
-                        <div className="text-color-white"> Số lượng
-                        <div className='groupInput'>
-                            <button className="btn-expel" onClick={this.expel}>-</button>
-                            <input value={this.state.element} onChange={()=>{}}/>
-                            <button className="btn-add" onClick={this.add}>+</button>
-                        </div></div>
+                        <div className="text-color-white author">Chủ sách: {this.state.book.author}</div>
                         <button className="btn-add-to-cart" onClick={this.addToShoppingCart}>
                             <FontAwesomeIcon icon={faShoppingCart}/>
                             Chọn mua
