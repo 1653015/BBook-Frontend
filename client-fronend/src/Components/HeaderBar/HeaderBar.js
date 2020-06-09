@@ -59,7 +59,7 @@ class HeaderBar extends Component {
                 <div className="header-bbook">
                     <Link to='/' className="bbook-logo">BBOOK</Link>
                     <Link to='/exchange' className="header-item cursor-pointer">Trao đổi</Link>
-                    <Link to='/exchange/create/yourbook' className="header-item cursor-pointer">Đăng ký đổi sách </Link>
+                    <Link to='/exchange/create/yourbook' className="header-item cursor-pointer">Xem sách đổi </Link>
                     <Link to='/kho' className="header-item cursor-pointer">Sách của bạn</Link>
                     <div className="signin-signup-layout">
                     <div className="flexbox">
