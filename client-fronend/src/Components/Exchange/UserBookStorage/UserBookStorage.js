@@ -13,7 +13,21 @@ class UserBookStorage extends Component {
         };
     }
 
-    // componentWillMount(){}
+    componentWillMount(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/stash', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(package => {
+            if (package.success) {
+                books = package.books;
+            }
+        })
+    }
     // componentDidMount(){}
     // componentWillUnmount(){}
 
@@ -21,6 +35,10 @@ class UserBookStorage extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+
+    displayBooks() {
+        
+    }
 
     render() {
         if(!this.state.cookies.get('isLogin')){
