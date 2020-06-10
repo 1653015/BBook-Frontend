@@ -40,7 +40,7 @@ class InterestedBooksSlider extends Component {
                     {
                         this.props.interested_books.map(book => (
                             <Item 
-                                categorieID={this.props.data_key} 
+                                categorieID={book.categories[0]} 
                                 key={book._id} 
                                 key_data={book._id} 
                                 image={book.image} 
