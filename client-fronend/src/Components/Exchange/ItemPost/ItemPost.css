@@ -1,0 +1,50 @@
+/*
+ * ItemPost css File
+*/
+
+.ItemPost {
+    /* propertys here */
+}
+
+.ItemPost{
+    display: blog;
+    justify-content: center;
+    align-items: center;    
+    height: 350px;
+    transition: transform .2s;
+    width: 250px;
+    color: white;
+    margin: 0 5px;
+}
+.ItemPost:hover{
+    transform: scale(1.02);
+}
+.bookName{
+    width: 70%;
+    color: rgb(255, 242, 126);
+    font-size: large;
+    font-weight: bold;
+}
+.author{
+    color:rgb(202, 200, 200);
+    font-style: italic;
+    font-size:small;
+}
+.avatar-ItemPost {
+    height: 70%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.infor-ItemPost{
+    height: 30%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.avata-img{
+    width: 95%;
+    height: 95%;
+    border: 5px solid #ffc5067a;
+}
