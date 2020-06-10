@@ -3,11 +3,15 @@ import './ResetPassword.css';
 import { withRouter, Redirect } from 'react-router-dom';
 import {Formik} from 'formik'
 import * as Yup from 'yup'
+import Alert from '@material-ui/lab/Alert';
 
 class ResetPassword extends Component {
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            openSuccessMessage: false,
+            openFailMessage: false
+        };
     }
 
     // componentWillMount(){}
@@ -32,9 +36,9 @@ class ResetPassword extends Component {
             .then(res => res.json())
             .then(json => {
                 if(json.success){
-
+                    this.setState({openSuccessMessage: !this.state.openSuccessMessage})
                 } else {
-
+                    this.setState({openFailMessage: !this.state.openFailMessage})
                 }
                 actions.setSubmitting(false);
             })
@@ -95,6 +99,24 @@ class ResetPassword extends Component {
                                     />
                                 </div>
                                 <input disabled={props.isSubmitting} type="submit" value="Gửi"/>
+                                {
+                                    this.state.openSuccessMessage ? (
+                                        <Alert 
+                                            variant="filled" 
+                                            className="alert" 
+                                            onClose={()=>{this.setState({openSuccessMessage: !this.state.openSuccessMessage})}} 
+                                            severity="success"/>
+                                        ) : (null)
+                                }
+                                {
+                                    this.state.openFailMessage ? (
+                                        <Alert 
+                                            variant="filled" 
+                                            className="alert" 
+                                            onClose={()=>{this.setState({openFailMessage: !this.state.openFailMessage})}} 
+                                            severity="error"/>
+                                        ) : (null)
+                                }
                             </form>
                         )
                     }
