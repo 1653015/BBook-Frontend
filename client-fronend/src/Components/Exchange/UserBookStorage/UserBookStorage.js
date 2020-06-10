@@ -71,7 +71,7 @@ class UserBookStorage extends Component {
             return(<Redirect path='/'/>)
         }
 
-        if (this.state.books.length != 0 || this.state.tradedBooks.length != 0) {
+        if (this.state.books.length !== 0 || this.state.tradedBooks.length !== 0) {
             return (
                 <div className="container">
                     <div className="UserBookStorage">
