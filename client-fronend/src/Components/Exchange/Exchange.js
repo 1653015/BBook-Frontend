@@ -25,6 +25,7 @@ class Exchange extends Component {
         .then(json => {
             if(json.success){
                 this.setState({tradeqs: json.posts});
+                console.log('ok');
             } else {
                 console.log('fail');
             }
@@ -42,6 +43,7 @@ class Exchange extends Component {
             return(<Redirect path='/'/>)
         }
         return (
+            <div className="container">
                 <div className="Exchange">
                 {
                     this.state.tradeqs.map(post => (
@@ -54,6 +56,7 @@ class Exchange extends Component {
                         </div>
                     ))
                 }
+                </div>
             </div>
         );
     }
