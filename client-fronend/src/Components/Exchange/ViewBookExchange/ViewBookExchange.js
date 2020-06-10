@@ -67,21 +67,21 @@ class ViewBookExchange extends Component {
     }
 
     deleteTraderq = (postId) => {
-        console.log(postId);
-        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+postId,{
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'x-access-token': this.props.cookies.get('u_t')
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(json => {
-        //     if(json.success) {
-        //         console.log('asdfasdf');
-        //         this.setState({openMessage: true});
-        //         this.setState({message: json.message});
-        //     }
-        // })
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+postId,{
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if(json.success) {
+                console.log('asdfasdf');
+                this.setState({openMessage: true});
+                this.setState({message: json.message});
+            }
+        })
     }
 
     // componentWillUnmount(){}
@@ -89,7 +89,21 @@ class ViewBookExchange extends Component {
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
-    // componentDidUpdate(){}
+    componentDidUpdate(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                this.setState({uPosts: json.posts});
+            } 
+        })
+    }
     render() {
         if(!this.state.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
@@ -126,7 +140,7 @@ class ViewBookExchange extends Component {
                                                         image={post.book&&post.book.image} 
                                                         name={post.book&&post.book.name} 
                                                         owner={post.op.name}/>
-                                                    <button className="btn-del-yourbook" onClick={this.deleteTraderq(post._id)}>
+                                                    <button className="btn-del-yourbook" onClick={() => this.deleteTraderq(post._id)}>
                                                         <FontAwesomeIcon icon={faTimes}/>
                                                     </button>
                                                 </div>
