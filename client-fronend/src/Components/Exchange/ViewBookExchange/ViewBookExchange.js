@@ -4,6 +4,9 @@ import { Redirect, Link} from 'react-router-dom';
 import Item from '../../Home/BookSlider/Item/Item';
 import Cookies from 'universal-cookie';
 import Carousel from "react-elastic-carousel";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 const breakPoints = [
     { width: 1, itemsToShow: 5, itemsToScroll: 5},
@@ -83,13 +86,16 @@ class ViewBookExchange extends Component {
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
                                             this.state.books.map(book => (
-                                                <Item 
-                                                    categorieID={this.props.data_key} 
-                                                    key={book._id} 
-                                                    key_data={book._id} 
-                                                    image={book.image} 
-                                                    name={book.name} 
-                                                    author={book.author} />
+                                                <div className="relative-pos">
+                                                    <Item 
+                                                        categorieID={this.props.data_key} 
+                                                        key={book._id} 
+                                                        key_data={book._id} 
+                                                        image={book.image} 
+                                                        name={book.name} 
+                                                        author={book.author}/>
+                                                    <button  className="btn-del-yourbook"><FontAwesomeIcon icon={faTimes}/></button>
+                                                </div>
                                             ))
                                         }
                                     </Carousel>
@@ -103,13 +109,16 @@ class ViewBookExchange extends Component {
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
                                             this.state.tradedBooks.map(book => (
+                                                <div className="relative-pos">
                                                 <Item 
                                                     categorieID={this.props.data_key} 
                                                     key={book._id} 
                                                     key_data={book._id} 
                                                     image={book.image} 
                                                     name={book.name} 
-                                                    author={book.author} />
+                                                    author={book.author}/>
+                                                    <button  className="btn-del-youroffer"><FontAwesomeIcon icon={faTimes}/></button>
+                                                </div>
                                             ))
                                         }
                                     </Carousel>
