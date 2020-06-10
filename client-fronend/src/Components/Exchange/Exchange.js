@@ -9,12 +9,27 @@ class Exchange extends Component {
         super(props);
         this.state = {
             cookies: new Cookies(),
-            books: []
+            tradeqs: []
         };
     }
 
     // componentWillMount(){}
-    // componentDidMount(){}
+    componentDidMount(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq',{
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.state.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if(json.success){
+                this.setState({tradeqs: json.posts});
+            } else {
+                console.log('fail');
+            }
+        })
+    }
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
@@ -29,9 +44,13 @@ class Exchange extends Component {
         return (
                 <div className="Exchange">
                 {
-                    this.state.books.map(book => (
-                        <div key={book._id} className="item-box">
-                            <ItemExchange  key_data={book._id} image={book.image} name={book.name} owner={book.owner} price={book.price}/>
+                    this.state.tradeqs.map(post => (
+                        <div key={post._id} className="item-box">
+                            <ItemExchange  
+                                key_data={post._id} 
+                                image={post.book&&post.book.image} 
+                                name={post.book&&post.book.name} 
+                                owner={post.op.name}/>
                         </div>
                     ))
                 }

@@ -18,9 +18,10 @@ import SideBar from '../Home/SideBar/SideBar';
 import Shipping from '../Home/Shipping/Shipping';
 import BookDetail from '../Home/BookDetail/BookDetail';
 import ShoppingCart from '../Home/ShoppingCart/ShoppingCart';
-import CreateExchangeBook from '../CreateExchangeBook/CreateExchangeBook';
+import CreateExchangeBook from '../Exchange/ViewBookExchange/CreateExchangeBook/CreateExchangeBook';
 import UserBookStorage from '../Exchange/UserBookStorage/UserBookStorage'
 import ViewBookExchange from '../Exchange/ViewBookExchange/ViewBookExchange';
+import BookExchangeDetail from '../Exchange/BookExchangeDetail/BookExchangeDetail';
 
 class App extends Component {
     constructor(props){
@@ -87,6 +88,9 @@ class App extends Component {
                                 </Route>
                                 <Route exact path='/viewbookstorage'>
                                     <UserBookStorage cookies={this.state.cookies}/>
+                                </Route>
+                                <Route exact path='/exchange/viewpost/information/:postId'>
+                                    <BookExchangeDetail cookies={this.state.cookies}/>
                                 </Route>
                                 <Route exact path='/'>
                                     <Home/>
