@@ -44,19 +44,21 @@ class UserBookStorage extends Component {
 
         if (this.state.books.length != 0) {
             return (
-                <div className="UserBookStorage">
-                        {
-                            this.state.books.map(book => (
-                                <div key={book._id} className="item-box">
-                                    <Item 
-                                        categorieID={book.categories[0]} 
-                                        key_data={book._id} 
-                                        image={book.image} 
-                                        name={book.name} 
-                                        author={book.author}/>
-                                </div>
-                            ))
-                        }
+                <div className="container">
+                    <div className="UserBookStorage">
+                            {
+                                this.state.books.map(book => (
+                                    <div key={book._id} className="item-box">
+                                        <Item 
+                                            categorieID={book.categories[0]} 
+                                            key_data={book._id} 
+                                            image={book.image} 
+                                            name={book.name} 
+                                            author={book.author}/>
+                                    </div>
+                                ))
+                            }
+                    </div>
                 </div>
             );
         } else {
