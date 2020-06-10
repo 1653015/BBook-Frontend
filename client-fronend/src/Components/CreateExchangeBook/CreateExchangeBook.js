@@ -87,8 +87,28 @@ class CreateExchangeBook extends Component {
     // componentDidUpdate(){}
 
     postTrade(values, actions) {
-        console.log(values.storeBooks);
-        console.log(values.userBooks);
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            },
+            body: JSON.stringify({
+                book: values.userBooks,
+                interested: this.state.value,
+                message: values.message
+            })
+        })
+        .then(res => res.json())
+        .then(json => {
+            if(json.success){
+                actions.setSubmitting(false);
+                console.log(json.traderq);
+            }
+            else{
+                console.log('post trade fail')
+            }
+        })
         actions.setSubmitting(false);
     }
 
@@ -96,20 +116,18 @@ class CreateExchangeBook extends Component {
         if(!this.props.cookies.get('isLogin')){
             return(<Redirect to="/"/>)
         }
+
         return (
             <div className="container">
                 <div className="CreateExchangeBook">
                     <Formik
-                        initialValues={{userBooks: '', storeBooks: ''}}
+                        initialValues={{userBooks: '', message: ''}}
                         onSubmit={(values, actions) => {
                             this.postTrade(values, actions);
                         }}
                         validationSchema={Yup.object({
                             userBooks: Yup.string()
                                 .required('Email is empty'),
-                            storeBooks: Yup.string()
-                                .min(8, 'To short!!!')
-                                .required('Password is empty'),
                         })}
                         >
                             {
@@ -132,7 +150,7 @@ class CreateExchangeBook extends Component {
                                             <datalist id="listUserBooks">
                                                 {
                                                     this.state.userBooks&&this.state.userBooks.map(book => (
-                                                        <option key={book._id} value={book.name}/>
+                                                        <option key={book._id} value={book._id}>{book.name}</option>
                                                     ))
                                                 }
                                             </datalist>
@@ -145,6 +163,22 @@ class CreateExchangeBook extends Component {
                                                 ) : null}
                                                 
                                             </div>
+                                            {/* <input
+                                                list="listStoreBooks" 
+                                                name="storeBooks" 
+                                                onChange={this.handleChange}
+                                                value={this.state.value}
+                                                multiple
+                                                data-list-filter="^"/>
+                                            <datalist id="listStoreBooks">
+                                                <select>
+                                                {
+                                                    this.state.storeBooks&&this.state.storeBooks.map(book => (
+                                                        <option key={book._id} value={book.name}/>
+                                                    ))
+                                                }
+                                                </select>
+                                            </datalist> */}
                                             <Select
                                                 className="MultipleSelect"
                                                 labelId="demo-mutiple-chip-label"
@@ -152,20 +186,27 @@ class CreateExchangeBook extends Component {
                                                 multiple
                                                 value={this.state.value}
                                                 onChange={this.handleChange}
-                                                
                                                 MenuProps={MenuProps}
                                                 >
                                                 {
                                                     this.state.storeBooks.map(book => (
-                                                        <MenuItem key={book._id} value={book.name}>
+                                                        <MenuItem key={book._id} value={book._id}>
                                                             {book.name}
                                                         </MenuItem>
                                                     ))
                                                 }
-                                                </Select>
-                                            
+                                            </Select>
                                         </div>
-                                    
+                                        <div className="form-item">
+                                            <div className="form-item-header">
+                                                <div className="font-white">Lời nhắn</div>
+                                            </div>
+                                            <input 
+                                                type="text"
+                                                value={props.values.message}
+                                                name="message"
+                                                onChange={props.handleChange}/>
+                                        </div>
                                         <div className="error-message">{this.state.errorMessage}</div>
                                         <input type="submit" disabled={props.isSubmitting} value="Đăng"/>
                                         

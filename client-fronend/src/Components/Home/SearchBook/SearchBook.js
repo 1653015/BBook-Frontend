@@ -27,6 +27,10 @@ class SearchBook extends Component {
     // componentDidUpdate(){}
 
     render() {
+        if(this.state.books.length === 0){
+            return(<div className="SearchBook text-white"> Không có sách </div>);
+        }
+        
         return (
             <div className="SearchBook">
                 {
