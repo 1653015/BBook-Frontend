@@ -105,7 +105,7 @@ class ResetPassword extends Component {
                                             variant="filled" 
                                             className="alert" 
                                             onClose={()=>{this.setState({openSuccessMessage: !this.state.openSuccessMessage})}} 
-                                            severity="success"/>
+                                            severity="success">Đổi mật khẩu thành công</Alert>
                                         ) : (null)
                                 }
                                 {
@@ -114,7 +114,7 @@ class ResetPassword extends Component {
                                             variant="filled" 
                                             className="alert" 
                                             onClose={()=>{this.setState({openFailMessage: !this.state.openFailMessage})}} 
-                                            severity="error"/>
+                                            severity="error">Đổi mật khẩu thất bại </Alert>
                                         ) : (null)
                                 }
                             </form>
