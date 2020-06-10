@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ae3f8557c780789aa22bb5b6f6cbfa9e",
+    "revision": "5dfa2f381c763d173d4ae53ea2a0c497",
     "url": "/BBook-Frontend/index.html"
   },
   {
-    "revision": "31735d17e7554a28c441",
+    "revision": "d70d798ed457f0975429",
     "url": "/BBook-Frontend/static/css/main.b70853b8.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/BBook-Frontend/static/js/2.5664d83d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "31735d17e7554a28c441",
-    "url": "/BBook-Frontend/static/js/main.c56ac6f0.chunk.js"
+    "revision": "d70d798ed457f0975429",
+    "url": "/BBook-Frontend/static/js/main.b8633c49.chunk.js"
   },
   {
     "revision": "5eb0e0c86a6c1788d28a",
