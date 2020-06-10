@@ -53,7 +53,7 @@ class SignUp extends Component {
     }
 
     signup(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/register/email',{
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/register/email-activation',{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -74,6 +74,7 @@ class SignUp extends Component {
             } else if (res.status === 200) {
                 // this.props.LoginLogout(true);
                 // this.setState({redirect: true});
+                res.json().then(json => {this.setState({errorMessage: json.message})});
                 this.login(values, actions);
                 
             } else {

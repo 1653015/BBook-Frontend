@@ -7,6 +7,7 @@ import Carousel from "react-elastic-carousel";
 import ItemExchange from '../ItemExchange/ItemExchange';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faTimes } from '@fortawesome/free-solid-svg-icons';
+import Alert from '@material-ui/lab/Alert';
 
 
 const breakPoints = [
@@ -20,7 +21,10 @@ class ViewBookExchange extends Component {
             cookies: new Cookies(),
             uPosts: [],
             tradedBooks: [],
+            message: '',
+            openMessage: false,
         };
+        this.deleteTraderq = this.deleteTraderq.bind(this);
     }
 
     componentWillMount(){
@@ -35,7 +39,7 @@ class ViewBookExchange extends Component {
         .then(json => {
             if (json.success) {
                 this.setState({uPosts: json.posts});
-            }
+            } 
         })
         
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/traded', {
@@ -62,13 +66,30 @@ class ViewBookExchange extends Component {
         );
     }
 
+    deleteTraderq = (postId) => {
+        console.log(postId);
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+postId,{
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if(json.success) {
+        //         console.log('asdfasdf');
+        //         this.setState({openMessage: true});
+        //         this.setState({message: json.message});
+        //     }
+        // })
+    }
+
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
-
     render() {
         if(!this.state.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
@@ -79,6 +100,18 @@ class ViewBookExchange extends Component {
                 <div className="container">
                     <div className="UserBookStorage">
                     <Link  className="post-trade-book"to="/exchange/create/book">Đăng ký đổi sách</Link>
+                    {
+                        this.state.openMessage ? (
+                            <Alert 
+                                variant="filled" 
+                                className="alert" 
+                                onClose={()=>{this.setState({openMessage: false})}} 
+                                severity="success">
+                                    Xóa thành công
+                            </Alert>
+                        ) : (null)
+                            
+                    }
                         <div className="BookSlider">
                             <div className="book-slider-title">Sách đổi của bạn</div>
                             {
@@ -87,14 +120,15 @@ class ViewBookExchange extends Component {
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
                                             this.state.uPosts.map(post => (
-                                                <div className="relative-pos">
+                                                <div key={post._id} className="relative-pos">
                                                     <ItemExchange
-                                                        key={post._id}
                                                         key_data={post._id} 
                                                         image={post.book&&post.book.image} 
                                                         name={post.book&&post.book.name} 
                                                         owner={post.op.name}/>
-                                                    <button  className="btn-del-yourbook"><FontAwesomeIcon icon={faTimes}/></button>
+                                                    <button className="btn-del-yourbook" onClick={this.deleteTraderq(post._id)}>
+                                                        <FontAwesomeIcon icon={faTimes}/>
+                                                    </button>
                                                 </div>
                                             ))
                                         }
