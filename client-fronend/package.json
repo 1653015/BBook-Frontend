@@ -14,7 +14,6 @@
     "@testing-library/user-event": "^7.2.1",
     "formik": "^2.1.4",
     "gh-pages": "^2.2.0",
-    "material-ui-popup-state": "^1.5.4",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
