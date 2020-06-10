@@ -93,8 +93,8 @@ class ResetPassword extends Component {
                                     <input className="form-input"
                                         type="password"
                                         onChange={props.handleChange}
-                                        value={props.values.newPassword}
-                                        name="newPassword"
+                                        value={props.values.retypePassword}
+                                        name="retypePassword"
                                         placeholder="Hãy nhập mật khẩu mới"
                                     />
                                 </div>
