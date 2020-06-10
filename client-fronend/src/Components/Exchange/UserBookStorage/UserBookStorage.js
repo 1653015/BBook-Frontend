@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './UserBookStorage.css';
-import ItemExchange from '../ItemExchange/ItemExchange';
+import Item from '../../Home/BookSlider/Item/Item';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class UserBookStorage extends Component {
     constructor(props){
@@ -13,8 +14,22 @@ class UserBookStorage extends Component {
         };
     }
 
-    // componentWillMount(){}
-    // componentDidMount(){}
+    componentWillMount(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/stash', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                this.setState({books: json.books.books});
+            }
+        })        
+    }
+
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
@@ -26,17 +41,36 @@ class UserBookStorage extends Component {
         if(!this.state.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
         }
-        return (
-            <div className="UserBookStorage">
-                    {
-                        this.state.books.map(book => (
-                            <div key={book._id} className="item-box">
-                                <ItemExchange  key_data={book._id} image={book.image} name={book.name} owner={book.owner} price={book.price}/>
-                            </div>
-                        ))
-                    }
-            </div>
-        );
+
+        if (this.state.books.length != 0) {
+            return (
+                <div className="UserBookStorage">
+                        {
+                            this.state.books.map(book => (
+                                <div key={book._id} className="item-box">
+                                    <Item 
+                                        categorieID={book.categories[0]} 
+                                        key_data={book._id} 
+                                        image={book.image} 
+                                        name={book.name} 
+                                        author={book.author}/>
+                                </div>
+                            ))
+                        }
+                </div>
+            );
+        } else {
+            return (
+                <div className="prompt">
+                    <h1 className="message">Chưa có tựa sách nào trong kho</h1>
+                    <Link to='/'>
+                        <button className="to-buy">
+                            Mua sách
+                        </button>
+                    </Link>
+                </div>
+            )
+        }
     }
 }
 
