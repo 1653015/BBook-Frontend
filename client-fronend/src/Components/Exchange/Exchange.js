@@ -25,9 +25,7 @@ class Exchange extends Component {
         .then(json => {
             if(json.success){
                 this.setState({tradeqs: json.posts});
-                console.log('ok');
             } else {
-                console.log('fail');
             }
         })
     }

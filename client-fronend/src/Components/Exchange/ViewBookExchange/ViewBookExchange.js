@@ -4,6 +4,7 @@ import { Redirect, Link} from 'react-router-dom';
 import Item from '../../Home/BookSlider/Item/Item';
 import Cookies from 'universal-cookie';
 import Carousel from "react-elastic-carousel";
+import ItemExchange from '../ItemExchange/ItemExchange';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,14 +18,14 @@ class ViewBookExchange extends Component {
         super(props);
         this.state = {
             cookies: new Cookies(),
-            books: [],
+            uPosts: [],
             tradedBooks: [],
         };
     }
 
     componentWillMount(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/stash', {
-            method: 'GET',
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': this.props.cookies.get('u_t')
@@ -33,7 +34,7 @@ class ViewBookExchange extends Component {
         .then(res => res.json())
         .then(json => {
             if (json.success) {
-                this.setState({books: json.books.books});
+                this.setState({uPosts: json.posts});
             }
         })
         
@@ -73,7 +74,7 @@ class ViewBookExchange extends Component {
             return(<Redirect path='/'/>)
         }
 
-        if (this.state.books.length !== 0 || this.state.tradedBooks.length !== 0) {
+        if (this.state.uPosts.length !== 0 || this.state.tradedBooks.length !== 0) {
             return (
                 <div className="container">
                     <div className="UserBookStorage">
@@ -82,18 +83,17 @@ class ViewBookExchange extends Component {
                             <div className="book-slider-title">Sách đổi của bạn</div>
                             {
                                 
-                                this.state.books.length === 0 ? (null) : (
+                                this.state.uPosts.length === 0 ? (null) : (
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
-                                            this.state.books.map(book => (
+                                            this.state.uPosts.map(post => (
                                                 <div className="relative-pos">
-                                                    <Item 
-                                                        categorieID={this.props.data_key} 
-                                                        key={book._id} 
-                                                        key_data={book._id} 
-                                                        image={book.image} 
-                                                        name={book.name} 
-                                                        author={book.author}/>
+                                                    <ItemExchange
+                                                        key={post._id}
+                                                        key_data={post._id} 
+                                                        image={post.book&&post.book.image} 
+                                                        name={post.book&&post.book.name} 
+                                                        owner={post.op.name}/>
                                                     <button  className="btn-del-yourbook"><FontAwesomeIcon icon={faTimes}/></button>
                                                 </div>
                                             ))

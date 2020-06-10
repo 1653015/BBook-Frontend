@@ -65,7 +65,6 @@ class HeaderBar extends Component {
         .then(res => res.json())
         .then(json => {
             if(json.success){
-                console.log(json.books)
             }
         })
     }
