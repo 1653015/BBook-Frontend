@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import './BookExchangeDetail.css';
+import './YourBookExchange.css';
 import { withRouter } from 'react-router-dom';
-import InterestedBooksSlider from './InterestedBooksSlider/InterestedBooksSlider';
-import PopupChangeBook from './PopupChangeBook/PopupChangeBook';
+import InterestedBooksSlider from '../BookExchangeDetail/InterestedBooksSlider/InterestedBooksSlider';
 
 
-class BookExchangeDetail extends Component {
+class YourBookExchange extends Component {
     constructor(props){
         super(props);
         this.state = {
             traderq: {},
             interested: []
         };
-        this.togglePopup = this.togglePopup.bind(this);
     }
-    togglePopup() {
-        this.setState({seen: !this.state.seen});
-    }
+
     componentWillMount(){
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+this.props.match.params.postId,{
             method: "GET",
@@ -46,7 +42,7 @@ class BookExchangeDetail extends Component {
     render() {
         return (
             <div className='container'>
-                <div className="BookExchangeDetail">
+                <div className="YourBookExchange">
                     <div className="avatar">
                         <img src={`https://bbook-backend.herokuapp.com/${this.state.traderq.book&&this.state.traderq.book.image}`} width="80%" height="80%" alt={'BookTitle'}/>
                     </div>
@@ -54,12 +50,7 @@ class BookExchangeDetail extends Component {
                         <div className="book-name text-color-white">{this.state.traderq.book&&this.state.traderq.book.name}</div>
                         <div className="text-color-white author">Chủ sách: {this.state.traderq.op&&this.state.traderq.op.name}</div>
                         <div className="text-white margin-bottom-5">{this.state.traderq.message}</div>
-                        <button className="btn-add-to-cart" onClick={this.togglePopup}>
-                            Trao đổi
-                        </button>
-                        {
-                            this.state.seen ? <PopupChangeBook cookies={this.state.cookies} toggle={this.togglePopup} /> : null
-                        }
+                        
                     </div>
                     <div className="listBook">
                         <InterestedBooksSlider op={this.state.traderq.op&&this.state.traderq.op.name} interested_books={this.state.interested}/>
@@ -70,4 +61,4 @@ class BookExchangeDetail extends Component {
     }
 }
 
-export default withRouter(BookExchangeDetail);
+export default withRouter(YourBookExchange);
