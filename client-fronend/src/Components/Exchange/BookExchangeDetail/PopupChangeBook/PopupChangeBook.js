@@ -1,31 +1,63 @@
 import React, { Component } from 'react';
 import './PopupChangeBook.css';
 import {Formik} from 'formik'
-import * as Yup from 'yup'
+
 class PopupChangeBook extends Component {
     constructor(props){
         super(props);
         this.state = {
             errorMessage: '',
             token: '',
-            storeBooks: [],
+            books: [],
         };
 
     }
-    // componentWillMount(){}
-    // componentDidMount(){
-    //     this.loadStoreBooks();
+
+    // componentWillMount() {
+        
     // }
+
+    componentDidMount(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/stash', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                this.setState({books: json.books.books});
+            }
+        })
+    }
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+
     handleClick = () => {
         this.props.toggle();
     };
-    
+
+    submitOffer = (values, actions) => {
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/stash', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            },
+            body: {
+                to: '',
+                for: '',
+                offering: values.value,
+                post: '',
+            }
+        });
+    }
     
     render() {
         return (
@@ -33,21 +65,10 @@ class PopupChangeBook extends Component {
                 <div className="PopupChangeBook-content">
                     <span className="close" onClick={this.handleClick}>&times;</span>
                     <Formik
-                        initialValues={{oldPassword: '', newPassword: '', retypePass: ''}}
+                        initialValues={this.state.books[0]}
                         onSubmit={(values, actions) => {
-                            this.changePassword(values, actions);
-                        }}
-                        validationSchema={Yup.object({
-                            oldPassword: Yup.string()
-                                .min(8, 'To short!!!')
-                                .required('Điền mật khẩu cũ'),
-                            newPassword: Yup.string()
-                                .min(8, 'To short!!!')    
-                                .required('Điền mật khẩu mới'),
-                            retypePass: Yup.string()
-                                .min(8, 'To short!!!')
-                                .required('Nhập lại mật khẩu mới')
-                        })}>
+                            this.submitOffer(values, actions);
+                        }}>
                         {
                             props => (
                                 <div>
@@ -60,10 +81,10 @@ class PopupChangeBook extends Component {
                                             name="userBooks" 
                                             type="text"
                                             onChange={props.handleChange}
-                                            value={props.values.userBooks}/>
+                                            value={props.values.books}/>
                                         <datalist id="listUserBooks">
                                             {
-                                                this.state.userBooks&&this.state.userBooks.map(book => (
+                                                this.state.books && this.state.books.map(book => (
                                                     <option key={book._id} value={book._id}>{book.name}</option>
                                                 ))
                                             }
