@@ -7,13 +7,12 @@ class BookExchangeDetail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            traderq: {}
+            traderq: {},
+            interested: []
         };
     }
     
-    // componentWillMount(){}
-    componentDidMount(){
-        console.log(this.props.match.params.postId)
+    componentWillMount(){
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+this.props.match.params.postId,{
             method: "GET",
             headers: {
@@ -23,13 +22,14 @@ class BookExchangeDetail extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            if(!json.success) {
-
-            } else {
-                console.log(json.traderq)
+            if(json.success) {
                 this.setState({traderq: json.traderq});
+                this.setState({interested: json.traderq.interested})
             }
         })
+    }
+    componentDidMount(){
+        
     }
     // componentWillUnmount(){}
 
@@ -39,6 +39,7 @@ class BookExchangeDetail extends Component {
     // componentDidUpdate(){}
     
     render() {
+        console.log(`Parent: ${this.state.interested}`)
         return (
             <div className='container'>
                 <div className="BookExchangeDetail">
@@ -52,17 +53,9 @@ class BookExchangeDetail extends Component {
                         <button className="btn-add-to-cart">
                             Trao đổi
                         </button>
-                        {
-                            // this.state.isSuccess ? (
-                            //     <Alert variant="filled" className="alert" onClose={()=>{this.setState({isSuccess: !this.state.isSuccess})}} severity="success">Đã thêm sách vào giỏ hàng.
-                            //     <Link to="/shoppingCart" className="link"> Chuyển đến giỏ hàng!
-                            //     </Link>
-                            //     </Alert>
-                            // ) : (null)
-                        }
                     </div>
                     <div className="listBook">
-                        <InterestedBooksSlider op={this.state.traderq.op&&this.state.traderq.op.name} interestedBooks={this.state.traderq.interested}/>
+                        <InterestedBooksSlider op={this.state.traderq.op&&this.state.traderq.op.name} interested_books={this.state.interested}/>
                     </div>
                 </div>
             </div>
