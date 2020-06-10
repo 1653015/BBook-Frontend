@@ -59,7 +59,7 @@ class App extends Component {
                                     <SignUp LoginLogout={(isLogin) => this.LoginLogout(isLogin)}/>
                                 </Route>
                                 <Route exact path='/reset/:tokenId'>
-                                    <ResetPassword/>
+                                    <ResetPassword cookies={this.state.cookies}/>
                                 </Route>
                                 <Route exact path='/exchange'>
                                     <Exchange/>
