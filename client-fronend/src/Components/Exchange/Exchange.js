@@ -46,7 +46,7 @@ class Exchange extends Component {
                 {
                     this.state.tradeqs.map(post => (
                         <div key={post._id} className="item-box">
-                            <ItemExchange  
+                            <ItemExchange
                                 key_data={post._id} 
                                 image={post.book&&post.book.image} 
                                 name={post.book&&post.book.name} 

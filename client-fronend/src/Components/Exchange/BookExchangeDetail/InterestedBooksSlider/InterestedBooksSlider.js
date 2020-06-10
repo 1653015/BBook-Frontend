@@ -7,10 +7,14 @@ const breakPoints = [
 ];
 
 class InterestedBooksSlider extends Component {
-    // constructor(props){
-      // super(props);
-      // this.state = {};
-    // }
+    constructor(props){
+        super(props);
+        this.state = {};
+    }
+
+    // componentWillMount(){}
+    componentDidMount(){}
+    // componentWillUnmount(){}
 
     myArrow({ type, onClick}) {
         const pointer = type === 'PREV' ? '❮' : '❯';
@@ -21,23 +25,20 @@ class InterestedBooksSlider extends Component {
         );
     }
 
-    // componentWillMount(){}
-    // componentDidMount(){}
-    // componentWillUnmount(){}
-
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
 
     render() {
+        console.log(`Child: ${this.props.interested_books}`)
         return (
             <div className="BookSlider">
                 <div className="book-slider-title">Sách {this.props.op} muốn được đổi</div>
                 <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                     {
-                        this.props.interestedBooks.map(book => (
-                            <div></div>
+                        this.props.interested_books.map(book => (
+                            <div>{book.name}</div>
                         ))
                     }
                 </Carousel>
