@@ -38,7 +38,7 @@ class Item extends Component {
                         {this.props.author}
                     </div>
                     <div>
-                        Giá: {this.props.price}
+                        Giá: {this.props.price && this.props.price}
                     </div>
                 </div>
             </div>

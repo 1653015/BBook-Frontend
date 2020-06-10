@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './UserBookStorage.css';
-import ItemExchange from '../ItemExchange/ItemExchange';
+import Item from '../../Home/BookSlider/Item/Item';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class UserBookStorage extends Component {
     constructor(props){
@@ -22,13 +23,13 @@ class UserBookStorage extends Component {
             }
         })
         .then(res => res.json())
-        .then(package => {
-            if (package.success) {
-                books = package.books;
+        .then(json => {
+            if (json.success) {
+                this.setState({books: json.books.books});
             }
-        })
+        })        
     }
-    // componentDidMount(){}
+
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
@@ -36,25 +37,40 @@ class UserBookStorage extends Component {
     // componentWillUpdate(){}
     // componentDidUpdate(){}
 
-    displayBooks() {
-        
-    }
-
     render() {
         if(!this.state.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
         }
-        return (
-            <div className="UserBookStorage">
-                    {
-                        this.state.books.map(book => (
-                            <div key={book._id} className="item-box">
-                                <ItemExchange  key_data={book._id} image={book.image} name={book.name} owner={book.owner} price={book.price}/>
-                            </div>
-                        ))
-                    }
-            </div>
-        );
+
+        if (this.state.books.length != 0) {
+            return (
+                <div className="UserBookStorage">
+                        {
+                            this.state.books.map(book => (
+                                <div key={book._id} className="item-box">
+                                    <Item 
+                                        categorieID={book.categories[0]} 
+                                        key_data={book._id} 
+                                        image={book.image} 
+                                        name={book.name} 
+                                        author={book.author}/>
+                                </div>
+                            ))
+                        }
+                </div>
+            );
+        } else {
+            return (
+                <div className="prompt">
+                    <h1 className="message">Chưa có tựa sách nào trong kho</h1>
+                    <Link to='/'>
+                        <button className="to-buy">
+                            Mua sách
+                        </button>
+                    </Link>
+                </div>
+            )
+        }
     }
 }
 
