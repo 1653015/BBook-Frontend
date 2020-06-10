@@ -27,6 +27,7 @@ class CreateExchangeBook extends Component {
             storeBooks: [],
             isDisable: false,
             value: [],
+            redirect: false,
         };
         this.loadUserBooks = this.loadUserBooks.bind(this);
         this.loadStoreBooks = this.loadStoreBooks.bind(this);
@@ -104,6 +105,10 @@ class CreateExchangeBook extends Component {
             if(json.success){
                 actions.setSubmitting(false);
                 console.log(json.traderq);
+                this.setState({
+                    redirect:true
+                })
+
             }
             else{
                 console.log('post trade fail')
@@ -116,7 +121,9 @@ class CreateExchangeBook extends Component {
         if(!this.props.cookies.get('isLogin')){
             return(<Redirect to="/"/>)
         }
-
+        if(this.state.redirect){
+            return (<Redirect to ="/exchange/viewbook/exchange"/>)
+        }
         return (
             <div className="container">
                 <div className="CreateExchangeBook">
