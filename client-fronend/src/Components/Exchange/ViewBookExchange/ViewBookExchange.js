@@ -4,9 +4,9 @@ import { Redirect, Link} from 'react-router-dom';
 import Item from '../../Home/BookSlider/Item/Item';
 import Cookies from 'universal-cookie';
 import Carousel from "react-elastic-carousel";
-import ItemExchange from '../ItemExchange/ItemExchange';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faTimes } from '@fortawesome/free-solid-svg-icons';
+import ItemPost from '../ItemPost/ItemPost';
 
 
 const breakPoints = [
@@ -88,7 +88,7 @@ class ViewBookExchange extends Component {
                                         {
                                             this.state.uPosts.map(post => (
                                                 <div className="relative-pos">
-                                                    <ItemExchange
+                                                    <ItemPost
                                                         key={post._id}
                                                         key_data={post._id} 
                                                         image={post.book&&post.book.image} 

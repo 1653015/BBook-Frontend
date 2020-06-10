@@ -22,7 +22,7 @@ import CreateExchangeBook from '../Exchange/ViewBookExchange/CreateExchangeBook/
 import UserBookStorage from '../Exchange/UserBookStorage/UserBookStorage'
 import ViewBookExchange from '../Exchange/ViewBookExchange/ViewBookExchange';
 import BookExchangeDetail from '../Exchange/BookExchangeDetail/BookExchangeDetail';
-
+import YourBookExchange from '../Exchange/YourBookExchange/YourBookExchange';
 class App extends Component {
     constructor(props){
         super(props);
@@ -91,6 +91,9 @@ class App extends Component {
                                 </Route>
                                 <Route exact path='/exchange/viewpost/information/:postId'>
                                     <BookExchangeDetail cookies={this.state.cookies}/>
+                                </Route>
+                                <Route exact path='/exchange/viewoffer/information/:postId'>
+                                    <YourBookExchange cookies={this.state.cookies}/>
                                 </Route>
                                 <Route exact path='/'>
                                     <Home/>
