@@ -30,9 +30,13 @@ class ItemExchange extends Component {
                             {this.props.name}
                         </Link>
                     </div>
-                    <div className="author" >
-                        Chủ sách: {this.props.owner}
-                    </div>
+                    {
+                        this.props.owner ? (
+                            <div className="author" >
+                                Chủ sách: {this.props.owner}
+                            </div>
+                        ) : (null)
+                    }
                 </div>
             </div>
         );

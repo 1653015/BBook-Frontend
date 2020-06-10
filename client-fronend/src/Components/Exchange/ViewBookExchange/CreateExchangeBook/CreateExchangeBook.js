@@ -104,14 +104,12 @@ class CreateExchangeBook extends Component {
         .then(json => {
             if(json.success){
                 actions.setSubmitting(false);
-                console.log(json.traderq);
                 this.setState({
                     redirect:true
                 })
 
             }
             else{
-                console.log('post trade fail')
             }
         })
         actions.setSubmitting(false);

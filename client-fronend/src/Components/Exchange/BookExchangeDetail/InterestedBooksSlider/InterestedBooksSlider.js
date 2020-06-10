@@ -32,7 +32,6 @@ class InterestedBooksSlider extends Component {
     // componentDidUpdate(){}
 
     render() {
-        console.log(`Child: ${this.props.interested_books}`)
         return (
             <div className="BookSlider">
                 <div className="book-slider-title">Sách {this.props.op} muốn được đổi</div>

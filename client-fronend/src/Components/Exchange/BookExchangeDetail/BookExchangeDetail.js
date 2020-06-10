@@ -39,7 +39,6 @@ class BookExchangeDetail extends Component {
     // componentDidUpdate(){}
     
     render() {
-        console.log(`Parent: ${this.state.interested}`)
         return (
             <div className='container'>
                 <div className="BookExchangeDetail">
