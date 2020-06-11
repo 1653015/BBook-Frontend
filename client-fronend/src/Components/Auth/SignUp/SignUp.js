@@ -74,7 +74,8 @@ class SignUp extends Component {
             } else if (res.status === 200) {
                 // this.props.LoginLogout(true);
                 // this.setState({redirect: true});
-                res.json().then(json => {this.setState({errorMessage: json.message})});
+                // res.json().then(json => {this.setState({errorMessage: json.message})});
+                console.log('abs');
                 this.login(values, actions);
                 
             } else {

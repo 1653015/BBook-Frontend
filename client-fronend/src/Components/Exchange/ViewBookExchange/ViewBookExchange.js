@@ -74,33 +74,33 @@ class ViewBookExchange extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     componentDidUpdate(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json.success) {
-                this.setState({uPosts: json.posts});
-            } 
-        })
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json.success) {
+        //         this.setState({uPosts: json.posts});
+        //     } 
+        // })
 
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json.success) {
-                this.setState({offerBooks: json.offers});
-            }
-        })
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json.success) {
+        //         this.setState({offerBooks: json.offers});
+        //     }
+        // })
     }
 
     render() {
