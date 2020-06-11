@@ -68,7 +68,7 @@ class BookDetail extends Component {
     }
     // componentWillMount(){}
     componentDidMount(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/book/title/'+this.props.match.params.bookId)
+        fetch('https://bbook-backend.herokuapp.com/book/title/'+this.props.match.params.bookId)
         .then(res => res.json())
         .then(json => {
             if(!json.success) {
@@ -116,7 +116,7 @@ class BookDetail extends Component {
                         }
                     </div>
                     <div className="listBook">
-                    <BookSlider data_key={this.props.match.params.categorieID} categories={"Sách cùng thể loại"}/>
+                        <BookSlider data_key={this.props.match.params.categorieID} categories={"Sách cùng thể loại"}/>
                     </div>
                 </div>
             </div>

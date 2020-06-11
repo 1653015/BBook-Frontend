@@ -17,7 +17,7 @@ class BookSlider extends Component {
 
     // componentWillMount(){}
     componentDidMount(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/book/category/' + this.props.data_key)
+        fetch('https://bbook-backend.herokuapp.com/book/category/' + this.props.data_key)
         .then(res => res.json())
         .then(json => {
             if(!json.success){
