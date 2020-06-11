@@ -121,7 +121,7 @@ class UpdateShippingInfor extends Component {
                                             />
                                         </div>
                                         <div className="error-message">{this.state.errorMessage}</div>
-                                        <input type="submit" disabled={props.isSubmitting} value="Gửi"/>
+                                        <input type="submit" className="btn-submit" disabled={props.isSubmitting} value="Gửi"/>
                                     </form>
                                 )
                             }

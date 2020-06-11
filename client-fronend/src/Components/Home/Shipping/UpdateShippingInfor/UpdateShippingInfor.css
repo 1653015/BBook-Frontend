@@ -7,9 +7,30 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 10px;
-    width:100%;
+    width:40%;
 }
 
 .updateShippingInfor-content{
     padding: 2% 10% 2% 10%;
+    
+}
+
+.form-input{
+    padding:2%;
+    margin-top:1%;
+    margin-bottom:1%;
+    border-radius: 10px;
+    border:1px solid black;
+}
+.form-item-header{
+    font-weight: bold;
+}
+.form-item{
+    width:100% !important;
+}
+.btn-submit{
+    width: 50% !important;
+    height:50% !important;
+    margin-top:1%;
+    border-radius: 10px;
 }
