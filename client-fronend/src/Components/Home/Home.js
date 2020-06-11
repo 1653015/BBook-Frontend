@@ -15,7 +15,7 @@ class Home extends Component {
 
     // componentWillMount(){}
     componentDidMount(){
-        fetch('https://bbook-backend.herokuapp.com/category')
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/category')
         .then(res => res.json())
         .then(json => {
             this.setState({categories: json.categories});
