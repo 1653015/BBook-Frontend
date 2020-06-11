@@ -71,33 +71,34 @@ class ViewBookExchange extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     componentDidUpdate(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json.success) {
-                this.setState({uPosts: json.posts});
-            } 
-        })
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json.success) {
+        //         this.setState({uPosts: json.posts});
+        //     } 
+        // })
 
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json.success) {
-                this.setState({offerBooks: json.offers});
-            }
-        })
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json.success) {
+        //         this.setState({offerBooks: json.offers});
+        //         console.log(this.state.offerBooks)
+        //     }
+        // })
     }
 
     render() {
@@ -152,8 +153,10 @@ class ViewBookExchange extends Component {
                                         {
                                             this.state.offerBooks.map(offerBook => (
                                                 <ItemPost
+                                                    onDeleteSuccess={this.onDeleteSuccess}
                                                     isOffer={true}
                                                     categorieID={this.props.data_key} 
+                                                    cookies={this.state.cookies}
                                                     key={offerBook._id}
                                                     key_data={offerBook._id} 
                                                     image={offerBook.for&&offerBook.for.image} 

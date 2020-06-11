@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ItemOffer.css';
-import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,9 +8,10 @@ class ItemOffer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            
+            cookies: new Cookies()
         };
-        this.deleteTraderq = this.deleteTraderq.bind(this);
+        this.acceptOffer = this.acceptOffer.bind(this);
+        this.declineOffer = this.declineOffer.bind(this);
     }
     // componentWillMount(){}
     // componentDidMount(){}
@@ -20,50 +21,64 @@ class ItemOffer extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
-    deleteTraderq(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+this.props.key_data,{
+    acceptOffer(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/offer/accept/'+this.props.key_data,{
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
+                'x-access-token': this.state.cookies.get('u_t')
             }
         })
         .then(res => res.json())
         .then(json => {
-            if(json.success) {
-                this.props.onDeleteSuccess();
+            if(json.success){
+                alert('Đã chấp nhận đề nghị');
+                window.location.reload(false);
             }
         })
     }
+    declineOffer(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/offer/decline/'+this.props.key_data,{
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.state.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if(json.success){
+                alert('Đã từ chối đề nghị');
+                window.location.reload(false);
+            }
+        })
+    }
+    
 
     render() {
         return (
             <div className="relative-pos">
                 <div className="ItemOffer">
                     <div className="avatar-ItemOffer">
-                        <Link to={`/exchange/viewoffer/information/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                            <img className="avata-img" src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
-                        </Link>
+                        <img className="avata-img" src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
                     </div>
                     <div className="infor-ItemOffer">
                         <div>
-                            <Link to={`/exchange/viewoffer/information/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                                {this.props.name}
-                            </Link>
+                            {this.props.name}
                         </div>
                         {
-                            this.props.owner ? (
+                            this.props.author ? (
                                 <div className="author" >
-                                    Chủ sách: {this.props.owner}
+                                    Chủ sách: {this.props.author}
                                 </div>
                             ) : (null)
                         }
                     </div>
                 </div>
-                <button className="btn-del-offer" onClick={this.deleteTraderq}>
+                <button className="btn-del-offer" onClick={this.declineOffer}>
                     <FontAwesomeIcon icon={faTimes}/>
                 </button>
-                <button className="btn-check-offer" onClick={this.deleteTraderq}>
+                <button className="btn-check-offer" onClick={this.acceptOffer}>
                     <FontAwesomeIcon icon={faCheck}/>
                 </button>
             </div>

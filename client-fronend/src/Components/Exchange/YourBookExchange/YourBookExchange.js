@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './YourBookExchange.css';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import OffertoYourBook from './OffertoYourBook/OffertoYourBook';
 
 
@@ -9,7 +9,7 @@ class YourBookExchange extends Component {
         super(props);
         this.state = {
             traderq: {},
-            interested: []
+            offerring: []
         };
     }
 
@@ -25,7 +25,7 @@ class YourBookExchange extends Component {
         .then(json => {
             if(json.success) {
                 this.setState({traderq: json.traderq});
-                this.setState({interested: json.traderq.interested})
+                this.setState({offerring: json.traderq.offers});
             }
         })
     }
@@ -40,6 +40,9 @@ class YourBookExchange extends Component {
     // componentDidUpdate(){}
     
     render() {
+        if(!this.props.cookies.get('isLogin')){
+            return(<Redirect to="/"/>)
+        }
         return (
             <div className='container'>
                 <div className="YourBookExchange">
@@ -53,7 +56,7 @@ class YourBookExchange extends Component {
                         
                     </div>
                     <div className="listBook">
-                        <OffertoYourBook op={this.state.traderq.op&&this.state.traderq.op.name} interested_books={this.state.interested}/>
+                        <OffertoYourBook op={this.state.traderq.op&&this.state.traderq.op.name} offerring={this.state.offerring}/>
                     </div>
                 </div>
             </div>

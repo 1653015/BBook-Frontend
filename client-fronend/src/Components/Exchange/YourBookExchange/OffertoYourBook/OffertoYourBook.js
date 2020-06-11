@@ -15,10 +15,6 @@ class OffertoYourBook extends Component {
             openMessage:false,
         };
     }
-
-    onDeleteSuccess = () => {
-        this.setState({openMessage: true});
-    }
     // componentWillMount(){}
     componentDidMount(){}
     // componentWillUnmount(){}
@@ -42,31 +38,33 @@ class OffertoYourBook extends Component {
             <div className="BookSlider">
                 <div className="book-slider-title">Yêu cầu gửi tới bạn</div>
                 {
-                        this.state.openMessage ? (
-                            <Alert 
-                                variant="filled" 
-                                className="alert" 
-                                onClose={()=>{this.setState({openMessage: false})}} 
-                                severity="success">
-                                    Xóa thành công
-                            </Alert>
-                        ) : (null)
-                            
-                    }
-                <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
-                    {
-                        this.props.interested_books.map(book => (
-                            <ItemOffer 
-                                onDeleteSuccess={this.onDeleteSuccess}
-                                categorieID={book.categories[0]} 
-                                key={book._id} 
-                                key_data={book._id} 
-                                image={book.image} 
-                                name={book.name} 
-                                author={book.author}/>
-                        ))
-                    }
-                </Carousel>
+                    this.state.openMessage ? (
+                        <Alert 
+                            variant="filled" 
+                            className="alert" 
+                            onClose={()=>{this.setState({openMessage: false})}} 
+                            severity="success">
+                                Xóa thành công
+                        </Alert>
+                    ) : (null)
+                        
+                }
+                {
+                    this.props.offerring.length === 0 ? (null) : (
+                        <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
+                            {
+                                this.props.offerring.map(offerBook => (
+                                    <ItemOffer 
+                                        key={offerBook._id} 
+                                        key_data={offerBook._id} 
+                                        image={offerBook.offering.image} 
+                                        name={offerBook.offering.name} 
+                                        author={offerBook.from.name}/>
+                                ))
+                            }
+                        </Carousel>
+                    )
+                }
             </div>
         );
     }
