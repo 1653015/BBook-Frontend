@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5dfa2f381c763d173d4ae53ea2a0c497",
+    "revision": "76b75c85ed31e8c6e883fb3eeb8f536c",
     "url": "/BBook-Frontend/index.html"
   },
   {
-    "revision": "d70d798ed457f0975429",
-    "url": "/BBook-Frontend/static/css/main.b70853b8.chunk.css"
+    "revision": "0d64ff8029587e3891d4",
+    "url": "/BBook-Frontend/static/css/main.c87a0fd6.chunk.css"
   },
   {
-    "revision": "d5597732d62847fa68d7",
-    "url": "/BBook-Frontend/static/js/2.5664d83d.chunk.js"
+    "revision": "6f202d4a5c5388cd12a1",
+    "url": "/BBook-Frontend/static/js/2.e642f7a4.chunk.js"
   },
   {
     "revision": "347c5d732019b350da57f036005da1b8",
-    "url": "/BBook-Frontend/static/js/2.5664d83d.chunk.js.LICENSE.txt"
+    "url": "/BBook-Frontend/static/js/2.e642f7a4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d70d798ed457f0975429",
-    "url": "/BBook-Frontend/static/js/main.b8633c49.chunk.js"
+    "revision": "0d64ff8029587e3891d4",
+    "url": "/BBook-Frontend/static/js/main.73ba6fbc.chunk.js"
   },
   {
     "revision": "5eb0e0c86a6c1788d28a",
