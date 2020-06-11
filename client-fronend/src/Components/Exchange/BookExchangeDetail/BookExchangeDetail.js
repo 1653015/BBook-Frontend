@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './BookExchangeDetail.css';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import InterestedBooksSlider from './InterestedBooksSlider/InterestedBooksSlider';
 import PopupChangeBook from './PopupChangeBook/PopupChangeBook';
 
@@ -44,6 +44,9 @@ class BookExchangeDetail extends Component {
     // componentDidUpdate(){}
     
     render() {
+        if(!this.props.cookies.get('isLogin')){
+            return(<Redirect to="/"/>)
+        }
         return (
             <div className='container'>
                 <div className="BookExchangeDetail">

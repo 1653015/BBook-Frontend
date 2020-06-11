@@ -59,9 +59,6 @@
     top: 3%;
     right: 20%;
 }
-.btn-del-yourbook:hover{
-    background-color: red;
-}
 .relative-pos{
     position: relative;
 }

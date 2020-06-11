@@ -89,11 +89,25 @@ input[type="submit"]:disabled {
 	padding: 5px 0;
 }
 
+.btn-google-login{
+	padding: 15px 50px;
+	width: 100%;
+	border-radius:20px !important;	
+	text-align: center;
+    border: none !important;
+    color: white;
+    cursor: pointer;
+    clear: both;
+    transition: 0.2s ease all;
+}
+.btn-google-login div{
+	margin-left:25% !important;
+}
 .font-white {
 	color: white;
 }
 ::placeholder {
-	color: rgb(40,40,40);
+	color: rgb(119, 70, 70);
 	font-style: italic;
 }
 .error-message {

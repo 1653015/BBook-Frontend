@@ -11,6 +11,7 @@ class ItemPost extends Component {
             
         };
         this.deleteTraderq = this.deleteTraderq.bind(this);
+        this.deleteOffer = this.deleteOffer.bind(this);
     }
     // componentWillMount(){}
     // componentDidMount(){}
@@ -20,6 +21,23 @@ class ItemPost extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+    deleteOffer(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/offer/'+this.props.key_data,{
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if(json.success) {
+                this.props.onDeleteSuccess();
+                window.location.reload(false);
+            }
+        })
+        console.log('delete offer')
+    }
     deleteTraderq(){
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+this.props.key_data,{
             method: "DELETE",
@@ -32,6 +50,7 @@ class ItemPost extends Component {
         .then(json => {
             if(json.success) {
                 this.props.onDeleteSuccess();
+                window.location.reload(false);
             }
         })
     }
@@ -41,15 +60,27 @@ class ItemPost extends Component {
             <div className="relative-pos">
                 <div className="ItemPost">
                     <div className="avatar-ItemPost">
-                        <Link to={`/exchange/viewoffer/information/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                            <img className="avata-img" src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
-                        </Link>
+                        {
+                            this.props.isOffer ? (
+                                <img className="avata-img" src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
+                            ) : (
+                                <Link to={`/exchange/viewoffer/information/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
+                                    <img className="avata-img" src={`https://bbook-backend.herokuapp.com/${this.props.image}`} width="100%" height="100%" alt={'BookTitle'}/>
+                                </Link>
+                            )
+                        }
                     </div>
                     <div className="infor-ItemPost">
                         <div>
-                            <Link to={`/exchange/viewoffer/information/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
-                                {this.props.name}
-                            </Link>
+                            {
+                                this.props.isOffer ? (
+                                    this.props.name
+                                ) : (
+                                    <Link to={`/exchange/viewoffer/information/${this.props.key_data}`} style={{width: '70%', color: 'yellow'}}>
+                                        {this.props.name}
+                                    </Link>
+                                )
+                            }
                         </div>
                         {
                             this.props.owner ? (
@@ -60,9 +91,17 @@ class ItemPost extends Component {
                         }
                     </div>
                 </div>
-                <button className="btn-del-yourbook" onClick={this.deleteTraderq}>
-                    <FontAwesomeIcon icon={faTimes}/>
-                </button>
+                {
+                    this.props.isOffer ? (
+                        <button className="btn-del-yourbook" onClick={this.deleteOffer}>
+                            <FontAwesomeIcon icon={faTimes}/>
+                        </button>
+                    ) : (
+                        <button className="btn-del-yourbook" onClick={this.deleteTraderq}>
+                            <FontAwesomeIcon icon={faTimes}/>
+                        </button>
+                    )
+                }
             </div>
         );
     }

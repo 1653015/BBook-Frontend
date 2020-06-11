@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './ViewBookExchange.css';
 import { Redirect, Link} from 'react-router-dom';
-import Item from '../../Home/BookSlider/Item/Item';
 import Cookies from 'universal-cookie';
 import Carousel from "react-elastic-carousel";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faTimes } from '@fortawesome/free-solid-svg-icons';
 import Alert from '@material-ui/lab/Alert';
 import ItemPost from '../ItemPost/ItemPost';
 
@@ -74,33 +71,34 @@ class ViewBookExchange extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     componentDidUpdate(){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json.success) {
-                this.setState({uPosts: json.posts});
-            } 
-        })
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json.success) {
+        //         this.setState({uPosts: json.posts});
+        //     } 
+        // })
 
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if (json.success) {
-                this.setState({offerBooks: json.offers});
-            }
-        })
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if (json.success) {
+        //         this.setState({offerBooks: json.offers});
+        //         console.log(this.state.offerBooks)
+        //     }
+        // })
     }
 
     render() {
@@ -153,17 +151,17 @@ class ViewBookExchange extends Component {
                                 this.state.offerBooks.length === 0 ? (null) : (
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
-                                            this.state.offerBooks.map(book => (
-                                                <div className="relative-pos">
-                                                <Item 
+                                            this.state.offerBooks.map(offerBook => (
+                                                <ItemPost
+                                                    onDeleteSuccess={this.onDeleteSuccess}
+                                                    isOffer={true}
                                                     categorieID={this.props.data_key} 
-                                                    key={book._id} 
-                                                    key_data={book._id} 
-                                                    image={book.image} 
-                                                    name={book.name} 
-                                                    author={book.author}/>
-                                                    <button  className="btn-del-youroffer"><FontAwesomeIcon icon={faTimes}/></button>
-                                                </div>
+                                                    cookies={this.state.cookies}
+                                                    key={offerBook._id}
+                                                    key_data={offerBook._id} 
+                                                    image={offerBook.for&&offerBook.for.image} 
+                                                    name={offerBook.for&&offerBook.for.name} 
+                                                    owner={offerBook.to&&offerBook.to.name}/>
                                             ))
                                         }
                                     </Carousel>

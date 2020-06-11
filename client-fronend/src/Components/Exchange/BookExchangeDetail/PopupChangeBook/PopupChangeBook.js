@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './PopupChangeBook.css';
 import {Formik} from 'formik';
-import { Redirect } from 'react-router-dom';
 
 class PopupChangeBook extends Component {
     constructor(props){
@@ -52,29 +51,26 @@ class PopupChangeBook extends Component {
     };
 
     submitOffer = (values, actions) => {
-        console.log('asdjfkljsdfl');
-
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/offer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': this.props.cookies.get('u_t')
             },
-            body: {
-                to: this.props.traderq.op,
-                for: this.props.traderq.book,
-                offering: values.value,
+            body: JSON.stringify({
+                to:  this.props.traderq.op._id,
+                for: this.props.traderq.book._id,
+                offering: values.books,
                 post: this.props.traderq._id,
-            }
+            })
         })
         .then(res => res.json())
         .then(json => {
             if (json.success) {
                 actions.setSubmitting(false);
-                return(<Redirect to="/"/>);
+                this.setState({errorMessage: 'Đã gửi yêu cầu'});
             }
         });
-        return(<Redirect to="/"/>)
     }
     
     render() {
@@ -83,7 +79,7 @@ class PopupChangeBook extends Component {
                 <div className="PopupChangeBook-content">
                     <span className="close" onClick={this.handleClick}>&times;</span>
                     <Formik
-                        initialValues={{books: this.state.books}}
+                        initialValues={{books: ''}}
                         onSubmit={(values, actions) => {
                             this.submitOffer(values, actions);
                         }}>
@@ -91,21 +87,21 @@ class PopupChangeBook extends Component {
                             props => (
                                 <div>
                                     <h2>Chọn sách của bạn</h2>
-                                    <form onSubmit={props.handleSubmit} className="select-book-exchange">
+                                    <form autoComplete="off" onSubmit={props.handleSubmit} className="select-book-exchange">
                                         <div className="inline">
-                                        <input 
+                                        <input
                                             disabled={this.state.isDisable}
                                             list="listUserBooks" 
                                             name="books" 
                                             type="text"
-                                            onChange={this.handleChange}
-                                            value={this.state.book}/>
+                                            onChange={props.handleChange}
+                                            value={props.values.books}/>
                                         <datalist id="listUserBooks">
                                             {
                                                 this.state.books && this.state.books.map(book => (
                                                     <option
                                                         key={book._id}
-                                                        value={book.name}> {book.name} </option>
+                                                        value={book._id}> {book.name} </option>
                                                 ))
                                             }
                                         </datalist>
