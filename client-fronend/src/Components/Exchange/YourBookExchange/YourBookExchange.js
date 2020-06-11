@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './YourBookExchange.css';
 import { withRouter } from 'react-router-dom';
-import InterestedBooksSlider from '../BookExchangeDetail/InterestedBooksSlider/InterestedBooksSlider';
+import OffertoYourBook from './OffertoYourBook/OffertoYourBook';
 
 
 class YourBookExchange extends Component {
@@ -53,7 +53,7 @@ class YourBookExchange extends Component {
                         
                     </div>
                     <div className="listBook">
-                        <InterestedBooksSlider op={this.state.traderq.op&&this.state.traderq.op.name} interested_books={this.state.interested}/>
+                        <OffertoYourBook op={this.state.traderq.op&&this.state.traderq.op.name} interested_books={this.state.interested}/>
                     </div>
                 </div>
             </div>
