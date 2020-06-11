@@ -20,11 +20,14 @@ class ViewBookExchange extends Component {
         this.state = {
             cookies: new Cookies(),
             uPosts: [],
-            tradedBooks: [],
+            offerBooks: [],
             message: '',
             openMessage: false,
         };
-        this.deleteTraderq = this.deleteTraderq.bind(this);
+    }
+
+    onDeleteSuccess = () => {
+        this.setState({openMessage: true});
     }
 
     componentWillMount(){
@@ -42,7 +45,7 @@ class ViewBookExchange extends Component {
             } 
         })
         
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/traded', {
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +55,7 @@ class ViewBookExchange extends Component {
         .then(res => res.json())
         .then(json => {
             if (json.success) {
-                this.setState({tradedBooks: json.books.tradedBooks});
+                this.setState({offerBooks: json.offers});
             }
         })
     }
@@ -65,25 +68,6 @@ class ViewBookExchange extends Component {
             </button>
         );
     }
-
-    deleteTraderq = (postId) => {
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+postId,{
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': this.props.cookies.get('u_t')
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            if(json.success) {
-                console.log('asdfasdf');
-                this.setState({openMessage: true});
-                this.setState({message: json.message});
-            }
-        })
-    }
-
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
@@ -103,13 +87,28 @@ class ViewBookExchange extends Component {
                 this.setState({uPosts: json.posts});
             } 
         })
+
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                this.setState({offerBooks: json.offers});
+            }
+        })
     }
+
     render() {
         if(!this.state.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
         }
 
-        if (this.state.uPosts.length !== 0 || this.state.tradedBooks.length !== 0) {
+        if (this.state.uPosts.length !== 0 || this.state.offerBooks !== 0) {
             return (
                 <div className="container">
                     <div className="UserBookStorage">
@@ -134,16 +133,14 @@ class ViewBookExchange extends Component {
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
                                             this.state.uPosts.map(post => (
-                                                <div key={post._id} className="relative-pos">
-                                                    <ItemPost
-                                                        key_data={post._id} 
-                                                        image={post.book&&post.book.image} 
-                                                        name={post.book&&post.book.name} 
-                                                        owner={post.op.name}/>
-                                                    <button className="btn-del-yourbook" onClick={() => this.deleteTraderq(post._id)}>
-                                                        <FontAwesomeIcon icon={faTimes}/>
-                                                    </button>
-                                                </div>
+                                                <ItemPost
+                                                    onDeleteSuccess={this.onDeleteSuccess}
+                                                    cookies={this.state.cookies}
+                                                    key={post._id}
+                                                    key_data={post._id} 
+                                                    image={post.book&&post.book.image} 
+                                                    name={post.book&&post.book.name} 
+                                                    owner={post.op.name}/>
                                             ))
                                         }
                                     </Carousel>
@@ -153,10 +150,10 @@ class ViewBookExchange extends Component {
                         <div className="BookSlider">
                             <div className="book-slider-title">Yêu cầu bạn đang gửi</div>
                             {
-                                this.state.tradedBooks.length === 0 ? (null) : (
+                                this.state.offerBooks.length === 0 ? (null) : (
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
-                                            this.state.tradedBooks.map(book => (
+                                            this.state.offerBooks.map(book => (
                                                 <div className="relative-pos">
                                                 <Item 
                                                     categorieID={this.props.data_key} 
