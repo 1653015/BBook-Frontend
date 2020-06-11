@@ -44,8 +44,8 @@ class PopupChangeBook extends Component {
     };
 
     submitOffer = (values, actions) => {
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/stash', {
-            method: 'GET',
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/offer', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-access-token': this.props.cookies.get('u_t')
@@ -65,7 +65,7 @@ class PopupChangeBook extends Component {
                 <div className="PopupChangeBook-content">
                     <span className="close" onClick={this.handleClick}>&times;</span>
                     <Formik
-                        initialValues={this.state.books[0]}
+                        initialValues={{books: this.state.books}}
                         onSubmit={(values, actions) => {
                             this.submitOffer(values, actions);
                         }}>
@@ -85,7 +85,7 @@ class PopupChangeBook extends Component {
                                         <datalist id="listUserBooks">
                                             {
                                                 this.state.books && this.state.books.map(book => (
-                                                    <option key={book._id} value={book._id}>{book.name}</option>
+                                                    <option key={book._id} value={book.name}>{book.name}</option>
                                                 ))
                                             }
                                         </datalist>
