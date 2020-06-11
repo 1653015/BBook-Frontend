@@ -25,33 +25,6 @@ class SignUp extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
-    login(values, actions){
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/auth/email',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email: values.email, password: values.password})
-        })
-        .then(res => {
-            if(res.status === 400) {
-                res.text().then(text => this.setState({errorMessage: text}));
-                actions.setSubmitting(false);
-            } else if (res.status === 200) {
-                res.json().then(json => {
-                    this.state.cookies.set('u_t', json.token, {maxAge: 36000000, httpOnly: false});
-                    this.state.cookies.set('m_inf_u', json.user, {maxAge: 36000000, httpOnly: false});
-                    this.state.cookies.set('isLogin', 'login', {maxAge: 36000000, httpOnly: false});
-                    this.props.LoginLogout(true);
-                    this.setState({redirect: true});
-                })
-            } else {
-                this.setState({errorMessage: 'Lỗi không xác định!!!'});
-                actions.setSubmitting(false);
-            }
-        })
-    }
-
     signup(values, actions){
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/register/email-activation',{
             method: "POST",
@@ -75,9 +48,7 @@ class SignUp extends Component {
                 // this.props.LoginLogout(true);
                 // this.setState({redirect: true});
                 // res.json().then(json => {this.setState({errorMessage: json.message})});
-                console.log('abs');
-                this.login(values, actions);
-                
+                this.setState({errorMessage: 'Đăng ký thành công, link kích hoạt tài khoản đã được gửi tới email của bạn'});
             } else {
                 this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);

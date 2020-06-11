@@ -11,6 +11,7 @@ class ItemPost extends Component {
             
         };
         this.deleteTraderq = this.deleteTraderq.bind(this);
+        this.deleteOffer = this.deleteOffer.bind(this);
     }
     // componentWillMount(){}
     // componentDidMount(){}
@@ -20,6 +21,22 @@ class ItemPost extends Component {
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
     // componentDidUpdate(){}
+    deleteOffer(){
+        // fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+this.props.key_data,{
+        //     method: "DELETE",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-access-token': this.props.cookies.get('u_t')
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     if(json.success) {
+        //         this.props.onDeleteSuccess();
+        //     }
+        // })
+        console.log('delete offer')
+    }
     deleteTraderq(){
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/'+this.props.key_data,{
             method: "DELETE",
@@ -60,9 +77,17 @@ class ItemPost extends Component {
                         }
                     </div>
                 </div>
-                <button className="btn-del-yourbook" onClick={this.deleteTraderq}>
-                    <FontAwesomeIcon icon={faTimes}/>
-                </button>
+                {
+                    this.props.isOffer ? (
+                        <button className="btn-del-yourbook" onClick={this.deleteOffer}>
+                            <FontAwesomeIcon icon={faTimes}/>
+                        </button>
+                    ) : (
+                        <button className="btn-del-yourbook" onClick={this.deleteTraderq}>
+                            <FontAwesomeIcon icon={faTimes}/>
+                        </button>
+                    )
+                }
             </div>
         );
     }

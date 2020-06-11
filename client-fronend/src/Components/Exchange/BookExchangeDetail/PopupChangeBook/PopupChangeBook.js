@@ -87,9 +87,9 @@ class PopupChangeBook extends Component {
                             props => (
                                 <div>
                                     <h2>Chọn sách của bạn</h2>
-                                    <form onSubmit={props.handleSubmit} className="select-book-exchange">
+                                    <form autoComplete="off" onSubmit={props.handleSubmit} className="select-book-exchange">
                                         <div className="inline">
-                                        <input 
+                                        <input
                                             disabled={this.state.isDisable}
                                             list="listUserBooks" 
                                             name="books" 
