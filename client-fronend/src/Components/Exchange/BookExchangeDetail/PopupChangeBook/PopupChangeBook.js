@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './PopupChangeBook.css';
-import {Formik} from 'formik'
+import {Formik} from 'formik';
+import { Redirect } from 'react-router-dom';
 
 class PopupChangeBook extends Component {
     constructor(props){
@@ -9,6 +10,7 @@ class PopupChangeBook extends Component {
             errorMessage: '',
             token: '',
             books: [],
+            offering: ''
         };
 
     }
@@ -43,7 +45,15 @@ class PopupChangeBook extends Component {
         this.props.toggle();
     };
 
+    handleChange = (evt) => {
+        this.setState({
+            offering: evt.target.value
+        });
+    };
+
     submitOffer = (values, actions) => {
+        console.log('asdjfkljsdfl');
+
         fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/offer', {
             method: 'POST',
             headers: {
@@ -51,12 +61,20 @@ class PopupChangeBook extends Component {
                 'x-access-token': this.props.cookies.get('u_t')
             },
             body: {
-                to: '',
-                for: '',
+                to: this.props.traderq.op,
+                for: this.props.traderq.book,
                 offering: values.value,
-                post: '',
+                post: this.props.traderq._id,
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                actions.setSubmitting(false);
+                return(<Redirect to="/"/>);
             }
         });
+        return(<Redirect to="/"/>)
     }
     
     render() {
@@ -78,14 +96,16 @@ class PopupChangeBook extends Component {
                                         <input 
                                             disabled={this.state.isDisable}
                                             list="listUserBooks" 
-                                            name="userBooks" 
+                                            name="books" 
                                             type="text"
-                                            onChange={props.handleChange}
-                                            value={props.values.books}/>
+                                            onChange={this.handleChange}
+                                            value={this.state.book}/>
                                         <datalist id="listUserBooks">
                                             {
                                                 this.state.books && this.state.books.map(book => (
-                                                    <option key={book._id} value={book.name}>{book.name}</option>
+                                                    <option
+                                                        key={book._id}
+                                                        value={book.name}> {book.name} </option>
                                                 ))
                                             }
                                         </datalist>
