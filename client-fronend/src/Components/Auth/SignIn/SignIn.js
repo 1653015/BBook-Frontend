@@ -151,6 +151,7 @@ class SignIn extends Component {
                                     <div className="error-message">{this.state.errorMessage}</div>
                                     <input type="submit" disabled={props.isSubmitting} value="Đăng Nhập"/>
                                     <GoogleLogin
+                                        className="btn-google-login"
                                         // clientId="639654572878-40oqbl8t2cj3dvjv8vj9othe1he9oepv.apps.googleusercontent.com" //Localhost
                                         clientId="473601010653-5nodt0b4a3jsjmd8c3l42v8fgh5fofhe.apps.googleusercontent.com" //github-pagehost
                                         buttonText="LOGIN WITH GOOGLE"
