@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import Carousel from "react-elastic-carousel";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faTimes } from '@fortawesome/free-solid-svg-icons';
+import Alert from '@material-ui/lab/Alert';
 import ItemPost from '../ItemPost/ItemPost';
 
 
@@ -19,8 +20,14 @@ class ViewBookExchange extends Component {
         this.state = {
             cookies: new Cookies(),
             uPosts: [],
-            tradedBooks: [],
+            offerBooks: [],
+            message: '',
+            openMessage: false,
         };
+    }
+
+    onDeleteSuccess = () => {
+        this.setState({openMessage: true});
     }
 
     componentWillMount(){
@@ -35,10 +42,10 @@ class ViewBookExchange extends Component {
         .then(json => {
             if (json.success) {
                 this.setState({uPosts: json.posts});
-            }
+            } 
         })
         
-        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/books/traded', {
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +55,7 @@ class ViewBookExchange extends Component {
         .then(res => res.json())
         .then(json => {
             if (json.success) {
-                this.setState({tradedBooks: json.books.tradedBooks});
+                this.setState({offerBooks: json.offers});
             }
         })
     }
@@ -61,24 +68,63 @@ class ViewBookExchange extends Component {
             </button>
         );
     }
-
     // componentWillUnmount(){}
 
     // componentWillReceiveProps(){}
     // shouldComponentUpdate(){}
     // componentWillUpdate(){}
-    // componentDidUpdate(){}
+    componentDidUpdate(){
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/traderq/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                this.setState({uPosts: json.posts});
+            } 
+        })
+
+        fetch('https://cors-anywhere.herokuapp.com/https://bbook-backend.herokuapp.com/user/offer/sent', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': this.props.cookies.get('u_t')
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.success) {
+                this.setState({offerBooks: json.offers});
+            }
+        })
+    }
 
     render() {
         if(!this.state.cookies.get('isLogin')){
             return(<Redirect path='/'/>)
         }
 
-        if (this.state.uPosts.length !== 0 || this.state.tradedBooks.length !== 0) {
+        if (this.state.uPosts.length !== 0 || this.state.offerBooks !== 0) {
             return (
                 <div className="container">
                     <div className="UserBookStorage">
                     <Link  className="post-trade-book"to="/exchange/create/book">Đăng ký đổi sách</Link>
+                    {
+                        this.state.openMessage ? (
+                            <Alert 
+                                variant="filled" 
+                                className="alert" 
+                                onClose={()=>{this.setState({openMessage: false})}} 
+                                severity="success">
+                                    Xóa thành công
+                            </Alert>
+                        ) : (null)
+                            
+                    }
                         <div className="BookSlider">
                             <div className="book-slider-title">Sách đổi của bạn</div>
                             {
@@ -87,15 +133,14 @@ class ViewBookExchange extends Component {
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
                                             this.state.uPosts.map(post => (
-                                                <div className="relative-pos">
-                                                    <ItemPost
-                                                        key={post._id}
-                                                        key_data={post._id} 
-                                                        image={post.book&&post.book.image} 
-                                                        name={post.book&&post.book.name} 
-                                                        owner={post.op.name}/>
-                                                    <button  className="btn-del-yourbook"><FontAwesomeIcon icon={faTimes}/></button>
-                                                </div>
+                                                <ItemPost
+                                                    onDeleteSuccess={this.onDeleteSuccess}
+                                                    cookies={this.state.cookies}
+                                                    key={post._id}
+                                                    key_data={post._id} 
+                                                    image={post.book&&post.book.image} 
+                                                    name={post.book&&post.book.name} 
+                                                    owner={post.op.name}/>
                                             ))
                                         }
                                     </Carousel>
@@ -105,10 +150,10 @@ class ViewBookExchange extends Component {
                         <div className="BookSlider">
                             <div className="book-slider-title">Yêu cầu bạn đang gửi</div>
                             {
-                                this.state.tradedBooks.length === 0 ? (null) : (
+                                this.state.offerBooks.length === 0 ? (null) : (
                                     <Carousel breakPoints={breakPoints} transitionMs={2000} disableArrowsOnEnd={false} renderArrow={this.myArrow}>
                                         {
-                                            this.state.tradedBooks.map(book => (
+                                            this.state.offerBooks.map(book => (
                                                 <div className="relative-pos">
                                                 <Item 
                                                     categorieID={this.props.data_key} 

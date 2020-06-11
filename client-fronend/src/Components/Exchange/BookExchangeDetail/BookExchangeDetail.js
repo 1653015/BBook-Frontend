@@ -58,7 +58,7 @@ class BookExchangeDetail extends Component {
                             Trao đổi
                         </button>
                         {
-                            this.state.seen ? <PopupChangeBook cookies={this.state.cookies} toggle={this.togglePopup} /> : null
+                            this.state.seen ? <PopupChangeBook cookies={this.props.cookies} toggle={this.togglePopup} /> : null
                         }
                     </div>
                     <div className="listBook">

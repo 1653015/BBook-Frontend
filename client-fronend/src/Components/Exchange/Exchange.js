@@ -38,7 +38,7 @@ class Exchange extends Component {
 
     render() {
         if(!this.state.cookies.get('isLogin')){
-            return(<Redirect path='/'/>)
+            return(<Redirect to='/'/>)
         }
         return (
             <div className="container">

@@ -132,7 +132,7 @@ class CreateExchangeBook extends Component {
                         }}
                         validationSchema={Yup.object({
                             userBooks: Yup.string()
-                                .required('Email is empty'),
+                                .required('Books is empty'),
                         })}
                         >
                             {
@@ -142,8 +142,8 @@ class CreateExchangeBook extends Component {
                                         <div className="form-item">
                                             <div className="form-item-header">
                                                 <div style={{textAlign: "center"}} className="font-white" >Sách để đổi</div>
-                                                {props.touched.email && props.errors.email? (
-                                                    <div className="invalid-message">{props.errors.email}</div>
+                                                {props.touched.userBooks && props.errors.userBooks? (
+                                                    <div className="invalid-message">{props.errors.userBooks}</div>
                                                 ) : null}
                                             </div>
                                             <input 
@@ -163,10 +163,6 @@ class CreateExchangeBook extends Component {
                                         <div className="form-item">
                                             <div className="form-item-header">
                                                 <div className="font-white">Sách muốn đổi</div>
-                                                {props.touched.password && props.errors.password? (
-                                                    <div className="invalid-message">{props.errors.password}</div>
-                                                ) : null}
-                                                
                                             </div>
                                             {/* <input
                                                 list="listStoreBooks" 
