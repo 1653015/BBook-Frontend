@@ -14,7 +14,6 @@ class SignUp extends Component {
             cookies: new Cookies()
         };
         this.signup = this.signup.bind(this);
-        this.login = this.login.bind(this);
     }
 
     // componentWillMount(){}
@@ -47,10 +46,13 @@ class SignUp extends Component {
             } else if (res.status === 200) {
                 // this.props.LoginLogout(true);
                 // this.setState({redirect: true});
-                // res.json().then(json => {this.setState({errorMessage: json.message})});
-                this.setState({errorMessage: 'Đăng ký thành công, link kích hoạt tài khoản đã được gửi tới email của bạn'});
+                this.setState({
+                    errorMessage:'Kiểm tra Email xác nhận!!!'
+                    
+                })
+                actions.setSubmitting(false);
             } else {
-                this.setState({errorMessage: 'Lỗi không xác định!!!'});
+                this.setState({errorMessage: 'Lỗi không xác định'});
                 actions.setSubmitting(false);
             }
         });

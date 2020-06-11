@@ -1,0 +1,47 @@
+/*
+ * OffertoYourBook css File
+*/
+
+.OffertoYourBook {
+    /* propertys here */
+}
+
+.btn-del-offer:hover{
+    background-color: white;
+    color:red;
+}
+.btn-del-offer{
+    background-color: red;
+    border:0;
+    padding: 0 3px;
+    height: 20px;
+    width: 20px;
+    color:white;
+    line-height: 20px;
+    border-radius: 12px;
+    vertical-align: middle;
+    position: absolute;
+    top: 3%;
+    right: 20%;
+}
+.btn-check-offer:hover{
+    background-color: rgb(252, 252, 252);
+    color:green;
+}
+.btn-check-offer{
+    background-color: green;
+    border:0;
+    padding: 0 3px;
+    height: 20px;
+    width: 20px;
+    color:white;
+    line-height: 20px;
+    border-radius: 12px;
+    vertical-align: middle;
+    position: absolute;
+    top: 3%;
+    left: 20%;
+}
+.relative-pos{
+    position: relative;
+}
