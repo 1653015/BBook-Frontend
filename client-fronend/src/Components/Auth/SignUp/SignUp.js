@@ -46,7 +46,7 @@ class SignUp extends Component {
                     this.setState({redirect: true});
                 })
             } else {
-                this.setState({errorMessage: 'Đăng ký thành công!!!'});
+                this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
             }
         })
@@ -78,7 +78,7 @@ class SignUp extends Component {
                 this.login(values, actions);
                 
             } else {
-                this.setState({errorMessage: 'Đăng ký thành công!'});
+                this.setState({errorMessage: 'Lỗi không xác định!!!'});
                 actions.setSubmitting(false);
             }
         });
